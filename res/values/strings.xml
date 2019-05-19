@@ -17,6 +17,10 @@
 
     <string name="app_name">Dirty Themes</string>
 
+    <!-- Accent Picker -->
+    <string name="theme_picker_default">Default</string>
+    <string name="accent_color">Accent picker</string>
+
     <!-- Dark theme -->
     <string name="dark_theme_title">Dark theme</string>
 
