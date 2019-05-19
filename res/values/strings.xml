@@ -31,6 +31,10 @@
     <string name="theme_navbar_picker_tecno">Tecno Camon</string>
     <string name="theme_navbar_picker_asus">ASUS</string>
 
+    <!-- Accent Picker -->
+    <string name="theme_picker_default">Default</string>
+    <string name="accent_color">Accent picker</string>
+
     <!-- Dark theme -->
     <string name="dark_theme_title">Dark theme</string>
 

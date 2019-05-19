@@ -19,6 +19,12 @@
         android:key="wp_preview"
         android:enabled="false" />
 
+    <com.dirtyunicorns.support.colorpicker.ColorPickerPreference
+        android:key="accent_color"
+        android:title="@string/accent_color"
+        android:defaultValue="0xff1a73e8"
+        android:persistent="false"/>
+
     <Preference
         android:key="theme_navbar_picker"
         android:title="@string/theme_navbar_picker_title"
