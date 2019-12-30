@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2019 The Dirty Unicorns Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="90dp"
+    android:layout_gravity="center|top"
+    android:paddingStart="5dp"
+    android:paddingEnd="5dp"
+    android:background="@drawable/ic_themes_qs_background">
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/qs_styles_shape_square"
+                android:tint="@color/theme_preview_qs_tiles_background_active"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_themes_wifi"
+                android:tint="@color/theme_preview_qs_tiles_icon_active"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/qs_styles_shape_square"
+                android:tint="@color/theme_preview_qs_tiles_background_inactive"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_themes_bluetooth"
+                android:tint="@color/theme_preview_qs_tiles_icon_inactive"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/qs_styles_shape_square"
+                android:tint="@color/theme_preview_qs_tiles_background_active"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_themes_dnd"
+                android:tint="@color/theme_preview_qs_tiles_icon_active"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/qs_styles_shape_square"
+                android:tint="@color/theme_preview_qs_tiles_background_inactive"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_themes_flashlight"
+                android:tint="@color/theme_preview_qs_tiles_icon_inactive"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/qs_styles_shape_square"
+                android:tint="@color/theme_preview_qs_tiles_background_active"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_themes_autorotate"
+                android:tint="@color/theme_preview_qs_tiles_icon_active"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/qs_styles_shape_square"
+                android:tint="@color/theme_preview_qs_tiles_background_inactive"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_themes_battery_saver"
+                android:tint="@color/theme_preview_qs_tiles_icon_inactive"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+    </GridLayout>
+
+</LinearLayout>
