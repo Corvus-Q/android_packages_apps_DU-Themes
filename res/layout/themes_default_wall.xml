@@ -14,17 +14,16 @@
      limitations under the License.
 -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Preference
-        android:key="wallpaper_preview"
-        android:enabled="false"
-        android:layout="@layout/themes_main"
-        android:order="1"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_wall"
+        tools:ignore="ContentDescription" />
 
-    <Preference
-        android:key="accent_picker"
-        android:title="AccentPicker"
-        android:order="2"/>
-
-</PreferenceScreen>
+</LinearLayout>

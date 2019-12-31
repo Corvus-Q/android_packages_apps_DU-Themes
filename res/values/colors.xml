@@ -15,12 +15,11 @@
 -->
 <resources>
 
-    <color name="homepage_du_themes_background">#7e57c2</color>
-    <color name="theme_preview_qs_background">?android:colorPrimary</color>
-    <color name="theme_preview_qs_tiles_spacer">#20000000</color>
-    <color name="theme_preview_qs_tiles_background_active">@*android:color/accent_device_default_light</color>
-    <color name="theme_preview_qs_tiles_background_inactive">#FFDCDCDC</color>
-    <color name="theme_preview_qs_tiles_icon_active">#FFFFFFFF</color>
-    <color name="theme_preview_qs_tiles_icon_inactive">#FF656565</color>
+    <color name="qs_tile_panel_background">#EFFFFFFF</color>
+    <color name="qs_tile_panel_spacer">#20000000</color>
+    <color name="qs_tile_background_active">@*android:color/accent_device_default_light</color>
+    <color name="qs_tile_background_inactive">#FFDCDCDC</color>
+    <color name="qs_tile_icon_active">#FFFFFFFF</color>
+    <color name="qs_tile_icon_inactive">#FF656565</color>
 
 </resources>

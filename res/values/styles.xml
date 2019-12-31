@@ -15,11 +15,13 @@
 -->
 <resources>
 
-    <color name="qs_tile_panel_background">#FF202125</color>
-    <color name="qs_tile_panel_spacer">#FFFFFFFF</color>
-    <color name="qs_tile_background_active">@*android:color/accent_device_default_dark</color>
-    <color name="qs_tile_background_inactive">#FF4E4F53</color>
-    <color name="qs_tile_icon_active">#FF221F25</color>
-    <color name="qs_tile_icon_inactive">#FFCBCACD</color>
+    <style name="AccentDialogTheme" parent="@*android:style/Theme.Material.BaseDialog">
+        <item name="android:colorBackgroundFloating">#FFFFFFFF</item>
+        <item name="android:colorAccent">@*android:color/accent_device_default_light</item>
+        <item name="android:bottomRightRadius">@*android:dimen/config_dialogCornerRadius</item>
+        <item name="android:bottomLeftRadius">@*android:dimen/config_dialogCornerRadius</item>
+        <item name="android:topRightRadius">@*android:dimen/config_dialogCornerRadius</item>
+        <item name="android:topLeftRadius">@*android:dimen/config_dialogCornerRadius</item>
+    </style>
 
 </resources>

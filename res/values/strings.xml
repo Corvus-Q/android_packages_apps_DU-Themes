@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<resources>
 <!-- Copyright (C) 2019 The Dirty Unicorns Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,10 +13,12 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Themes</string>
 
-    <!-- DU Themes -->
-    <string name="du_themes_title">Themes</string>
-    <string name="du_themes_summary">Life is like a box of crayons..</string>
-
+    <!-- Accent Picker -->
+    <string name="accent_picker_dialog_title">Select an accent</string>
+    <string name="theme_accent_picker_title">Accent color</string>
+    <string name="theme_accent_picker_default">Default</string>
+    <string name="accent_picker_stock_colors">Stock</string>
+    <string name="accent_picker_custom_colors">Custom</string>
 </resources>

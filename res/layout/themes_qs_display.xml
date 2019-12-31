@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/qs_styles_shape_square"
-                android:tint="@color/theme_preview_qs_tiles_background_active"
+                android:tint="@color/qs_tile_background_active"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -48,7 +48,7 @@
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_wifi"
-                android:tint="@color/theme_preview_qs_tiles_icon_active"
+                android:tint="@color/qs_tile_icon_active"
                 tools:ignore="ContentDescription" />
         </RelativeLayout>
 
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/qs_styles_shape_square"
-                android:tint="@color/theme_preview_qs_tiles_background_inactive"
+                android:tint="@color/qs_tile_background_inactive"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -70,7 +70,7 @@
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_bluetooth"
-                android:tint="@color/theme_preview_qs_tiles_icon_inactive"
+                android:tint="@color/qs_tile_icon_inactive"
                 tools:ignore="ContentDescription" />
         </RelativeLayout>
 
@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/qs_styles_shape_square"
-                android:tint="@color/theme_preview_qs_tiles_background_active"
+                android:tint="@color/qs_tile_background_active"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -92,7 +92,7 @@
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_dnd"
-                android:tint="@color/theme_preview_qs_tiles_icon_active"
+                android:tint="@color/qs_tile_icon_active"
                 tools:ignore="ContentDescription" />
         </RelativeLayout>
 
@@ -105,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/qs_styles_shape_square"
-                android:tint="@color/theme_preview_qs_tiles_background_inactive"
+                android:tint="@color/qs_tile_background_inactive"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -114,7 +114,7 @@
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_flashlight"
-                android:tint="@color/theme_preview_qs_tiles_icon_inactive"
+                android:tint="@color/qs_tile_icon_inactive"
                 tools:ignore="ContentDescription" />
         </RelativeLayout>
 
@@ -127,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/qs_styles_shape_square"
-                android:tint="@color/theme_preview_qs_tiles_background_active"
+                android:tint="@color/qs_tile_background_active"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -136,7 +136,7 @@
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_autorotate"
-                android:tint="@color/theme_preview_qs_tiles_icon_active"
+                android:tint="@color/qs_tile_icon_active"
                 tools:ignore="ContentDescription" />
         </RelativeLayout>
 
@@ -148,7 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/qs_styles_shape_square"
-                android:tint="@color/theme_preview_qs_tiles_background_inactive"
+                android:tint="@color/qs_tile_background_inactive"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -157,7 +157,7 @@
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_battery_saver"
-                android:tint="@color/theme_preview_qs_tiles_icon_inactive"
+                android:tint="@color/qs_tile_icon_inactive"
                 tools:ignore="ContentDescription" />
         </RelativeLayout>
 
