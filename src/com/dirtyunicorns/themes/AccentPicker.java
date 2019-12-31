@@ -59,8 +59,6 @@ public class AccentPicker extends DialogFragment {
             initView();
         }
 
-        setCancelable(false);
-
         builder.setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dismiss();

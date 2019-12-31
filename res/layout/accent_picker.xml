@@ -30,11 +30,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="25dp"
             android:layout_marginEnd="20dp"
             android:textSize="20sp"
             android:textColor="?android:textColorPrimary"
+            android:textAppearance="?android:attr/textAppearanceListItem"
             android:text="@string/accent_picker_dialog_title" />
 
         <TextView
@@ -42,10 +43,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="25dp"
             android:layout_marginEnd="20dp"
             android:textAllCaps="true"
-            android:textSize="14sp"
+            android:textSize="12sp"
+            android:textAppearance="?android:attr/textAppearanceListItem"
             android:text="@string/accent_picker_stock_colors" />
 
         <HorizontalScrollView
@@ -59,7 +61,11 @@
                 android:columnCount="1"
                 android:columnOrderPreserved="true">
 
-                <include layout="@layout/stock_colors" />
+                <include layout="@layout/stock_colors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"/>
 
             </GridLayout>
         </HorizontalScrollView>
@@ -69,10 +75,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="25dp"
             android:layout_marginEnd="20dp"
             android:textAllCaps="true"
-            android:textSize="14sp"
+            android:textSize="12sp"
+            android:textAppearance="?android:attr/textAppearanceListItem"
             android:text="@string/accent_picker_custom_colors" />
 
         <HorizontalScrollView
@@ -86,7 +93,11 @@
                 android:columnCount="1"
                 android:columnOrderPreserved="true">
 
-                <include layout="@layout/custom_colors" />
+                <include layout="@layout/custom_colors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"/>
 
             </GridLayout>
         </HorizontalScrollView>

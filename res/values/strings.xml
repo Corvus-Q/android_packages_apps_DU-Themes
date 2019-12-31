@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2019 The Dirty Unicorns Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <resources>
 
     <string name="app_name">Themes</string>
@@ -27,5 +27,11 @@
 
     <!-- Dark theme -->
     <string name="dark_theme_title">Dark theme</string>
+
+    <!-- Fonts -->
+    <string name="font_type_title">Font type</string>
+    <string name="font_type_summary">Select font type</string>
+    <string name="font_type_default">Default</string>
+    <string name="font_type_noto_serif">Noto Serif / Source Sans Pro</string>
 
 </resources>

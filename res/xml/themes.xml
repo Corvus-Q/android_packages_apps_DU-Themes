@@ -13,7 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Preference
@@ -31,7 +30,15 @@
     <SwitchPreference
         android:key="dark_switch"
         android:title="@string/dark_theme_title"
-        android:defaultValue="false"
         android:order="3"/>
+
+    <ListPreference
+        android:key="font_picker"
+        android:title="@string/font_type_title"
+        android:summary="@string/font_type_summary"
+        android:dialogTitle="@string/font_type_summary"
+        android:entries="@array/font_type_titles"
+        android:entryValues="@array/font_type_values"
+        android:order="4" />
 
 </PreferenceScreen>

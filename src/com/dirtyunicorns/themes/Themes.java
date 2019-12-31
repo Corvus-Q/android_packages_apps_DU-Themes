@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2019 The Dirty Unicorns Project
+ * Copyright (C) 2019 The Dirty Unicorns Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,24 +16,37 @@
 
 package com.dirtyunicorns.themes;
 
+import static android.os.UserHandle.USER_SYSTEM;
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.UiModeManager;
 import android.content.Context;
+import android.content.om.IOverlayManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
+import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreference;
 
 import com.android.internal.util.du.Utils;
 
-public class Themes extends PreferenceFragment {
+public class Themes extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    private static final String PREF_ACCENT_PICKER = "accent_picker";
     private static final String PREF_DARK_SWITCH = "dark_switch";
+    private static final String PREF_FONT_PICKER = "font_picker";
 
+    ListPreference mFontPicker;
+    IOverlayManager mOverlayManager;
     SwitchPreference mDarkModeSwitch;
     Preference mAccentPicker;
+    SharedPreferences mSharedPreferences;
     UiModeManager mUiModeManager;
 
     @Override
@@ -43,8 +56,13 @@ public class Themes extends PreferenceFragment {
         addPreferencesFromResource(R.xml.themes);
 
         mUiModeManager = getContext().getSystemService(UiModeManager.class);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        mSharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
-        mAccentPicker = findPreference("accent_picker");
+        mOverlayManager = IOverlayManager.Stub.asInterface(
+                ServiceManager.getService(Context.OVERLAY_SERVICE));
+
+        mAccentPicker = findPreference(PREF_ACCENT_PICKER);
         mAccentPicker.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -72,6 +90,14 @@ public class Themes extends PreferenceFragment {
                 return true;
             }
         });
+
+        mFontPicker = (ListPreference) findPreference(PREF_FONT_PICKER);
+        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+            mFontPicker.setValue("2");
+        } else {
+            mFontPicker.setValue("1");
+        }
+        mFontPicker.setSummary(mFontPicker.getEntry());
     }
 
     public boolean isChecked() {
@@ -91,6 +117,29 @@ public class Themes extends PreferenceFragment {
         if (context != null) {
             context.getSystemService(UiModeManager.class)
                     .setNightMode(UiModeManager.MODE_NIGHT_NO);
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(PREF_FONT_PICKER)) {
+            String font_type = sharedPreferences.getString(PREF_FONT_PICKER, "1");
+            if (font_type.equals("1")) {
+                try {
+                    mOverlayManager.setEnabled("com.android.theme.font.notoserifsource",
+                            false, USER_SYSTEM);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            } else if (font_type.equals("2")) {
+                try {
+                    mOverlayManager.setEnabled("com.android.theme.font.notoserifsource",
+                            true, USER_SYSTEM);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+            mFontPicker.setSummary(mFontPicker.getEntry());
         }
     }
 
