@@ -61,13 +61,13 @@ public class AccentPicker extends DialogFragment {
 
         setCancelable(false);
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dismiss();
             }
         });
 
-        builder.setNeutralButton("Default", new DialogInterface.OnClickListener() {
+        builder.setNeutralButton(getString(R.string.theme_accent_picker_default), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 for (int i = 0; i < ThemesUtils.ACCENTS.length; i++) {
                     String accent = ThemesUtils.ACCENTS[i];
