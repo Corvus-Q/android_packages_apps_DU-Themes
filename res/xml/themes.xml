@@ -21,15 +21,15 @@
         android:layout="@layout/themes_main"
         android:order="1"/>
 
+    <SwitchPreference
+        android:key="dark_switch"
+        android:title="@string/dark_theme_title"
+        android:order="2"/>
+
     <Preference
         android:key="accent_picker"
         android:title="@string/theme_accent_picker_title"
         android:summary="@string/theme_accent_picker_summary"
-        android:order="2"/>
-
-    <SwitchPreference
-        android:key="dark_switch"
-        android:title="@string/dark_theme_title"
         android:order="3"/>
 
     <ListPreference
@@ -40,5 +40,13 @@
         android:entries="@array/font_type_titles"
         android:entryValues="@array/font_type_values"
         android:order="4" />
+
+    <ListPreference
+        android:key="adapative_icon_shape"
+        android:title="@string/adaptive_icon_shape_dialog_title"
+        android:dialogTitle="@string/adaptive_icon_shape_dialog_title"
+        android:entries="@array/adapative_icon_shape_titles"
+        android:entryValues="@array/adapative_icon_shape_values"
+        android:order="5" />
 
 </PreferenceScreen>

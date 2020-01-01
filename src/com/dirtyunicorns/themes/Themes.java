@@ -41,8 +41,10 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
     private static final String PREF_ACCENT_PICKER = "accent_picker";
     private static final String PREF_DARK_SWITCH = "dark_switch";
     private static final String PREF_FONT_PICKER = "font_picker";
+    private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
 
     ListPreference mFontPicker;
+    ListPreference mAdaptiveIconShape;
     IOverlayManager mOverlayManager;
     SwitchPreference mDarkModeSwitch;
     Preference mAccentPicker;
@@ -98,6 +100,18 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             mFontPicker.setValue("1");
         }
         mFontPicker.setSummary(mFontPicker.getEntry());
+
+        mAdaptiveIconShape = (ListPreference) findPreference(PREF_ADAPTIVE_ICON_SHAPE);
+        if (Utils.isThemeEnabled("com.android.theme.icon.teardrop")) {
+            mAdaptiveIconShape.setValue("2");
+        } else if (Utils.isThemeEnabled("com.android.theme.icon.squircle")) {
+            mAdaptiveIconShape.setValue("3");
+        } else if (Utils.isThemeEnabled("com.android.theme.icon.roundedrect")) {
+            mAdaptiveIconShape.setValue("4");
+        } else {
+            mAdaptiveIconShape.setValue("1");
+        }
+        mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
     }
 
     public boolean isChecked() {
@@ -125,21 +139,33 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
         if (key.equals(PREF_FONT_PICKER)) {
             String font_type = sharedPreferences.getString(PREF_FONT_PICKER, "1");
             if (font_type.equals("1")) {
-                try {
-                    mOverlayManager.setEnabled("com.android.theme.font.notoserifsource",
-                            false, USER_SYSTEM);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
+                    handleOverlays("com.android.theme.font.notoserifsource", false);
             } else if (font_type.equals("2")) {
-                try {
-                    mOverlayManager.setEnabled("com.android.theme.font.notoserifsource",
-                            true, USER_SYSTEM);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
+                    handleOverlays("com.android.theme.font.notoserifsource", true);
             }
             mFontPicker.setSummary(mFontPicker.getEntry());
+        }
+
+        if (key.equals(PREF_ADAPTIVE_ICON_SHAPE)) {
+            String adapative_icon_shape = sharedPreferences.getString(PREF_ADAPTIVE_ICON_SHAPE, "1");
+            if (adapative_icon_shape.equals("1")) {
+                    handleOverlays("com.android.theme.icon.teardrop", false);
+                    handleOverlays("com.android.theme.icon.squircle", false);
+                    handleOverlays("com.android.theme.icon.roundedrect", false);
+            } else if (adapative_icon_shape.equals("2")) {
+                    handleOverlays("com.android.theme.icon.teardrop", true);
+                    handleOverlays("com.android.theme.icon.squircle", false);
+                    handleOverlays("com.android.theme.icon.roundedrect", false);
+            } else if (adapative_icon_shape.equals("3")) {
+                    handleOverlays("com.android.theme.icon.teardrop", false);
+                    handleOverlays("com.android.theme.icon.squircle", true);
+                    handleOverlays("com.android.theme.icon.roundedrect", false);
+            } else if (adapative_icon_shape.equals("4")) {
+                    handleOverlays("com.android.theme.icon.teardrop", false);
+                    handleOverlays("com.android.theme.icon.squircle", false);
+                    handleOverlays("com.android.theme.icon.roundedrect", true);
+            }
+            mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
         }
     }
 
@@ -150,6 +176,7 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
     public void onResume() {
         super.onResume();
         updateAccentSummary();
+        updateIconShapeSummary();
     }
 
     private void updateAccentSummary() {
@@ -201,6 +228,27 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             mAccentPicker.setSummary("Yellow");
         } else {
             mAccentPicker.setSummary(getString(R.string.theme_accent_picker_default));
+        }
+    }
+
+    private void updateIconShapeSummary() {
+        if (Utils.isThemeEnabled("com.android.theme.icon.teardrop")) {
+            mAdaptiveIconShape.setSummary(getString(R.string.adaptive_icon_shape_teardrop));
+        } else if (Utils.isThemeEnabled("com.android.theme.icon.squircle")) {
+            mAdaptiveIconShape.setSummary(getString(R.string.adaptive_icon_shape_squircle));
+        } else if (Utils.isThemeEnabled("com.android.theme.icon.roundedrect")) {
+            mAdaptiveIconShape.setSummary(getString(R.string.adaptive_icon_shape_roundedrect));
+        } else {
+            mAdaptiveIconShape.setSummary(getString(R.string.adaptive_icon_shape_default));
+        }
+    }
+
+    private void handleOverlays(String packagename, Boolean state) {
+        try {
+            mOverlayManager.setEnabled(packagename,
+                    state, USER_SYSTEM);
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 }

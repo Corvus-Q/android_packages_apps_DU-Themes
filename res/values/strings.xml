@@ -34,4 +34,12 @@
     <string name="font_type_default">Default</string>
     <string name="font_type_noto_serif">Noto Serif / Source Sans Pro</string>
 
+    <!-- Adaptive icon shapes -->
+    <string name="adaptive_icon_shape_default">Default</string>
+    <string name="adaptive_icon_shape_teardrop">Teardrop</string>
+    <string name="adaptive_icon_shape_squircle">Squircle</string>
+    <string name="adaptive_icon_shape_roundedrect">Rounded Rectangle</string>
+    <string name="adaptive_icon_shape_title">Adapative icon shape</string>
+    <string name="adaptive_icon_shape_dialog_title">Icon shape</string>
+
 </resources>

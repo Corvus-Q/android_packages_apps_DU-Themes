@@ -25,4 +25,6 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     androidx-constraintlayout_constraintlayout \
     androidx.preference_preference
 
+include frameworks/base/packages/SettingsLib/common.mk
+
 include $(BUILD_PACKAGE)

@@ -15,6 +15,7 @@
 -->
 <resources>
 
+    <!-- Fonts -->
     <string-array name="font_type_titles">
         <item>@string/theme_accent_picker_default</item>
         <item>@string/font_type_noto_serif</item>
@@ -23,6 +24,21 @@
     <string-array name="font_type_values">
         <item>1</item>
         <item>2</item>
+    </string-array>
+
+    <!-- Adaptive icon shapes -->
+    <string-array name="adapative_icon_shape_titles">
+        <item>@string/adaptive_icon_shape_default</item>
+        <item>@string/adaptive_icon_shape_teardrop</item>
+        <item>@string/adaptive_icon_shape_squircle</item>
+        <item>@string/adaptive_icon_shape_roundedrect</item>
+    </string-array>
+
+    <string-array name="adapative_icon_shape_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
 
 </resources>
