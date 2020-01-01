@@ -18,6 +18,8 @@ package com.dirtyunicorns.themes;
 
 import static android.os.UserHandle.USER_SYSTEM;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.UiModeManager;
@@ -27,6 +29,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.view.MenuItem;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -61,6 +64,11 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.themes);
+
+        ActionBar actionBar = getActivity().getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         mUiModeManager = getContext().getSystemService(UiModeManager.class);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -308,5 +316,19 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                goUpToTopLevelSetting(getActivity());
+                return true;
+        }
+        return false;
+    }
+
+    public static void goUpToTopLevelSetting(Activity activity) {
+        activity.finish();
     }
 }
