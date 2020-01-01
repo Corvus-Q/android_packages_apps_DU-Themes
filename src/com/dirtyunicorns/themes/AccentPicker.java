@@ -80,9 +80,8 @@ public class AccentPicker extends DialogFragment {
         });
 
         builder.setView(mView);
-        Dialog dialog = builder.create();
 
-        return dialog;
+        return builder.create();
     }
 
     private void initView() {

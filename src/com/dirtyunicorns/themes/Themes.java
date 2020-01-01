@@ -48,16 +48,16 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
     private static final String PREF_PREVIEW = "preview";
     private static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
 
-    IOverlayManager mOverlayManager;
-    SharedPreferences mSharedPreferences;
-    UiModeManager mUiModeManager;
+    private IOverlayManager mOverlayManager;
+    private SharedPreferences mSharedPreferences;
+    private UiModeManager mUiModeManager;
 
-    ListPreference mAdaptiveIconShape;
-    ListPreference mFontPicker;
-    ListPreference mStatusbarIcons;
-    Preference mAccentPicker;
-    Preference mPreview;
-    SwitchPreference mDarkModeSwitch;
+    private ListPreference mAdaptiveIconShape;
+    private ListPreference mFontPicker;
+    private ListPreference mStatusbarIcons;
+    private Preference mAccentPicker;
+    private Preference mPreview;
+    private SwitchPreference mDarkModeSwitch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -145,7 +145,7 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
         mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
     }
 
-    public boolean isChecked() {
+    private boolean isChecked() {
         return mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
     }
 
@@ -170,53 +170,63 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
         if (key.equals(PREF_FONT_PICKER)) {
             String font_type = sharedPreferences.getString(PREF_FONT_PICKER, "1");
             if (font_type.equals("1")) {
-                    handleOverlays("com.android.theme.font.notoserifsource", false);
+                handleOverlays("com.android.theme.font.notoserifsource", false);
             } else if (font_type.equals("2")) {
-                    handleOverlays("com.android.theme.font.notoserifsource", true);
+                handleOverlays("com.android.theme.font.notoserifsource", true);
             }
             mFontPicker.setSummary(mFontPicker.getEntry());
         }
 
         if (key.equals(PREF_ADAPTIVE_ICON_SHAPE)) {
             String adapative_icon_shape = sharedPreferences.getString(PREF_ADAPTIVE_ICON_SHAPE, "1");
-            if (adapative_icon_shape.equals("1")) {
+            switch (adapative_icon_shape) {
+                case "1":
                     handleOverlays("com.android.theme.icon.teardrop", false);
                     handleOverlays("com.android.theme.icon.squircle", false);
                     handleOverlays("com.android.theme.icon.roundedrect", false);
-            } else if (adapative_icon_shape.equals("2")) {
+                    break;
+                case "2":
                     handleOverlays("com.android.theme.icon.teardrop", true);
                     handleOverlays("com.android.theme.icon.squircle", false);
                     handleOverlays("com.android.theme.icon.roundedrect", false);
-            } else if (adapative_icon_shape.equals("3")) {
+                    break;
+                case "3":
                     handleOverlays("com.android.theme.icon.teardrop", false);
                     handleOverlays("com.android.theme.icon.squircle", true);
                     handleOverlays("com.android.theme.icon.roundedrect", false);
-            } else if (adapative_icon_shape.equals("4")) {
+                    break;
+                case "4":
                     handleOverlays("com.android.theme.icon.teardrop", false);
                     handleOverlays("com.android.theme.icon.squircle", false);
                     handleOverlays("com.android.theme.icon.roundedrect", true);
+                    break;
             }
             mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
         }
 
         if (key.equals(PREF_STATUSBAR_ICONS)) {
             String statusbar_icons = sharedPreferences.getString(PREF_STATUSBAR_ICONS, "1");
-            if (statusbar_icons.equals("1")) {
+            switch (statusbar_icons) {
+                case "1":
                     handleOverlays("com.android.theme.icon_pack.filled.android", false);
                     handleOverlays("com.android.theme.icon_pack.rounded.android", false);
                     handleOverlays("com.android.theme.icon_pack.circular.android", false);
-            } else if (statusbar_icons.equals("2")) {
+                    break;
+                case "2":
                     handleOverlays("com.android.theme.icon_pack.filled.android", true);
                     handleOverlays("com.android.theme.icon_pack.rounded.android", false);
                     handleOverlays("com.android.theme.icon_pack.circular.android", false);
-            } else if (statusbar_icons.equals("3")) {
+                    break;
+                case "3":
                     handleOverlays("com.android.theme.icon_pack.filled.android", false);
                     handleOverlays("com.android.theme.icon_pack.rounded.android", true);
                     handleOverlays("com.android.theme.icon_pack.circular.android", false);
-            } else if (statusbar_icons.equals("4")) {
+                    break;
+                case "4":
                     handleOverlays("com.android.theme.icon_pack.filled.android", false);
                     handleOverlays("com.android.theme.icon_pack.rounded.android", false);
                     handleOverlays("com.android.theme.icon_pack.circular.android", true);
+                    break;
             }
             mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
         }
@@ -320,15 +330,14 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                goUpToTopLevelSetting(getActivity());
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            goUpToTopLevelSetting(getActivity());
+            return true;
         }
         return false;
     }
 
-    public static void goUpToTopLevelSetting(Activity activity) {
+    private static void goUpToTopLevelSetting(Activity activity) {
         activity.finish();
     }
 }
