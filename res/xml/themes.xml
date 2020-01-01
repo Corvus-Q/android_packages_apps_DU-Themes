@@ -16,9 +16,8 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Preference
-        android:key="wallpaper_preview"
+        android:key="preview"
         android:enabled="false"
-        android:layout="@layout/themes_main"
         android:order="1"/>
 
     <SwitchPreference
@@ -48,5 +47,13 @@
         android:entries="@array/adapative_icon_shape_titles"
         android:entryValues="@array/adapative_icon_shape_values"
         android:order="5" />
+
+    <ListPreference
+        android:key="statusbar_icons"
+        android:title="@string/statusbar_icons_title"
+        android:dialogTitle="@string/statusbar_icons_title"
+        android:entries="@array/statusbar_icons_titles"
+        android:entryValues="@array/statusbar_icons_values"
+        android:order="6" />
 
 </PreferenceScreen>

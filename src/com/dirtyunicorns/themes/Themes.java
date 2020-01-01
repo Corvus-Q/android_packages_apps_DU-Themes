@@ -39,17 +39,22 @@ import com.android.internal.util.du.Utils;
 public class Themes extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String PREF_ACCENT_PICKER = "accent_picker";
+    private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
     private static final String PREF_DARK_SWITCH = "dark_switch";
     private static final String PREF_FONT_PICKER = "font_picker";
-    private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
+    private static final String PREF_PREVIEW = "preview";
+    private static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
 
-    ListPreference mFontPicker;
-    ListPreference mAdaptiveIconShape;
     IOverlayManager mOverlayManager;
-    SwitchPreference mDarkModeSwitch;
-    Preference mAccentPicker;
     SharedPreferences mSharedPreferences;
     UiModeManager mUiModeManager;
+
+    ListPreference mAdaptiveIconShape;
+    ListPreference mFontPicker;
+    ListPreference mStatusbarIcons;
+    Preference mAccentPicker;
+    Preference mPreview;
+    SwitchPreference mDarkModeSwitch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,8 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
 
         mOverlayManager = IOverlayManager.Stub.asInterface(
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
+
+        mPreview = findPreference(PREF_PREVIEW);
 
         mAccentPicker = findPreference(PREF_ACCENT_PICKER);
         mAccentPicker.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -112,6 +119,22 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             mAdaptiveIconShape.setValue("1");
         }
         mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
+
+        mStatusbarIcons = (ListPreference) findPreference(PREF_STATUSBAR_ICONS);
+        if (Utils.isThemeEnabled("com.android.theme.icon_pack.filled.android")) {
+            mStatusbarIcons.setValue("2");
+            mPreview.setLayoutResource(R.layout.themes_main_filled);
+        } else if (Utils.isThemeEnabled("com.android.theme.icon_pack.rounded.android")) {
+            mStatusbarIcons.setValue("3");
+            mPreview.setLayoutResource(R.layout.themes_main_rounded);
+        } else if (Utils.isThemeEnabled("com.android.theme.icon_pack.circular.android")) {
+            mStatusbarIcons.setValue("4");
+            mPreview.setLayoutResource(R.layout.themes_main_circular);
+        } else {
+            mStatusbarIcons.setValue("1");
+            mPreview.setLayoutResource(R.layout.themes_main);
+        }
+        mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
     }
 
     public boolean isChecked() {
@@ -167,6 +190,28 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             }
             mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
         }
+
+        if (key.equals(PREF_STATUSBAR_ICONS)) {
+            String statusbar_icons = sharedPreferences.getString(PREF_STATUSBAR_ICONS, "1");
+            if (statusbar_icons.equals("1")) {
+                    handleOverlays("com.android.theme.icon_pack.filled.android", false);
+                    handleOverlays("com.android.theme.icon_pack.rounded.android", false);
+                    handleOverlays("com.android.theme.icon_pack.circular.android", false);
+            } else if (statusbar_icons.equals("2")) {
+                    handleOverlays("com.android.theme.icon_pack.filled.android", true);
+                    handleOverlays("com.android.theme.icon_pack.rounded.android", false);
+                    handleOverlays("com.android.theme.icon_pack.circular.android", false);
+            } else if (statusbar_icons.equals("3")) {
+                    handleOverlays("com.android.theme.icon_pack.filled.android", false);
+                    handleOverlays("com.android.theme.icon_pack.rounded.android", true);
+                    handleOverlays("com.android.theme.icon_pack.circular.android", false);
+            } else if (statusbar_icons.equals("4")) {
+                    handleOverlays("com.android.theme.icon_pack.filled.android", false);
+                    handleOverlays("com.android.theme.icon_pack.rounded.android", false);
+                    handleOverlays("com.android.theme.icon_pack.circular.android", true);
+            }
+            mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
+        }
     }
 
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -177,6 +222,7 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
         super.onResume();
         updateAccentSummary();
         updateIconShapeSummary();
+        updateStatusbarIconsSummary();
     }
 
     private void updateAccentSummary() {
@@ -240,6 +286,18 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             mAdaptiveIconShape.setSummary(getString(R.string.adaptive_icon_shape_roundedrect));
         } else {
             mAdaptiveIconShape.setSummary(getString(R.string.adaptive_icon_shape_default));
+        }
+    }
+
+    private void updateStatusbarIconsSummary() {
+        if (Utils.isThemeEnabled("com.android.theme.icon_pack.filled.android")) {
+            mStatusbarIcons.setSummary(getString(R.string.statusbar_icons_filled));
+        } else if (Utils.isThemeEnabled("com.android.theme.icon_pack.rounded.android")) {
+            mStatusbarIcons.setSummary(getString(R.string.statusbar_icons_rounded));
+        } else if (Utils.isThemeEnabled("com.android.theme.icon_pack.circular.android")) {
+            mStatusbarIcons.setSummary(getString(R.string.statusbar_icons_circular));
+        } else {
+            mStatusbarIcons.setSummary(getString(R.string.statusbar_icons_default));
         }
     }
 
