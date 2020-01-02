@@ -15,7 +15,7 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference
+    <com.dirtyunicorns.themes.CustomPreference
         android:key="preview"
         android:enabled="false"
         android:order="1"/>
