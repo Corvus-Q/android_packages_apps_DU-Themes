@@ -40,7 +40,7 @@
     <string name="adaptive_icon_shape_squircle">Squircle</string>
     <string name="adaptive_icon_shape_roundedrect">Rounded Rectangle</string>
     <string name="adaptive_icon_shape_title">Adapative icon shape</string>
-    <string name="adaptive_icon_shape_dialog_title">Icon shape</string>
+    <string name="adaptive_icon_shape_dialog_title">Select icon shape</string>
 
     <!-- Statusbar icons -->
     <string name="statusbar_icons_default">Default</string>
@@ -48,5 +48,6 @@
     <string name="statusbar_icons_rounded">Rounded</string>
     <string name="statusbar_icons_circular">Circular</string>
     <string name="statusbar_icons_title">Statusbar icons</string>
+    <string name="statusbar_icons_dialog_title">Select statusbar icon set</string>
 
 </resources>
