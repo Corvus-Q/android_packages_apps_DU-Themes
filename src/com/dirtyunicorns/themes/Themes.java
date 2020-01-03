@@ -91,15 +91,14 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
         });
 
         mDarkModeSwitch = (SwitchPreference) findPreference(PREF_DARK_SWITCH);
+        assert mDarkModeSwitch != null;
         mDarkModeSwitch.setChecked(isChecked());
         mDarkModeSwitch.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                if (!isChecked()) {
-                    enableDarkTheme();
-                } else {
-                    enableLightTheme();
-                }
+                getContext().getSystemService(UiModeManager.class)
+                        .setNightMode(!isChecked() ?
+                                UiModeManager.MODE_NIGHT_YES : UiModeManager.MODE_NIGHT_NO);
                 return true;
             }
         });
@@ -139,22 +138,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
 
     private boolean isChecked() {
         return mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
-    }
-
-    private void enableDarkTheme() {
-        final Context context = getContext();
-        if (context != null) {
-            context.getSystemService(UiModeManager.class)
-                    .setNightMode(UiModeManager.MODE_NIGHT_YES);
-        }
-    }
-
-    private void enableLightTheme() {
-        final Context context = getContext();
-        if (context != null) {
-            context.getSystemService(UiModeManager.class)
-                    .setNightMode(UiModeManager.MODE_NIGHT_NO);
-        }
     }
 
     @Override
