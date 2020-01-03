@@ -27,6 +27,7 @@
 
     <style name="MainTheme" parent="@android:style/Theme.DeviceDefault.Settings">
         <item name="android:alertDialogTheme">@style/FontDialogTheme</item>
+        <item name="android:navigationBarColor">#00000000</item>
     </style>
 
     <style name="FontDialogTheme" parent="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert">
