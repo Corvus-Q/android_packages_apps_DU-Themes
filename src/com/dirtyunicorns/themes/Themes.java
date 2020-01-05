@@ -26,6 +26,7 @@ import android.app.UiModeManager;
 import android.content.Context;
 import android.content.om.IOverlayManager;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -109,6 +110,14 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
         mFontPicker = (ListPreference) findPreference(PREF_FONT_PICKER);
         if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
             mFontPicker.setValue("2");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+            mFontPicker.setValue("3");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+            mFontPicker.setValue("4");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+            mFontPicker.setValue("5");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+            mFontPicker.setValue("6");
         } else {
             mFontPicker.setValue("1");
         }
@@ -143,20 +152,115 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
         mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
     }
 
-    private boolean isChecked() {
-        return mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES;
-    }
-
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (key.equals(PREF_FONT_PICKER)) {
-            String font_type = sharedPreferences.getString(PREF_FONT_PICKER, "1");
-            if (font_type.equals("1")) {
-                handleOverlays("com.android.theme.font.notoserifsource", false);
-            } else if (font_type.equals("2")) {
-                handleOverlays("com.android.theme.font.notoserifsource", true);
+    public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences, final String key) {
+        class PrepareData extends AsyncTask<Void, Void, Void> {
+
+            protected Void doInBackground(Void... param) {
+                return null;
             }
-            mFontPicker.setSummary(mFontPicker.getEntry());
+
+            protected void onPostExecute(Void param) {
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                String font_type = sharedPreferences.getString(PREF_FONT_PICKER, "1");
+                switch (font_type) {
+                    case "1":
+                        for (int i = 0; i < ThemesUtils.FONTS.length; i++) {
+                            String fonts = ThemesUtils.FONTS[i];
+                            try {
+                                mOverlayManager.setEnabled(fonts, false, USER_SYSTEM);
+                            } catch (RemoteException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        break;
+                    case "2":
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        handleOverlays("com.android.theme.font.notoserifsource", true);
+                        break;
+                    case "3":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        handleOverlays("com.android.theme.font.cagliostrosource", true);
+                        break;
+                    case "4":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        handleOverlays("com.android.theme.font.lgsmartgothicsource", true);
+                        break;
+                    case "5":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        handleOverlays("com.android.theme.font.rosemarysource", true);
+                        break;
+                    case "6":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        handleOverlays("com.android.theme.font.sonysketchsource", true);
+                        break;
+                }
+                mFontPicker.setSummary(mFontPicker.getEntry());
+            }
+        }
+
+        if (key.equals(PREF_FONT_PICKER)) {
+            new PrepareData().execute();
         }
 
         if (key.equals(PREF_ADAPTIVE_ICON_SHAPE)) {

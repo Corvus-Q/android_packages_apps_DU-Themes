@@ -32,7 +32,11 @@
     <string name="font_type_title">Font type</string>
     <string name="font_type_summary">Select font type</string>
     <string name="font_type_default">Default</string>
-    <string name="font_type_noto_serif">Noto Serif / Source Sans Pro</string>
+    <string name="font_type_2">Noto Serif / Source Sans Pro</string>
+    <string name="font_type_3">Cagliostro</string>
+    <string name="font_type_4">LG Smart Gothic</string>
+    <string name="font_type_5">Rosemary</string>
+    <string name="font_type_6">Sony Sketch</string>
 
     <!-- Adaptive icon shapes -->
     <string name="adaptive_icon_shape_default">Default</string>
