@@ -77,5 +77,21 @@
     <string name="theme_type_google_dark">Google dark</string>
     <string name="theme_type_pitch_black">Pitch black</string>
     <string name="theme_type_solarized_dark">Solarized dark</string>
+    <string name="theme_other_category_title">Other</string>
+    <string name="theme_backup_title">Backup theme</string>
+    <string name="theme_backup_summary">Backup your current theme configuration</string>
+    <string name="theme_backup_reach_limit_summary">Backup limit reached</string>
+    <string name="theme_restore_title">Restore theme</string>
+    <string name="theme_restore_summary">Restore a saved theme configuration</string>
+    <string name="theme_restore_no_backup_summary">No backup available</string>
+    <string name="theme_name_exist_warning">This backup name already exist. Enter a new one.</string>
+    <string name="theme_button_apply_theme">Apply theme</string>
+    <string name="theme_button_delete_theme">Delete theme</string>
+    <string name="theme_switch_restore_theme_color">Restore theme color</string>
+    <string name="theme_switch_restore_accent_color">Restore accent color</string>
+    <string name="theme_switch_restore_font_type">Restore font type</string>
+    <string name="theme_switch_restore_adaptative_icons">Restore adaptative icons</string>
+    <string name="theme_switch_restore_sb_icons">Restore status bar icons</string>
+    <string name="theme_backup_edittext_hint">Backup_</string>
 
 </resources>

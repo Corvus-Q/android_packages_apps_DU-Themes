@@ -17,13 +17,18 @@ LOCAL_USE_AAPT2 := true
 
 LOCAL_AAPT_FLAGS := \
     --auto-add-overlay \
-    --extra-packages androidx.appcompat \
-    --extra-packages androidx.preference_preference
+    --extra-packages androidx.appcompat_appcompat \
+    --extra-packages androidx.cardview_cardview \
+    --extra-packages androidx.preference_preference \
+    --extra-packages androidx.recyclerview_recyclerview
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
     androidx.appcompat_appcompat \
+    androidx.cardview_cardview \
     androidx-constraintlayout_constraintlayout \
-    androidx.preference_preference
+    androidx.core_core \
+    androidx.preference_preference \
+    androidx.recyclerview_recyclerview
 
 include frameworks/base/packages/SettingsLib/common.mk
 

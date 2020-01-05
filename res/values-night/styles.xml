@@ -42,4 +42,20 @@
         <item name="android:colorControlNormal">#FFC1C2C3</item>
     </style>
 
+    <style name="RestoreThemes" parent="Theme.AppCompat.DayNight">
+        <item name="android:windowBackground">@*android:color/notification_material_background_color</item>
+        <item name="android:colorAccent">@*android:color/accent_device_default_dark</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+
+    <style name="DialogEditTextStyle" parent="android:style/Widget.EditText">
+        <item name="android:background">@*android:color/notification_material_background_color</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="RestoreThemeNameStyle" parent="android:style/Widget.TextView">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>

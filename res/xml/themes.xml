@@ -17,8 +17,7 @@
 
     <com.dirtyunicorns.themes.CustomPreference
         android:key="preview"
-        android:enabled="false"
-        android:order="1"/>
+        android:enabled="false" />
 
     <ListPreference
         android:key="theme_switch"
@@ -26,14 +25,12 @@
         android:summary="@string/theme_type_summary"
         android:dialogTitle="@string/theme_type_summary"
         android:entries="@array/theme_type_titles"
-        android:entryValues="@array/theme_type_values"
-        android:order="2"/>
+        android:entryValues="@array/theme_type_values" />
 
     <Preference
         android:key="accent_picker"
         android:title="@string/theme_accent_picker_title"
-        android:summary="@string/theme_accent_picker_summary"
-        android:order="3"/>
+        android:summary="@string/theme_accent_picker_summary" />
 
     <ListPreference
         android:key="font_picker"
@@ -41,23 +38,34 @@
         android:summary="@string/font_type_summary"
         android:dialogTitle="@string/font_type_summary"
         android:entries="@array/font_type_titles"
-        android:entryValues="@array/font_type_values"
-        android:order="4" />
+        android:entryValues="@array/font_type_values" />
 
     <ListPreference
         android:key="adapative_icon_shape"
         android:title="@string/adaptive_icon_shape_dialog_title"
         android:dialogTitle="@string/adaptive_icon_shape_dialog_title"
         android:entries="@array/adapative_icon_shape_titles"
-        android:entryValues="@array/adapative_icon_shape_values"
-        android:order="5" />
+        android:entryValues="@array/adapative_icon_shape_values" />
 
     <ListPreference
         android:key="statusbar_icons"
         android:title="@string/statusbar_icons_title"
         android:dialogTitle="@string/statusbar_icons_dialog_title"
         android:entries="@array/statusbar_icons_titles"
-        android:entryValues="@array/statusbar_icons_values"
-        android:order="6" />
+        android:entryValues="@array/statusbar_icons_values" />
+
+    <PreferenceCategory
+        android:key="theme_other_category"
+        android:title="@string/theme_other_category_title">
+
+        <Preference
+            android:key="backup_themes"
+            android:title="@string/theme_backup_title" />
+
+        <Preference
+            android:key="restore_themes"
+            android:title="@string/theme_restore_title" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

@@ -38,6 +38,7 @@ public class AccentPicker extends DialogFragment {
 
     public static final String TAG_ACCENT_PICKER = "accent_picker";
 
+    public static String mAccentColor;
     private View mView;
     private IOverlayManager mOverlayManager;
 
@@ -192,22 +193,37 @@ public class AccentPicker extends DialogFragment {
             buttonAccent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    try {
-                        for (int i = 0; i < ThemesUtils.ACCENTS.length; i++) {
-                            String accent = ThemesUtils.ACCENTS[i];
-                            try {
-                                mOverlayManager.setEnabled(accent, false, USER_SYSTEM);
-                            } catch (RemoteException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        mOverlayManager.setEnabled(accent, true, USER_SYSTEM);
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
+                    enableAccent(accent);
                     dismiss();
                 }
             });
         }
+    }
+
+    public static void enableAccent(final String accentPicker) {
+        try {
+            for (int i = 0; i < ThemesUtils.ACCENTS.length; i++) {
+                String accent = ThemesUtils.ACCENTS[i];
+                try {
+                    IOverlayManager.Stub.asInterface(ServiceManager.getService(
+                        Context.OVERLAY_SERVICE)).setEnabled(accent, false, USER_SYSTEM);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+            IOverlayManager.Stub.asInterface(ServiceManager.getService(
+                Context.OVERLAY_SERVICE)).setEnabled(accentPicker, true, USER_SYSTEM);
+            setAccentColor(accentPicker);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getAccentColor() {
+        return mAccentColor;
+    }
+ 
+    private static void setAccentColor(String accentColor) {
+        mAccentColor = accentColor;
     }
 }
