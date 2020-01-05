@@ -32,6 +32,8 @@
         <item>@string/adaptive_icon_shape_teardrop</item>
         <item>@string/adaptive_icon_shape_squircle</item>
         <item>@string/adaptive_icon_shape_roundedrect</item>
+        <item>@string/adaptive_icon_shape_cylinder</item>
+        <item>@string/adaptive_icon_shape_hexagon</item>
     </string-array>
 
     <string-array name="adapative_icon_shape_values">
@@ -39,6 +41,8 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+        <item>5</item>
+        <item>6</item>
     </string-array>
 
     <!-- Statusbar icons -->

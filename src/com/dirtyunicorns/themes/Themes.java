@@ -118,6 +118,10 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             mAdaptiveIconShape.setValue("3");
         } else if (Utils.isThemeEnabled("com.android.theme.icon.roundedrect")) {
             mAdaptiveIconShape.setValue("4");
+        } else if (Utils.isThemeEnabled("com.android.theme.icon.cylinder")) {
+            mAdaptiveIconShape.setValue("5");
+        } else if (Utils.isThemeEnabled("com.android.theme.icon.hexagon")) {
+            mAdaptiveIconShape.setValue("6");
         } else {
             mAdaptiveIconShape.setValue("1");
         }
@@ -154,26 +158,28 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
 
         if (key.equals(PREF_ADAPTIVE_ICON_SHAPE)) {
             String adapative_icon_shape = sharedPreferences.getString(PREF_ADAPTIVE_ICON_SHAPE, "1");
+
+            handleOverlays("com.android.theme.icon.teardrop", false);
+            handleOverlays("com.android.theme.icon.squircle", false);
+            handleOverlays("com.android.theme.icon.roundedrect", false);
+            handleOverlays("com.android.theme.icon.cylinder", false);
+            handleOverlays("com.android.theme.icon.hexagon", false);
+
             switch (adapative_icon_shape) {
-                case "1":
-                    handleOverlays("com.android.theme.icon.teardrop", false);
-                    handleOverlays("com.android.theme.icon.squircle", false);
-                    handleOverlays("com.android.theme.icon.roundedrect", false);
-                    break;
                 case "2":
                     handleOverlays("com.android.theme.icon.teardrop", true);
-                    handleOverlays("com.android.theme.icon.squircle", false);
-                    handleOverlays("com.android.theme.icon.roundedrect", false);
                     break;
                 case "3":
-                    handleOverlays("com.android.theme.icon.teardrop", false);
                     handleOverlays("com.android.theme.icon.squircle", true);
-                    handleOverlays("com.android.theme.icon.roundedrect", false);
                     break;
                 case "4":
-                    handleOverlays("com.android.theme.icon.teardrop", false);
-                    handleOverlays("com.android.theme.icon.squircle", false);
                     handleOverlays("com.android.theme.icon.roundedrect", true);
+                    break;
+                case "5":
+                    handleOverlays("com.android.theme.icon.cylinder", true);
+                    break;
+                case "6":
+                    handleOverlays("com.android.theme.icon.hexagon", true);
                     break;
             }
             mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
@@ -277,6 +283,10 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             mAdaptiveIconShape.setSummary(getString(R.string.adaptive_icon_shape_squircle));
         } else if (Utils.isThemeEnabled("com.android.theme.icon.roundedrect")) {
             mAdaptiveIconShape.setSummary(getString(R.string.adaptive_icon_shape_roundedrect));
+        } else if (Utils.isThemeEnabled("com.android.theme.icon.cylinder")) {
+            mAdaptiveIconShape.setSummary(getString(R.string.adaptive_icon_shape_cylinder));
+        } else if (Utils.isThemeEnabled("com.android.theme.icon.hexagon")) {
+            mAdaptiveIconShape.setSummary(getString(R.string.adaptive_icon_shape_hexagon));
         } else {
             mAdaptiveIconShape.setSummary(getString(R.string.adaptive_icon_shape_default));
         }

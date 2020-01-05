@@ -39,6 +39,8 @@
     <string name="adaptive_icon_shape_teardrop">Teardrop</string>
     <string name="adaptive_icon_shape_squircle">Squircle</string>
     <string name="adaptive_icon_shape_roundedrect">Rounded Rectangle</string>
+    <string name="adaptive_icon_shape_cylinder">Cylinder</string>
+    <string name="adaptive_icon_shape_hexagon">Hexagon</string>
     <string name="adaptive_icon_shape_title">Adapative icon shape</string>
     <string name="adaptive_icon_shape_dialog_title">Select icon shape</string>
 
