@@ -37,15 +37,19 @@ import androidx.preference.PreferenceFragment;
 import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreference;
 
+
 import com.android.internal.util.du.Utils;
+import com.android.internal.util.du.ThemesUtils;
+
+import java.util.Objects;
 
 public class Themes extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String PREF_ACCENT_PICKER = "accent_picker";
     private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
-    private static final String PREF_DARK_SWITCH = "dark_switch";
     private static final String PREF_FONT_PICKER = "font_picker";
     private static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
+    private static final String PREF_THEME_SWITCH = "theme_switch";
 
     private IOverlayManager mOverlayManager;
     private SharedPreferences mSharedPreferences;
@@ -54,8 +58,8 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
     private ListPreference mAdaptiveIconShape;
     private ListPreference mFontPicker;
     private ListPreference mStatusbarIcons;
+    private ListPreference mThemeSwitch;
     private Preference mAccentPicker;
-    private SwitchPreference mDarkModeSwitch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,18 +94,17 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             }
         });
 
-        mDarkModeSwitch = (SwitchPreference) findPreference(PREF_DARK_SWITCH);
-        assert mDarkModeSwitch != null;
-        mDarkModeSwitch.setChecked(isChecked());
-        mDarkModeSwitch.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference, Object newValue) {
-                getContext().getSystemService(UiModeManager.class)
-                        .setNightMode(!isChecked() ?
-                                UiModeManager.MODE_NIGHT_YES : UiModeManager.MODE_NIGHT_NO);
-                return true;
-            }
-        });
+        mThemeSwitch = (ListPreference) findPreference(PREF_THEME_SWITCH);
+        if (Utils.isThemeEnabled("com.android.theme.solarizeddark.system")) {
+            mThemeSwitch.setValue("4");
+        } else if (Utils.isThemeEnabled("com.android.theme.pitchblack.system")) {
+            mThemeSwitch.setValue("3");
+        } else if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES) {
+            mThemeSwitch.setValue("2");
+        } else {
+            mThemeSwitch.setValue("1");
+        }
+        mThemeSwitch.setSummary(mThemeSwitch.getEntry());
 
         mFontPicker = (ListPreference) findPreference(PREF_FONT_PICKER);
         if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
@@ -211,6 +214,30 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             }
             mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
         }
+
+        if (key.equals(PREF_THEME_SWITCH)) {
+            String theme_switch = sharedPreferences.getString(PREF_THEME_SWITCH, "1");
+            final Context context = getContext();
+            switch (theme_switch) {
+                case "1":
+                    handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.PITCH_BLACK);
+                    handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.SOLARIZED_DARK);
+                    break;
+                case "2":
+                    handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK);
+                    handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK);
+                    break;
+                case "3":
+                    handleBackgrounds(true, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK);
+                    handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK);
+                    break;
+                case "4":
+                    handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK);
+                    handleBackgrounds(true, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK);
+                    break;
+            }
+            mThemeSwitch.setSummary(mThemeSwitch.getEntry());
+        }
     }
 
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -301,6 +328,21 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             mStatusbarIcons.setSummary(getString(R.string.statusbar_icons_circular));
         } else {
             mStatusbarIcons.setSummary(getString(R.string.statusbar_icons_default));
+        }
+    }
+
+    private void handleBackgrounds(Boolean state, Context context, int mode, String[] overlays) {
+        if (context != null) {
+            Objects.requireNonNull(context.getSystemService(UiModeManager.class))
+                    .setNightMode(mode);
+        }
+        for (int i = 0; i < overlays.length; i++) {
+            String background = overlays[i];
+            try {
+                mOverlayManager.setEnabled(background, state, USER_SYSTEM);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
     }
 

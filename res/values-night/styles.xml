@@ -16,7 +16,7 @@
 <resources>
 
     <style name="AccentDialogTheme" parent="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert">
-        <item name="android:colorBackgroundFloating">#FF303135</item>
+        <item name="android:colorBackgroundFloating">@*android:color/notification_material_background_color</item>
         <item name="android:colorAccent">@*android:color/accent_device_default_dark</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:bottomRightRadius">@*android:dimen/config_dialogCornerRadius</item>
@@ -36,7 +36,7 @@
         <item name="android:topRightRadius">@*android:dimen/config_dialogCornerRadius</item>
         <item name="android:topLeftRadius">@*android:dimen/config_dialogCornerRadius</item>
         <item name="android:colorAccent">@*android:color/accent_device_default_light</item>
-        <item name="android:colorBackground">#FF303135</item>
+        <item name="android:colorBackground">@*android:color/notification_material_background_color</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorAlertDialogListItem">@android:color/white</item>
         <item name="android:colorControlNormal">#FFC1C2C3</item>
