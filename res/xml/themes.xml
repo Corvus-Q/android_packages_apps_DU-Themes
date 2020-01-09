@@ -29,12 +29,6 @@
         android:entryValues="@array/theme_type_values"
         android:order="2"/>
 
-    <Preference
-        android:key="accent_picker"
-        android:title="@string/theme_accent_picker_title"
-        android:summary="@string/theme_accent_picker_summary"
-        android:order="3"/>
-
     <ListPreference
         android:key="font_picker"
         android:title="@string/font_type_title"
@@ -42,7 +36,7 @@
         android:dialogTitle="@string/font_type_summary"
         android:entries="@array/font_type_titles"
         android:entryValues="@array/font_type_values"
-        android:order="4" />
+        android:order="3" />
 
     <ListPreference
         android:key="adapative_icon_shape"
@@ -50,7 +44,7 @@
         android:dialogTitle="@string/adaptive_icon_shape_dialog_title"
         android:entries="@array/adapative_icon_shape_titles"
         android:entryValues="@array/adapative_icon_shape_values"
-        android:order="5" />
+        android:order="4" />
 
     <ListPreference
         android:key="statusbar_icons"
@@ -58,6 +52,6 @@
         android:dialogTitle="@string/statusbar_icons_dialog_title"
         android:entries="@array/statusbar_icons_titles"
         android:entryValues="@array/statusbar_icons_values"
-        android:order="6" />
+        android:order="5" />
 
 </PreferenceScreen>

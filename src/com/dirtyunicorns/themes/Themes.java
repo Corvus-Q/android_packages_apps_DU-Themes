@@ -46,7 +46,6 @@ import java.util.Objects;
 
 public class Themes extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private static final String PREF_ACCENT_PICKER = "accent_picker";
     private static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
     private static final String PREF_FONT_PICKER = "font_picker";
     private static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
@@ -60,7 +59,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
     private ListPreference mFontPicker;
     private ListPreference mStatusbarIcons;
     private ListPreference mThemeSwitch;
-    private Preference mAccentPicker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,21 +77,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
 
         mOverlayManager = IOverlayManager.Stub.asInterface(
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
-
-        mAccentPicker = findPreference(PREF_ACCENT_PICKER);
-        mAccentPicker.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                FragmentManager manager = getFragmentManager();
-                Fragment frag = manager.findFragmentByTag(AccentPicker.TAG_ACCENT_PICKER);
-                if (frag != null) {
-                    manager.beginTransaction().remove(frag).commit();
-                }
-                AccentPicker accentPickerFragment = new AccentPicker();
-                accentPickerFragment.show(manager, AccentPicker.TAG_ACCENT_PICKER);
-                return true;
-            }
-        });
 
         mThemeSwitch = (ListPreference) findPreference(PREF_THEME_SWITCH);
         if (Utils.isThemeEnabled("com.android.theme.solarizeddark.system")) {
@@ -1506,61 +1489,8 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
     @Override
     public void onResume() {
         super.onResume();
-        updateAccentSummary();
         updateIconShapeSummary();
         updateStatusbarIconsSummary();
-    }
-
-    private void updateAccentSummary() {
-        if (Utils.isThemeEnabled("com.android.theme.color.space")) {
-            mAccentPicker.setSummary("Space");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.purple")) {
-            mAccentPicker.setSummary("Purple");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.orchid")) {
-            mAccentPicker.setSummary("Orchid");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.ocean")) {
-            mAccentPicker.setSummary("Ocean");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.green")) {
-            mAccentPicker.setSummary("Green");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.cinnamon")) {
-            mAccentPicker.setSummary("Cinnamon");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.amber")) {
-            mAccentPicker.setSummary("Amber");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.blue")) {
-            mAccentPicker.setSummary("Blue");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.bluegrey")) {
-            mAccentPicker.setSummary("Blue Grey");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.brown")) {
-            mAccentPicker.setSummary("Brown");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.cyan")) {
-            mAccentPicker.setSummary("Cyan");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.deeporange")) {
-            mAccentPicker.setSummary("Deep Orange");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.deeppurple")) {
-            mAccentPicker.setSummary("Deep Purple");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.grey")) {
-            mAccentPicker.setSummary("Grey");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.indigo")) {
-            mAccentPicker.setSummary("Indigo");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.lightblue")) {
-            mAccentPicker.setSummary("Light Blue");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.lightgreen")) {
-            mAccentPicker.setSummary("Light Green");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.lime")) {
-            mAccentPicker.setSummary("Lime");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.orange")) {
-            mAccentPicker.setSummary("Orange");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.pink")) {
-            mAccentPicker.setSummary("Pink");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.red")) {
-            mAccentPicker.setSummary("Red");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.teal")) {
-            mAccentPicker.setSummary("Teal");
-        } else if (Utils.isThemeEnabled("com.android.theme.color.yellow")) {
-            mAccentPicker.setSummary("Yellow");
-        } else {
-            mAccentPicker.setSummary(getString(R.string.theme_accent_picker_default));
-        }
     }
 
     private void updateIconShapeSummary() {

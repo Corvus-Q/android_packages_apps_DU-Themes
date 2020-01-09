@@ -15,15 +15,7 @@
 -->
 <resources>
 
-    <string name="app_name">Themes</string>
-
-    <!-- Accent Picker -->
-    <string name="accent_picker_dialog_title">Select an accent</string>
-    <string name="theme_accent_picker_title">Accent color</string>
-    <string name="theme_accent_picker_summary">Select system theme accent color</string>
-    <string name="theme_accent_picker_default">Default</string>
-    <string name="accent_picker_stock_colors">Stock</string>
-    <string name="accent_picker_custom_colors">Custom</string>
+    <string name="app_name">Dirty Themes</string>
 
     <!-- Dark theme -->
     <string name="dark_theme_title">Dark theme</string>
