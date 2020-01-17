@@ -16,9 +16,9 @@
 
 package com.dirtyunicorns.themes;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.WallpaperManager;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,8 +28,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,7 +44,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RestoreThemes extends AppCompatActivity {
+public class RestoreThemes extends Activity {
 
     public static final String TAG_RESTORE_THEMES = "restore_themes";
 
@@ -73,7 +71,7 @@ public class RestoreThemes extends AppCompatActivity {
 
         setContentView(R.layout.themes_restore);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }

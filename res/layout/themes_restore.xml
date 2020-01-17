@@ -31,33 +31,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="28dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/applyTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/theme_button_apply_theme" />
-
-            <Button
-                android:id="@+id/deleteTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/theme_button_delete_theme" />
-
-        </LinearLayout>
-
         <Switch
             android:id="@+id/themeSwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="20dp"
             android:text="@string/theme_switch_restore_theme_color"
             android:textSize="16sp" />
@@ -100,6 +78,33 @@
             android:layout_height="wrap_content"
             android:text="Wallpaper"
             android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="28dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/deleteTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@*android:color/accent_device_default_light"
+            android:textColor="?android:textColorPrimaryInverse"
+            android:text="@string/theme_button_delete_theme" />
+
+        <Button
+            android:id="@+id/applyTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@*android:color/accent_device_default_light"
+            android:textColor="?android:textColorPrimaryInverse"
+            android:text="@string/theme_button_apply_theme" />
 
     </LinearLayout>
 
