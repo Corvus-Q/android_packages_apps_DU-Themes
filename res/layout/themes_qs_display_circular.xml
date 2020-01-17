@@ -18,33 +18,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="90dp"
-    android:layout_gravity="center|top"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp"
+    android:layout_height="wrap_content"
     android:background="@drawable/ic_themes_qs_background">
 
-    <GridLayout
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center|top"
-        android:layout_marginTop="20dp">
+        android:gravity="center|top"
+        android:layout_marginTop="15dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp">
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="6dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/qs_styles_shape_square"
                 android:tint="@color/qs_tile_background_active"
                 tools:ignore="ContentDescription" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_circular_wifi"
@@ -55,18 +54,19 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp">
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/qs_styles_shape_square"
                 android:tint="@color/qs_tile_background_inactive"
                 tools:ignore="ContentDescription" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_circular_bluetooth"
@@ -77,18 +77,19 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp">
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/qs_styles_shape_square"
                 android:tint="@color/qs_tile_background_active"
                 tools:ignore="ContentDescription" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_circular_dnd"
@@ -99,18 +100,19 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp">
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/qs_styles_shape_square"
                 android:tint="@color/qs_tile_background_inactive"
                 tools:ignore="ContentDescription" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_circular_flashlight"
@@ -121,18 +123,19 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp">
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/qs_styles_shape_square"
                 android:tint="@color/qs_tile_background_active"
                 tools:ignore="ContentDescription" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_circular_autorotate"
@@ -142,18 +145,20 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="8dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/qs_styles_shape_square"
                 android:tint="@color/qs_tile_background_inactive"
                 tools:ignore="ContentDescription" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:padding="3dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_themes_circular_battery_saver"
@@ -161,6 +166,7 @@
                 tools:ignore="ContentDescription" />
         </RelativeLayout>
 
-    </GridLayout>
+    </LinearLayout>
 
 </LinearLayout>
+

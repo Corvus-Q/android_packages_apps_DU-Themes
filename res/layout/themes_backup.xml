@@ -14,28 +14,42 @@
      limitations under the License.
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="15dp"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/wp_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop" />
-
-    <ViewStub
-        android:id="@+id/themes_backup_preview"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="350dp">
 
-    <EditText
-        android:id="@+id/themeName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_alignBottom="@id/wp_background"
-        style="@style/DialogEditTextStyle" />
+        <ImageView
+            android:id="@+id/wp_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
 
-</RelativeLayout>
+        <ViewStub
+            android:id="@+id/themes_backup_preview"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
+
+        <EditText
+            android:id="@+id/themeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_alignBottom="@id/wp_background"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingStart="5dp"
+            style="@style/DialogEditTextStyle" />
+
+    </RelativeLayout>
+
+</FrameLayout>
+
