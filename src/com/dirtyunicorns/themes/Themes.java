@@ -118,6 +118,8 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             mFontPicker.setValue("5");
         } else if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
             mFontPicker.setValue("6");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+            mFontPicker.setValue("7");
         } else {
             mFontPicker.setValue("1");
         }
@@ -191,6 +193,9 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
                             handleOverlays("com.android.theme.font.sonysketchsource", false);
                         }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
                         handleOverlays("com.android.theme.font.notoserifsource", true);
                         break;
                     case "3":
@@ -205,6 +210,9 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
                             handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
                         }
                         handleOverlays("com.android.theme.font.cagliostrosource", true);
                         break;
@@ -222,6 +230,9 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
                             handleOverlays("com.android.theme.font.sonysketchsource", false);
                         }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
                         handleOverlays("com.android.theme.font.lgsmartgothicsource", true);
                         break;
                     case "5":
@@ -236,6 +247,9 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
                             handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
                         }
                         handleOverlays("com.android.theme.font.rosemarysource", true);
                         break;
@@ -252,7 +266,28 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
                             handleOverlays("com.android.theme.font.rosemarysource", false);
                         }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
                         handleOverlays("com.android.theme.font.sonysketchsource", true);
+                        break;
+                    case "7":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        handleOverlays("com.android.theme.font.googlesans", true);
                         break;
                 }
                 mFontPicker.setSummary(mFontPicker.getEntry());

@@ -37,6 +37,7 @@
     <string name="font_type_4">LG Smart Gothic</string>
     <string name="font_type_5">Rosemary</string>
     <string name="font_type_6">Sony Sketch</string>
+    <string name="font_type_7">Google Sans</string>
 
     <!-- Adaptive icon shapes -->
     <string name="adaptive_icon_shape_default">Default</string>
