@@ -28,6 +28,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
@@ -90,7 +91,14 @@ public class BackupThemes extends DialogFragment {
         ImageView imgView = (ImageView) view.findViewById(R.id.wp_background);
         EditText themeNameInput = (EditText) view.findViewById(R.id.themeName);
         String backupDate = getString(R.string.theme_backup_edittext_hint) + mTimeStamp;
+        int maxLength = 20;
         themeNameInput.setHint(backupDate);
+        themeNameInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
+        themeNameInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                themeNameInput.setHint(hasFocus ? "" : backupDate);
+            }
+        });
         stub.setLayoutResource(getThemeBackupPreview());
         imgView.setImageDrawable(mWallpaperDrawable);
         stub.inflate();

@@ -43,11 +43,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:layout_alignBottom="@id/wp_background"
-            android:paddingTop="5dp"
+            android:gravity="center"
+            android:paddingTop="10dp"
             android:paddingBottom="5dp"
             android:paddingStart="5dp"
-            style="@style/DialogEditTextStyle" />
+            android:layout_alignBottom="@id/wp_background"
+            android:background="@drawable/ic_themes_backup_edittext" />
 
     </RelativeLayout>
 

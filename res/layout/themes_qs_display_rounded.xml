@@ -61,7 +61,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/qs_styles_shape_square"
-                android:tint="@color/qs_tile_background_inactive"
+                android:tint="@*android:color/du_themes_qs_inactive_color"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -107,7 +107,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/qs_styles_shape_square"
-                android:tint="@color/qs_tile_background_inactive"
+                android:tint="@*android:color/du_themes_qs_inactive_color"
                 tools:ignore="ContentDescription" />
 
             <ImageView
@@ -153,7 +153,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/qs_styles_shape_square"
-                android:tint="@color/qs_tile_background_inactive"
+                android:tint="@*android:color/du_themes_qs_inactive_color"
                 tools:ignore="ContentDescription" />
 
             <ImageView

@@ -59,7 +59,7 @@
     <string name="adaptive_icon_shape_roundedrect">Rounded Rectangle</string>
     <string name="adaptive_icon_shape_cylinder">Cylinder</string>
     <string name="adaptive_icon_shape_hexagon">Hexagon</string>
-    <string name="adaptive_icon_shape_title">Adapative icon shape</string>
+    <string name="adaptive_icon_shape_title">Icon shape</string>
     <string name="adaptive_icon_shape_dialog_title">Select icon shape</string>
 
     <!-- Statusbar icons -->
@@ -87,11 +87,11 @@
     <string name="theme_name_exist_warning">This backup name already exist. Enter a new one.</string>
     <string name="theme_button_apply_theme">Apply theme</string>
     <string name="theme_button_delete_theme">Delete theme</string>
-    <string name="theme_switch_restore_theme_color">Restore theme color</string>
-    <string name="theme_switch_restore_accent_color">Restore accent color</string>
-    <string name="theme_switch_restore_font_type">Restore font type</string>
-    <string name="theme_switch_restore_adaptative_icons">Restore adaptative icons</string>
-    <string name="theme_switch_restore_sb_icons">Restore status bar icons</string>
+    <string name="theme_switch_restore_theme_color">Background color</string>
+    <string name="theme_switch_restore_accent_color">Accent color</string>
+    <string name="theme_switch_restore_font_type">Font type</string>
+    <string name="theme_switch_restore_adaptative_icons">Adaptative icons</string>
+    <string name="theme_switch_restore_sb_icons">Status bar icons</string>
     <string name="theme_backup_edittext_hint">Backup_</string>
 
 </resources>
