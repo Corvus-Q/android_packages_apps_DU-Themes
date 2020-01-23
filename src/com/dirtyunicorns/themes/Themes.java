@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 The Dirty Unicorns Project
+ * Copyright (C) 2019-2020 The Dirty Unicorns Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,18 @@
 
 package com.dirtyunicorns.themes;
 
+import static android.content.Context.ALARM_SERVICE;
 import static android.os.UserHandle.USER_SYSTEM;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.app.UiModeManager;
 import android.app.WallpaperManager;
 import android.content.Context;
@@ -38,22 +42,27 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.view.MenuItem;
+import android.widget.TimePicker;
+
+import androidx.preference.DropDownPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.PreferenceManager;
-import androidx.preference.SwitchPreference;
 
 import com.android.internal.util.du.ThemesUtils;
 import com.android.internal.util.du.Utils;
 
 import com.dirtyunicorns.themes.db.ThemeDatabase;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 import static com.dirtyunicorns.themes.utils.Utils.isLiveWallpaper;
 
 public class Themes extends PreferenceFragment implements ThemesListener {
+
+    private static final String TAG = "Themes";
 
     private static final String PREF_BACKUP_THEMES = "backup_themes";
     private static final String PREF_RESTORE_THEMES = "restore_themes";
@@ -64,49 +73,112 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     public static final String PREF_FONT_PICKER = "font_picker";
     public static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
     public static final String PREF_THEME_SWITCH = "theme_switch";
+    public static final String PREF_THEME_SCHEDULE = "theme_schedule";
+    public static final String PREF_THEME_SCHEDULED_THEME = "scheduled_theme";
+    public static final String PREF_THEME_SCHEDULED_THEME_VALUE = "scheduled_theme_value";
 
     private static boolean mUseSharedPrefListener;
     private int mBackupLimit = 10;
 
-    private Activity mActivity;
+    private AlarmManager mAlarmMgr;
+    private Calendar mDate;
+    private Context mContext;
     private IOverlayManager mOverlayManager;
+    private PendingIntent mPendingIntent;
     private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor sharedPreferencesEditor;
     private ThemeDatabase mThemeDatabase;
     private UiModeManager mUiModeManager;
 
+    private DropDownPreference mThemeSchedule;
     private ListPreference mAdaptiveIconShape;
     private ListPreference mFontPicker;
     private ListPreference mStatusbarIcons;
+    private ListPreference mThemeScheduledTheme;
     private ListPreference mThemeSwitch;
     private Preference mAccentPicker;
     private Preference mBackupThemes;
     private Preference mRestoreThemes;
     private Preference mWpPreview;
 
+    private boolean scheduledTheme = false;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setRetainInstance(true);
         addPreferencesFromResource(R.xml.themes);
 
-        mActivity = getActivity();
+        mContext = getActivity();
 
-        ActionBar actionBar = mActivity.getActionBar();
+        ActionBar actionBar = getActivity().getActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         mUiModeManager = getContext().getSystemService(UiModeManager.class);
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mActivity);
-        mSharedPreferences.registerOnSharedPreferenceChangeListener(mSharedPrefListener);
-        mThemeDatabase = new ThemeDatabase(mActivity);
+        mThemeDatabase = new ThemeDatabase(mContext);
 
+        // Shared preferences
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        mSharedPreferences.registerOnSharedPreferenceChangeListener(mSharedPrefListener);
+        sharedPreferencesEditor = mSharedPreferences.edit();
+
+        // Alarm receiver
+        mAlarmMgr = (AlarmManager) getActivity().getSystemService(ALARM_SERVICE);
+        mDate = Calendar.getInstance();
+        Intent mIntent = new Intent(getActivity(), ThemesReceiver.class);
+        mPendingIntent = PendingIntent.getBroadcast(getActivity(), 0, mIntent, 0);
+
+        // Themes
+        UiModeManager mUiModeManager = mContext.getSystemService(UiModeManager.class);
         mOverlayManager = IOverlayManager.Stub.asInterface(
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
 
         mWpPreview = findPreference(PREF_WP_PREVIEW);
 
+        mThemeSchedule = (DropDownPreference) findPreference(PREF_THEME_SCHEDULE);
+        if (mThemeSchedule != null) {
+            mThemeSchedule.setSummary(mThemeSchedule.getEntry());
+        }
+        mThemeScheduledTheme = (ListPreference) findPreference(PREF_THEME_SCHEDULED_THEME);
+        if (mThemeScheduledTheme != null) {
+            mThemeScheduledTheme.setValue(mThemeScheduledTheme.getValue());
+            mThemeScheduledTheme.setTitle(getString(R.string.theme_schedule_theme_title));
+            mThemeScheduledTheme.setSummary(getString(R.string.theme_schedule_theme_summary));
+        }
+
+        switch (getThemeSchedule()) {
+            case "1":
+                mThemeScheduledTheme.setVisible(false);
+                sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_THEME_VALUE);
+                sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_THEME);
+                sharedPreferencesEditor.commit();
+                mThemeScheduledTheme.setEnabled(true);
+                scheduledTheme = false;
+                break;
+            case "2":
+                if (scheduledTheme) {
+                    mThemeScheduledTheme.setEnabled(false);
+                    mThemeScheduledTheme.setTitle(getScheduledThemeSummary() + " " +
+                            getString(R.string.theme_schedule_scheduled));
+                    mThemeScheduledTheme.setSummary("");
+                    scheduledTheme = false;
+                } else {
+                    mThemeScheduledTheme.setEnabled(true);
+                    mThemeScheduledTheme.setTitle(getString(R.string.theme_schedule_theme_title));
+                    mThemeScheduledTheme.setSummary(getString(R.string.theme_schedule_theme_summary));
+                    scheduledTheme = true;
+                }
+                mThemeScheduledTheme.setVisible(true);
+                break;
+            case "3":
+                mThemeScheduledTheme.setVisible(true);
+                break;
+        }
+
         mAccentPicker = findPreference(PREF_THEME_ACCENT_PICKER);
+        assert mAccentPicker != null;
         mAccentPicker.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -172,7 +244,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         mRestoreThemes.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Intent intent = new Intent(mActivity, RestoreThemes.class);
+                Intent intent = new Intent(mContext, RestoreThemes.class);
                 if (intent != null) {
                     setSharedPrefListener(true);
                     startActivity(intent);
@@ -186,10 +258,12 @@ public class Themes extends PreferenceFragment implements ThemesListener {
             mThemeSwitch.setValue("4");
         } else if (Utils.isThemeEnabled("com.android.theme.pitchblack.system")) {
             mThemeSwitch.setValue("3");
-        } else if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES) {
-            mThemeSwitch.setValue("2");
-        } else {
-            mThemeSwitch.setValue("1");
+        } else if (mUiModeManager != null) {
+            if (mUiModeManager.getNightMode() == UiModeManager.MODE_NIGHT_YES) {
+                mThemeSwitch.setValue("2");
+            } else {
+                mThemeSwitch.setValue("1");
+            }
         }
         mThemeSwitch.setSummary(mThemeSwitch.getEntry());
 
@@ -302,7 +376,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     public OnSharedPreferenceChangeListener mSharedPrefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            class PrepareData extends AsyncTask<Void, Void, Void> {
+            class FontPicker extends AsyncTask<Void, Void, Void> {
 
                 protected Void doInBackground(Void... param) {
                     return null;
@@ -1417,7 +1491,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
             }
 
             if (key.equals(PREF_FONT_PICKER)) {
-                new PrepareData().execute();
+                new FontPicker().execute();
             }
 
             if (key.equals(PREF_ADAPTIVE_ICON_SHAPE)) {
@@ -1429,93 +1503,155 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                         handleOverlays("com.android.theme.icon.roundedrect", false);
                         handleOverlays("com.android.theme.icon.cylinder", false);
                         handleOverlays("com.android.theme.icon.hexagon", false);
+                        break;
                     case "2":
                         handleOverlays("com.android.theme.icon.teardrop", true);
                         handleOverlays("com.android.theme.icon.squircle", false);
                         handleOverlays("com.android.theme.icon.roundedrect", false);
                         handleOverlays("com.android.theme.icon.cylinder", false);
                         handleOverlays("com.android.theme.icon.hexagon", false);
-                    break;
+                        break;
                     case "3":
                         handleOverlays("com.android.theme.icon.teardrop", false);
                         handleOverlays("com.android.theme.icon.squircle", true);
                         handleOverlays("com.android.theme.icon.roundedrect", false);
                         handleOverlays("com.android.theme.icon.cylinder", false);
                         handleOverlays("com.android.theme.icon.hexagon", false);
-                    break;
+                        break;
                     case "4":
                         handleOverlays("com.android.theme.icon.teardrop", false);
                         handleOverlays("com.android.theme.icon.squircle", false);
                         handleOverlays("com.android.theme.icon.roundedrect", true);
                         handleOverlays("com.android.theme.icon.cylinder", false);
                         handleOverlays("com.android.theme.icon.hexagon", false);;
-                    break;
+                        break;
                     case "5":
                         handleOverlays("com.android.theme.icon.teardrop", false);
                         handleOverlays("com.android.theme.icon.squircle", false);
                         handleOverlays("com.android.theme.icon.roundedrect", false);
                         handleOverlays("com.android.theme.icon.cylinder", true);
                         handleOverlays("com.android.theme.icon.hexagon", false);
-                    break;
+                        break;
                     case "6":
                         handleOverlays("com.android.theme.icon.teardrop", false);
                         handleOverlays("com.android.theme.icon.squircle", false);
                         handleOverlays("com.android.theme.icon.roundedrect", false);
                         handleOverlays("com.android.theme.icon.cylinder", false);
                         handleOverlays("com.android.theme.icon.hexagon", true);
-                    break;
+                        break;
+                    }
+                    mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
                 }
-                mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
-            }
 
-            if (key.equals(PREF_STATUSBAR_ICONS)) {
-                String statusbar_icons = sharedPreferences.getString(PREF_STATUSBAR_ICONS, "1");
-                switch (statusbar_icons) {
-                    case "1":
-                        handleOverlays("com.android.theme.icon_pack.filled.android", false);
-                        handleOverlays("com.android.theme.icon_pack.rounded.android", false);
-                        handleOverlays("com.android.theme.icon_pack.circular.android", false);
-                        break;
-                    case "2":
-                        handleOverlays("com.android.theme.icon_pack.filled.android", true);
-                        handleOverlays("com.android.theme.icon_pack.rounded.android", false);
-                        handleOverlays("com.android.theme.icon_pack.circular.android", false);
-                        break;
-                    case "3":
-                        handleOverlays("com.android.theme.icon_pack.filled.android", false);
-                        handleOverlays("com.android.theme.icon_pack.rounded.android", true);
-                        handleOverlays("com.android.theme.icon_pack.circular.android", false);
-                        break;
-                    case "4":
-                        handleOverlays("com.android.theme.icon_pack.filled.android", false);
-                        handleOverlays("com.android.theme.icon_pack.rounded.android", false);
-                        handleOverlays("com.android.theme.icon_pack.circular.android", true);
-                        break;
+                if (key.equals(PREF_STATUSBAR_ICONS)) {
+                    String statusbar_icons = sharedPreferences.getString(PREF_STATUSBAR_ICONS, "1");
+                    switch (statusbar_icons) {
+                        case "1":
+                            handleOverlays("com.android.theme.icon_pack.filled.android", false);
+                            handleOverlays("com.android.theme.icon_pack.rounded.android", false);
+                            handleOverlays("com.android.theme.icon_pack.circular.android", false);
+                            break;
+                        case "2":
+                            handleOverlays("com.android.theme.icon_pack.filled.android", true);
+                            handleOverlays("com.android.theme.icon_pack.rounded.android", false);
+                            handleOverlays("com.android.theme.icon_pack.circular.android", false);
+                            break;
+                        case "3":
+                            handleOverlays("com.android.theme.icon_pack.filled.android", false);
+                            handleOverlays("com.android.theme.icon_pack.rounded.android", true);
+                            handleOverlays("com.android.theme.icon_pack.circular.android", false);
+                            break;
+                        case "4":
+                            handleOverlays("com.android.theme.icon_pack.filled.android", false);
+                            handleOverlays("com.android.theme.icon_pack.rounded.android", false);
+                            handleOverlays("com.android.theme.icon_pack.circular.android", true);
+                            break;
+                    }
+                    mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
                 }
-                mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
-            }
 
-            if (key.equals(PREF_THEME_SWITCH)) {
-                String theme_switch = sharedPreferences.getString(PREF_THEME_SWITCH, "1");
-                switch (theme_switch) {
-                    case "1":
-                        handleBackgrounds(false, mActivity, UiModeManager.MODE_NIGHT_NO, ThemesUtils.PITCH_BLACK);
-                        handleBackgrounds(false, mActivity, UiModeManager.MODE_NIGHT_NO, ThemesUtils.SOLARIZED_DARK);
-                        break;
-                    case "2":
-                        handleBackgrounds(false, mActivity, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK);
-                        handleBackgrounds(false, mActivity, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK);
-                        break;
-                    case "3":
-                        handleBackgrounds(true, mActivity, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK);
-                        handleBackgrounds(false, mActivity, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK);
-                        break;
-                    case "4":
-                        handleBackgrounds(false, mActivity, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK);
-                        handleBackgrounds(true, mActivity, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK);
-                        break;
+                if (key.equals(PREF_THEME_SWITCH)) {
+                    String theme_switch = sharedPreferences.getString(PREF_THEME_SWITCH, "1");
+                    switch (theme_switch) {
+                        case "1":
+                            handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO, ThemesUtils.PITCH_BLACK);
+                            handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO, ThemesUtils.SOLARIZED_DARK);
+                            break;
+                        case "2":
+                            handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK);
+                            handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK);
+                            break;
+                        case "3":
+                            handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK);
+                            handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK);
+                            break;
+                        case "4":
+                            handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK);
+                            handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK);
+                            break;
+                    }
+                    mThemeSwitch.setSummary(mThemeSwitch.getEntry());
                 }
-                mThemeSwitch.setSummary(mThemeSwitch.getEntry());
+
+                if (key.equals(PREF_THEME_SCHEDULE)) {
+                    switch (getThemeSchedule()) {
+                        case "1":
+                            mThemeScheduledTheme.setVisible(false);
+                            sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_THEME_VALUE);
+                            sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_THEME);
+                            sharedPreferencesEditor.commit();
+                            mThemeScheduledTheme.setEnabled(true);
+                            scheduledTheme = false;
+                            break;
+                        case "2":
+                            if (scheduledTheme) {
+                                mThemeScheduledTheme.setEnabled(false);
+                                mThemeScheduledTheme.setTitle(getScheduledThemeSummary() + " " +
+                                        getString(R.string.theme_schedule_scheduled));
+                                mThemeScheduledTheme.setSummary("");
+                                scheduledTheme = false;
+                            } else {
+                                mThemeScheduledTheme.setEnabled(true);
+                                mThemeScheduledTheme.setTitle(getString(R.string.theme_schedule_theme_title));
+                                mThemeScheduledTheme.setSummary(getString(R.string.theme_schedule_theme_summary));
+                                scheduledTheme = true;
+                            }
+                                mThemeScheduledTheme.setVisible(true);
+                            break;
+                        case "3":
+                            mThemeScheduledTheme.setVisible(true);
+                           break;
+                    }
+                    mThemeSchedule.setSummary(mThemeSchedule.getEntry());
+                }
+
+                class ScheduledTheme extends AsyncTask<Void, Void, Void> {
+
+                    protected Void doInBackground(Void... param) {
+                        return null;
+                    }
+
+                    protected void onPostExecute(Void param) {
+                        showTimePicker();
+                    }
+
+                    @Override
+                    protected void onPreExecute() {
+                        super.onPreExecute();
+                        sharedPreferencesEditor.putString(PREF_THEME_SCHEDULED_THEME_VALUE, getScheduledTheme());
+                        sharedPreferencesEditor.commit();
+                    }
+                }
+
+                if (key.equals(PREF_THEME_SCHEDULED_THEME) && getThemeSchedule() != "1") {
+                    if (getScheduledTheme() != null && getScheduledThemeValue() == null) {
+                        mThemeScheduledTheme.setSummary(mThemeScheduledTheme.getEntry());
+                        new ScheduledTheme().execute();
+                    } else {
+                        mThemeScheduledTheme.setValue(null);
+                        mThemeScheduledTheme.setSummary(null);
+                    }
+                }
             }
         }
     };
@@ -1543,6 +1679,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         updateAccentSummary();
         updateIconShapeSummary();
         updateStatusbarIconsSummary();
+        updateThemeScheduleSummary();
     }
 
     @Override
@@ -1559,6 +1696,71 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         if (!mUseSharedPrefListener) {
             mSharedPreferences.unregisterOnSharedPreferenceChangeListener(mSharedPrefListener);
         }
+    }
+
+    private String getThemeSchedule() {
+        return mSharedPreferences.getString(PREF_THEME_SCHEDULE, "1");
+    }
+
+    private String getScheduledTheme() {
+        return mSharedPreferences.getString(PREF_THEME_SCHEDULED_THEME, null);
+    }
+
+    private String getScheduledThemeValue() {
+        return mSharedPreferences.getString(PREF_THEME_SCHEDULED_THEME_VALUE, null);
+    }
+
+    private String getScheduledThemeSummary() {
+        String scheduledThemeSummary = mSharedPreferences.getString(PREF_THEME_SCHEDULED_THEME, null);
+
+        assert scheduledThemeSummary != null;
+        switch (scheduledThemeSummary) {
+            case "1":
+                scheduledThemeSummary = getString(R.string.theme_type_light);
+                break;
+            case "2":
+                scheduledThemeSummary = getString(R.string.theme_type_google_dark);
+                break;
+            case "3":
+                scheduledThemeSummary = getString(R.string.dark_theme_title);
+                break;
+            case "4":
+                scheduledThemeSummary = getString(R.string.theme_type_solarized_dark);
+                break;
+        }
+        return scheduledThemeSummary;
+    }
+
+    private void updateThemeScheduleSummary() {
+        switch (getThemeSchedule()) {
+            case "1":
+                mThemeScheduledTheme.setVisible(false);
+                sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_THEME_VALUE);
+                sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_THEME);
+                sharedPreferencesEditor.commit();
+                mThemeScheduledTheme.setEnabled(true);
+                scheduledTheme = false;
+                break;
+            case "2":
+                mThemeScheduledTheme.setVisible(true);
+                if (scheduledTheme) {
+                    mThemeScheduledTheme.setEnabled(false);
+                    mThemeScheduledTheme.setTitle(getScheduledThemeSummary() + " " +
+                            getString(R.string.theme_schedule_scheduled));
+                    mThemeScheduledTheme.setSummary("");
+                    scheduledTheme = false;
+                } else {
+                    mThemeScheduledTheme.setEnabled(true);
+                    mThemeScheduledTheme.setTitle(getString(R.string.theme_schedule_theme_title));
+                    mThemeScheduledTheme.setSummary(getString(R.string.theme_schedule_theme_summary));
+                    scheduledTheme = true;
+                }
+                break;
+            case "3":
+                mThemeScheduledTheme.setVisible(true);
+                break;
+        }
+        mThemeSchedule.setSummary(mThemeSchedule.getEntry());
     }
 
     private void updateAccentSummary() {
@@ -1641,7 +1843,31 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         }
     }
 
-    private void handleBackgrounds(Boolean state, Context context, int mode, String[] overlays) {
+    public void showTimePicker() {
+        new TimePickerDialog(mContext, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                mDate.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                mDate.set(Calendar.MINUTE, minute);
+                mAlarmMgr.set(AlarmManager.RTC_WAKEUP, mDate.getTimeInMillis(), mPendingIntent);
+                mThemeScheduledTheme.setEnabled(false);
+                mThemeScheduledTheme.setTitle(getScheduledThemeSummary() + " " +
+                        getString(R.string.theme_schedule_scheduled));
+                mThemeScheduledTheme.setSummary("");
+            }
+        }, mDate.get(Calendar.HOUR_OF_DAY), mDate.get(Calendar.MINUTE), false).show();
+    }
+
+    protected void handleOverlays(String packagename, Boolean state) {
+        try {
+            mOverlayManager.setEnabled(packagename,
+                    state, USER_SYSTEM);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void handleBackgrounds(Boolean state, Context context, int mode, String[] overlays) {
         if (context != null) {
             Objects.requireNonNull(context.getSystemService(UiModeManager.class))
                     .setNightMode(mode);
@@ -1656,19 +1882,10 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         }
     }
 
-    private void handleOverlays(String packagename, Boolean state) {
-        try {
-            mOverlayManager.setEnabled(packagename,
-                    state, USER_SYSTEM);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            mActivity.finish();
+            getActivity().finish();
             return true;
         }
         return false;

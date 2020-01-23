@@ -111,4 +111,31 @@
         <item>4</item>
     </string-array>
 
+    <!-- Themes schedule -->
+    <string-array name="theme_schedule_titles">
+        <item>@string/theme_schedule_none</item>
+        <item>@string/theme_schedule_custom_time</item>
+        <item>@string/theme_schedule_sunset_sunrise</item>
+    </string-array>
+
+    <string-array name="theme_schedule_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="theme_scheduled_titles">
+        <item>@string/theme_type_light</item>
+        <item>@string/theme_type_google_dark</item>
+        <item>@string/theme_type_pitch_black</item>
+        <item>@string/theme_type_solarized_dark</item>
+    </string-array>
+
+    <string-array name="theme_scheduled_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
 </resources>

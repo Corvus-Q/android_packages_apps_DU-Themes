@@ -19,14 +19,6 @@
         android:key="wp_preview"
         android:enabled="false" />
 
-    <ListPreference
-        android:key="theme_switch"
-        android:title="@string/theme_type_title"
-        android:summary="@string/theme_type_summary"
-        android:dialogTitle="@string/theme_type_summary"
-        android:entries="@array/theme_type_titles"
-        android:entryValues="@array/theme_type_values" />
-
     <Preference
         android:key="theme_accent_picker"
         android:title="@string/theme_accent_picker_title"
@@ -53,6 +45,31 @@
         android:dialogTitle="@string/statusbar_icons_dialog_title"
         android:entries="@array/statusbar_icons_titles"
         android:entryValues="@array/statusbar_icons_values" />
+
+    <PreferenceCategory
+        android:title="System theme" >
+
+        <ListPreference
+            android:key="theme_switch"
+            android:title="@string/theme_type_title"
+            android:summary="@string/theme_type_summary"
+            android:dialogTitle="@string/theme_type_summary"
+            android:entries="@array/theme_type_titles"
+            android:entryValues="@array/theme_type_values"/>
+
+        <DropDownPreference
+            android:key="theme_schedule"
+            android:title="@string/theme_schedule_title"
+            android:entries="@array/theme_schedule_titles"
+            android:entryValues="@array/theme_schedule_values"/>
+
+        <ListPreference
+            android:key="scheduled_theme"
+            android:dialogTitle="@string/theme_type_summary"
+            android:entries="@array/theme_scheduled_titles"
+            android:entryValues="@array/theme_scheduled_values"/>
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="theme_other_category"

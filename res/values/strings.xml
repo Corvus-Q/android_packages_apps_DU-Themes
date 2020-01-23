@@ -67,7 +67,7 @@
     <string name="statusbar_icons_filled">Filled</string>
     <string name="statusbar_icons_rounded">Rounded</string>
     <string name="statusbar_icons_circular">Circular</string>
-    <string name="statusbar_icons_title">Statusbar icons</string>
+    <string name="statusbar_icons_title">Statusbar/QS icons</string>
     <string name="statusbar_icons_dialog_title">Select statusbar icon set</string>
 
     <!-- Themes -->
@@ -97,5 +97,15 @@
     <string name="theme_backup_dialog_message">It appears that you have a live wallpaper applied.\n\nPlease note that live wallpapers will not be backed up. Instead the default wallpaper will be backed up.</string>
     <string name="theme_backup_dialog_positive">OK</string>
     <string name="theme_backup_dialog_negative">Cancel</string>
+
+    <!-- Theme schedule -->
+    <string name="theme_schedule_title">Schedule</string>
+    <string name="theme_schedule_theme_title">Schedule theme</string>
+    <string name="theme_schedule_theme_summary">Select a theme to schedule</string>
+    <string name="theme_schedule_none">None</string>
+    <string name="theme_schedule_custom_time">Turns on at a custom time</string>
+    <string name="theme_schedule_sunset_sunrise">Turns on from sunset to sunrise</string>
+    <string name="theme_schedule_applied">theme applied</string>
+    <string name="theme_schedule_scheduled">theme is scheduled</string>
 
 </resources>
