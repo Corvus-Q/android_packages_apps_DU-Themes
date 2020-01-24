@@ -120,12 +120,34 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             mFontPicker.setValue("6");
         } else if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
             mFontPicker.setValue("7");
-        } else if (Utils.isThemeEnabled("com.android.theme.font.oneplusslate")) {
+        } else if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
             mFontPicker.setValue("8");
         } else if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
             mFontPicker.setValue("9");
         } else if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
             mFontPicker.setValue("10");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+            mFontPicker.setValue("11");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+            mFontPicker.setValue("12");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+            mFontPicker.setValue("13");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+            mFontPicker.setValue("14");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+            mFontPicker.setValue("15");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+            mFontPicker.setValue("16");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+            mFontPicker.setValue("17");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+            mFontPicker.setValue("18");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+            mFontPicker.setValue("19");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+            mFontPicker.setValue("20");
+        } else if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+            mFontPicker.setValue("21");
         } else {
             mFontPicker.setValue("1");
         }
@@ -202,14 +224,47 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
                             handleOverlays("com.android.theme.font.googlesans", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.oneplusslate")) {
-                            handleOverlays("com.android.theme.font.oneplusslate", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
                             handleOverlays("com.android.theme.font.samsungone", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
                             handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
                         handleOverlays("com.android.theme.font.notoserifsource", true);
                         break;
@@ -229,14 +284,47 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
                             handleOverlays("com.android.theme.font.googlesans", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.oneplusslate")) {
-                            handleOverlays("com.android.theme.font.oneplusslate", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
                             handleOverlays("com.android.theme.font.samsungone", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
                             handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
                         handleOverlays("com.android.theme.font.cagliostrosource", true);
                         break;
@@ -257,14 +345,47 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
                             handleOverlays("com.android.theme.font.googlesans", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.oneplusslate")) {
-                            handleOverlays("com.android.theme.font.oneplusslate", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
                             handleOverlays("com.android.theme.font.samsungone", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
                             handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
                         handleOverlays("com.android.theme.font.lgsmartgothicsource", true);
                         break;
@@ -284,14 +405,47 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
                             handleOverlays("com.android.theme.font.googlesans", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.oneplusslate")) {
-                            handleOverlays("com.android.theme.font.oneplusslate", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
                             handleOverlays("com.android.theme.font.samsungone", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
                             handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
                         handleOverlays("com.android.theme.font.rosemarysource", true);
                         break;
@@ -311,14 +465,47 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
                             handleOverlays("com.android.theme.font.googlesans", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.oneplusslate")) {
-                            handleOverlays("com.android.theme.font.oneplusslate", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
                             handleOverlays("com.android.theme.font.samsungone", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
                             handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
                         handleOverlays("com.android.theme.font.sonysketchsource", true);
                         break;
@@ -338,14 +525,47 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
                             handleOverlays("com.android.theme.font.sonysketchsource", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.oneplusslate")) {
-                            handleOverlays("com.android.theme.font.oneplusslate", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
                             handleOverlays("com.android.theme.font.samsungone", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
                             handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
                         handleOverlays("com.android.theme.font.googlesans", true);
                         break;
@@ -374,7 +594,40 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
                             handleOverlays("com.android.theme.font.firasans", false);
                         }
-                        handleOverlays("com.android.theme.font.oneplusslate", true);
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
+                        handleOverlays("com.android.theme.font.slateforoneplus", true);
                         break;
                     case "9":
                         if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
@@ -395,11 +648,44 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
                             handleOverlays("com.android.theme.font.googlesans", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.oneplusslate")) {
-                            handleOverlays("com.android.theme.font.oneplusslate", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
                             handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
                         handleOverlays("com.android.theme.font.samsungone", true);
                         break;
@@ -422,13 +708,706 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
                             handleOverlays("com.android.theme.font.googlesans", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.oneplusslate")) {
-                            handleOverlays("com.android.theme.font.oneplusslate", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
                             handleOverlays("com.android.theme.font.samsungone", false);
                         }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
                         handleOverlays("com.android.theme.font.firasans", true);
+                        break;
+                    case "11":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
+                            handleOverlays("com.android.theme.font.samsungone", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
+                            handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
+                        handleOverlays("com.android.theme.font.sfpro", true);
+                        break;
+                    case "12":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
+                            handleOverlays("com.android.theme.font.samsungone", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
+                            handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
+                        handleOverlays("com.android.theme.font.circularstd", true);
+                        break;
+                    case "13":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
+                            handleOverlays("com.android.theme.font.samsungone", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
+                            handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
+                        handleOverlays("com.android.theme.font.burnstownsource", true);
+                        break;
+                    case "14":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
+                            handleOverlays("com.android.theme.font.samsungone", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
+                            handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
+                        handleOverlays("com.android.theme.font.coolstorysource", true);
+                        break;
+                    case "15":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
+                            handleOverlays("com.android.theme.font.samsungone", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
+                            handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
+                        handleOverlays("com.android.theme.font.rubikrubik", true);
+                        break;
+                    case "16":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
+                            handleOverlays("com.android.theme.font.samsungone", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
+                            handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
+                        handleOverlays("com.android.theme.font.arvolato", true);
+                        break;
+                    case "17":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
+                            handleOverlays("com.android.theme.font.samsungone", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
+                            handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
+                        handleOverlays("com.android.theme.font.surfersource", true);
+                        break;
+                    case "18":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
+                            handleOverlays("com.android.theme.font.samsungone", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
+                            handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
+                        handleOverlays("com.android.theme.font.aclonicasource", true);
+                        break;
+                    case "19":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
+                            handleOverlays("com.android.theme.font.samsungone", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
+                            handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
+                        handleOverlays("com.android.theme.font.amarantesource", true);
+                        break;
+                    case "20":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
+                            handleOverlays("com.android.theme.font.samsungone", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
+                            handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
+                            handleOverlays("com.android.theme.font.comicsanssource", false);
+                        }
+                        handleOverlays("com.android.theme.font.bariolsource", true);
+                        break;
+                    case "21":
+                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
+                            handleOverlays("com.android.theme.font.notoserifsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
+                            handleOverlays("com.android.theme.font.cagliostrosource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
+                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
+                            handleOverlays("com.android.theme.font.rosemarysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
+                            handleOverlays("com.android.theme.font.sonysketchsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
+                            handleOverlays("com.android.theme.font.googlesans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
+                            handleOverlays("com.android.theme.font.slateforoneplus", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
+                            handleOverlays("com.android.theme.font.samsungone", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
+                            handleOverlays("com.android.theme.font.firasans", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
+                            handleOverlays("com.android.theme.font.sfpro", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
+                            handleOverlays("com.android.theme.font.circularstd", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
+                            handleOverlays("com.android.theme.font.burnstownsource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        }
+                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
+                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        }
+                        handleOverlays("com.android.theme.font.comicsanssource", true);
                         break;
 
                 }

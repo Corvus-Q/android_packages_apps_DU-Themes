@@ -27,6 +27,17 @@
         <item>@string/font_type_8</item>
         <item>@string/font_type_9</item>
         <item>@string/font_type_10</item>
+        <item>@string/font_type_11</item>
+        <item>@string/font_type_12</item>
+        <item>@string/font_type_13</item>
+        <item>@string/font_type_14</item>
+        <item>@string/font_type_15</item>
+        <item>@string/font_type_16</item>
+        <item>@string/font_type_17</item>
+        <item>@string/font_type_18</item>
+        <item>@string/font_type_19</item>
+        <item>@string/font_type_20</item>
+        <item>@string/font_type_21</item>
     </string-array>
 
     <string-array name="font_type_values">
@@ -40,6 +51,17 @@
         <item>8</item>
         <item>9</item>
         <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
     </string-array>
 
     <!-- Adaptive icon shapes -->
