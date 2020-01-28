@@ -18,6 +18,8 @@ package com.dirtyunicorns.themes.utils;
 
 import static android.os.UserHandle.USER_SYSTEM;
 
+import android.app.Activity;
+import android.app.UiModeManager;
 import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
 import android.content.Context;
@@ -27,7 +29,33 @@ import android.text.TextUtils;
 
 import com.android.internal.util.du.ThemesUtils;
 
+import java.util.Objects;
+
 public class Utils {
+
+    public static void handleOverlays(String packagename, Boolean state, IOverlayManager mOverlayManager) {
+        try {
+            mOverlayManager.setEnabled(packagename,
+                    state, USER_SYSTEM);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void handleBackgrounds(Boolean state, Context context, int mode, String[] overlays, IOverlayManager mOverlayManager) {
+        if (context != null) {
+            Objects.requireNonNull(context.getSystemService(UiModeManager.class))
+                    .setNightMode(mode);
+        }
+        for (int i = 0; i < overlays.length; i++) {
+            String background = overlays[i];
+            try {
+                mOverlayManager.setEnabled(background, state, USER_SYSTEM);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static boolean isLiveWallpaper(Context context) {
         WallpaperInfo info = WallpaperManager.getInstance(context).getWallpaperInfo();
