@@ -5,6 +5,7 @@
     android:sharedUserId="android.uid.system">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -26,7 +27,19 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".ThemesReceiver" />
+        <receiver
+            android:name=".receivers.ThemesStartReceiver">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".receivers.ThemesEndReceiver">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
     </application>
 

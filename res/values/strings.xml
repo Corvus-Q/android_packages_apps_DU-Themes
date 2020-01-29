@@ -104,8 +104,7 @@
     <string name="theme_schedule_theme_summary">Select a theme to schedule</string>
     <string name="theme_schedule_none">None</string>
     <string name="theme_schedule_custom_time">Turns on at a custom time</string>
-    <string name="theme_schedule_sunset_sunrise">Turns on from sunset to sunrise</string>
     <string name="theme_schedule_applied">theme applied</string>
-    <string name="theme_schedule_scheduled">theme is scheduled</string>
+    <string name="theme_schedule_start_scheduled">theme starts at</string>
 
 </resources>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.dirtyunicorns.themes;
+package com.dirtyunicorns.themes.receivers;
 
 import static android.content.Context.ALARM_SERVICE;
 import static android.os.UserHandle.USER_SYSTEM;
@@ -34,25 +34,25 @@ import android.widget.Toast;
 import androidx.preference.PreferenceManager;
 
 import com.android.internal.util.du.ThemesUtils;
+import com.dirtyunicorns.themes.R;
 
-import java.util.Objects;
-
-public class ThemesReceiver extends BroadcastReceiver {
+public class ThemesEndReceiver extends BroadcastReceiver {
 
     private IOverlayManager mOverlayManager;
     private SharedPreferences mSharedPreferences;
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
         mOverlayManager = IOverlayManager.Stub.asInterface(
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String scheduledThemeValue = mSharedPreferences.getString("scheduled_theme_value", null);
-        SharedPreferences.Editor sedt = mSharedPreferences.edit();
+        String scheduledEndThemeValue = mSharedPreferences.getString("scheduled_end_theme_value", null);
+        SharedPreferences.Editor sharedPreferencesEditor = mSharedPreferences.edit();
 
-        if (scheduledThemeValue != null) {
-            switch (scheduledThemeValue) {
+        if (scheduledEndThemeValue != null) {
+            switch (scheduledEndThemeValue) {
                 case "1":
                     handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.PITCH_BLACK, mOverlayManager);
                     handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.SOLARIZED_DARK, mOverlayManager);
@@ -78,18 +78,20 @@ public class ThemesReceiver extends BroadcastReceiver {
                             + context.getString(R.string.theme_schedule_applied), Toast.LENGTH_SHORT).show();
                     break;
             }
-            sedt.putString("theme_schedule", "1").commit();
-            sedt.remove("scheduled_theme").commit();
-            sedt.remove("scheduled_theme_value").commit();
+            sharedPreferencesEditor.putString("theme_schedule", "1").commit();
+            sharedPreferencesEditor.remove("scheduled_theme").commit();
+            sharedPreferencesEditor.remove("scheduled_start_theme_value").commit();
+            sharedPreferencesEditor.remove("scheduled_end_theme_value").commit();
             clearAlarms(context);
         }
     }
 
     private void clearAlarms(Context context) {
-        Intent intent = new Intent(context, ThemesReceiver.class);
+        Intent intent = new Intent(context, ThemesEndReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         assert am != null;
         am.cancel(pendingIntent);
     }
 }
+
