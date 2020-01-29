@@ -16,7 +16,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.dirtyunicorns.themes.CustomPreference
-        android:key="preview"
+        android:key="wp_preview"
         android:enabled="false" />
 
     <ListPreference

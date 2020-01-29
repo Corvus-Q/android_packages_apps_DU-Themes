@@ -16,9 +16,7 @@
 
 package com.dirtyunicorns.themes;
 
-import android.app.WallpaperManager;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
 import androidx.preference.Preference;
@@ -57,9 +55,5 @@ public class CustomPreference extends Preference {
         } else {
             setLayoutResource(R.layout.themes_main);
         }
-        WallpaperManager wallpaperManager = WallpaperManager.getInstance(getContext());
-        Drawable wallpaperDrawable = wallpaperManager.getDrawable();
-
-        setIcon(wallpaperDrawable);
     }
 }

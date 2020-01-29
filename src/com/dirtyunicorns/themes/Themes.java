@@ -24,11 +24,13 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.UiModeManager;
+import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.om.IOverlayManager;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -55,6 +57,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     public static final String PREF_FONT_PICKER = "font_picker";
     public static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
     public static final String PREF_THEME_SWITCH = "theme_switch";
+    private static final String PREF_WP_PREVIEW = "wp_preview";
 
     private static boolean mUseSharedPrefListener;
     private int mBackupLimit = 10;
@@ -72,6 +75,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     private Preference mAccentPicker;
     private Preference mBackupThemes;
     private Preference mRestoreThemes;
+    private Preference mWpPreview;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,6 +97,8 @@ public class Themes extends PreferenceFragment implements ThemesListener {
 
         mOverlayManager = IOverlayManager.Stub.asInterface(
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
+
+        mWpPreview = findPreference(PREF_WP_PREVIEW);
 
         mAccentPicker = findPreference(PREF_ACCENT_PICKER);
         mAccentPicker.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -225,8 +231,15 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         }
         mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
 
+        setWallpaperPreview();
         updateBackupPref();
         updateRestorePref();
+    }
+
+    private void setWallpaperPreview() {
+        WallpaperManager wallpaperManager = WallpaperManager.getInstance(getActivity());
+        Drawable wallpaperDrawable = wallpaperManager.getDrawable();
+        mWpPreview.setIcon(wallpaperDrawable);
     }
 
     private void updateBackupPref() {
@@ -1490,6 +1503,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     public void onResume() {
         super.onResume();
         mSharedPreferences.registerOnSharedPreferenceChangeListener(mSharedPrefListener);
+        setWallpaperPreview();
         updateBackupPref();
         updateRestorePref();
         updateAccentSummary();
