@@ -18,11 +18,9 @@ package com.dirtyunicorns.themes.utils;
 
 import static android.os.UserHandle.USER_SYSTEM;
 import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULE;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_END_DATE;
 import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_END_THEME;
 import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_END_THEME_VALUE;
 import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_END_TIME;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_START_DATE;
 import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_START_THEME;
 import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_START_THEME_VALUE;
 import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_START_TIME;
@@ -62,10 +60,6 @@ public class Utils {
         return mSharedPreferences.getString(PREF_THEME_SCHEDULED_START_TIME, null);
     }
 
-    public static String getScheduledStartThemeDate(SharedPreferences mSharedPreferences) {
-        return mSharedPreferences.getString(PREF_THEME_SCHEDULED_START_DATE, null);
-    }
-
     public static String getScheduledStartThemeSummary(SharedPreferences mSharedPreferences, Context context) {
         String scheduledStartThemeSummary = mSharedPreferences.getString(PREF_THEME_SCHEDULED_START_THEME, null);
 
@@ -98,10 +92,6 @@ public class Utils {
 
     public static String getScheduledEndThemeTime(SharedPreferences mSharedPreferences) {
         return mSharedPreferences.getString(PREF_THEME_SCHEDULED_END_TIME, null);
-    }
-
-    public static String getScheduledEndThemeDate(SharedPreferences mSharedPreferences) {
-        return mSharedPreferences.getString(PREF_THEME_SCHEDULED_END_DATE, null);
     }
 
     public static String getScheduledEndThemeSummary(SharedPreferences mSharedPreferences, Context context) {

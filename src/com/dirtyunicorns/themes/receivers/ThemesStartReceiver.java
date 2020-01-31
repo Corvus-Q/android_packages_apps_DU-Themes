@@ -17,6 +17,7 @@
 package com.dirtyunicorns.themes.receivers;
 
 import static android.os.UserHandle.USER_SYSTEM;
+import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_START_THEME_VALUE;
 import static com.dirtyunicorns.themes.utils.Utils.handleBackgrounds;
 
 import android.app.UiModeManager;
@@ -44,7 +45,7 @@ public class ThemesStartReceiver extends BroadcastReceiver {
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String scheduledStartThemeValue = mSharedPreferences.getString("scheduled_start_theme_value", null);
+        String scheduledStartThemeValue = mSharedPreferences.getString(PREF_THEME_SCHEDULED_START_THEME_VALUE, null);
 
         if (scheduledStartThemeValue != null) {
             switch (scheduledStartThemeValue) {
