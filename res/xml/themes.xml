@@ -57,29 +57,9 @@
             android:entries="@array/theme_type_titles"
             android:entryValues="@array/theme_type_values"/>
 
-        <DropDownPreference
+        <Preference
             android:key="theme_schedule"
-            android:title="@string/theme_schedule_title"
-            android:entries="@array/theme_schedule_titles"
-            android:entryValues="@array/theme_schedule_values"/>
-
-        <SwitchPreference
-            android:key="theme_schedule_repeat_daily"
-            android:title="Repeat alarm"
-            android:summary="Repeats the alarms daily on the times you select below"
-            android:defaultValue="true" />
-
-        <ListPreference
-            android:key="scheduled_start_theme"
-            android:dialogTitle="@string/theme_type_summary"
-            android:entries="@array/theme_scheduled_titles"
-            android:entryValues="@array/theme_scheduled_values"/>
-
-        <ListPreference
-            android:key="scheduled_end_theme"
-            android:dialogTitle="@string/theme_type_summary"
-            android:entries="@array/theme_scheduled_titles"
-            android:entryValues="@array/theme_scheduled_values"/>
+            android:title="@string/theme_schedule_title" />
 
     </PreferenceCategory>
 
@@ -98,5 +78,3 @@
     </PreferenceCategory>
 
 </PreferenceScreen>
-
-

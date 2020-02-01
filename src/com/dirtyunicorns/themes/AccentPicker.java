@@ -74,13 +74,13 @@ public class AccentPicker extends DialogFragment {
             initView();
         }
 
-        builder.setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(mContext.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dismiss();
             }
         });
 
-        builder.setNeutralButton(getString(R.string.theme_accent_picker_default), new DialogInterface.OnClickListener() {
+        builder.setNeutralButton(mContext.getString(R.string.theme_accent_picker_default), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 setDefaultAccentColor(mOverlayManager);
                 mSharedPreferencesEditor.putString("theme_accent_color", "default");

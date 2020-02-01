@@ -18,10 +18,11 @@ package com.dirtyunicorns.themes.receivers;
 
 import static android.content.Context.ALARM_SERVICE;
 import static android.os.UserHandle.USER_SYSTEM;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULE;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_END_THEME_VALUE;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_REPEAT_DAILY;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_START_THEME_VALUE;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULE;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_END_THEME_VALUE;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_REPEAT_DAILY;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_START_THEME_VALUE;
+import static com.dirtyunicorns.themes.utils.Utils.clearAlarms;
 import static com.dirtyunicorns.themes.utils.Utils.handleBackgrounds;
 
 import android.app.AlarmManager;
@@ -88,17 +89,9 @@ public class ThemesEndReceiver extends BroadcastReceiver {
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME_VALUE);
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME_VALUE);
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_REPEAT_DAILY);
-                sharedPreferencesEditor.commit();
+                sharedPreferencesEditor.apply();
                 clearAlarms(context);
             }
         }
-    }
-
-    private void clearAlarms(Context context) {
-        Intent intent = new Intent(context, ThemesEndReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-        assert am != null;
-        am.cancel(pendingIntent);
     }
 }
