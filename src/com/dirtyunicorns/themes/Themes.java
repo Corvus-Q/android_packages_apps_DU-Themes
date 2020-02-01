@@ -16,16 +16,9 @@
 
 package com.dirtyunicorns.themes;
 
-import static android.content.Context.ALARM_SERVICE;
 import static android.os.UserHandle.USER_SYSTEM;
-import static com.dirtyunicorns.themes.utils.Utils.getScheduledEndTheme;
-import static com.dirtyunicorns.themes.utils.Utils.getScheduledEndThemeTime;
-import static com.dirtyunicorns.themes.utils.Utils.getScheduledEndThemeValue;
-import static com.dirtyunicorns.themes.utils.Utils.getScheduledEndThemeSummary;
-import static com.dirtyunicorns.themes.utils.Utils.getScheduledStartTheme;
-import static com.dirtyunicorns.themes.utils.Utils.getScheduledStartThemeTime;
-import static com.dirtyunicorns.themes.utils.Utils.getScheduledStartThemeValue;
 import static com.dirtyunicorns.themes.utils.Utils.getScheduledStartThemeSummary;
+import static com.dirtyunicorns.themes.utils.Utils.getScheduledStartThemeTime;
 import static com.dirtyunicorns.themes.utils.Utils.getThemeSchedule;
 import static com.dirtyunicorns.themes.utils.Utils.handleBackgrounds;
 import static com.dirtyunicorns.themes.utils.Utils.handleOverlays;
@@ -38,8 +31,6 @@ import android.app.AlarmManager;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.PendingIntent;
-import android.app.TimePickerDialog;
 import android.app.UiModeManager;
 import android.app.WallpaperManager;
 import android.content.Context;
@@ -54,23 +45,17 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.view.MenuItem;
-import android.widget.TimePicker;
 
-import androidx.preference.DropDownPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragment;
 import androidx.preference.PreferenceManager;
-import androidx.preference.SwitchPreference;
 
 import com.android.internal.util.du.ThemesUtils;
 import com.android.internal.util.du.Utils;
 
 import com.dirtyunicorns.themes.db.ThemeDatabase;
-import com.dirtyunicorns.themes.receivers.ThemesEndReceiver;
-import com.dirtyunicorns.themes.receivers.ThemesStartReceiver;
 
-import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -83,49 +68,32 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     private static final String PREF_BACKUP_THEMES = "backup_themes";
     private static final String PREF_RESTORE_THEMES = "restore_themes";
     private static final String PREF_WP_PREVIEW = "wp_preview";
+    private static final String PREF_THEME_SCHEDULE = "theme_schedule";
     private static final String PREF_THEME_ACCENT_PICKER = "theme_accent_picker";
     public static final String PREF_THEME_ACCENT_COLOR = "theme_accent_color";
     public static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
     public static final String PREF_FONT_PICKER = "font_picker";
     public static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
     public static final String PREF_THEME_SWITCH = "theme_switch";
-    public static final String PREF_THEME_SCHEDULE = "theme_schedule";
-    public static final String PREF_THEME_SCHEDULED_START_THEME = "scheduled_start_theme";
-    public static final String PREF_THEME_SCHEDULED_START_THEME_VALUE = "scheduled_start_theme_value";
-    public static final String PREF_THEME_SCHEDULED_START_TIME = "theme_schedule_start_time";
-    public static final String PREF_THEME_SCHEDULED_END_THEME = "scheduled_end_theme";
-    public static final String PREF_THEME_SCHEDULED_END_THEME_VALUE = "scheduled_end_theme_value";
-    public static final String PREF_THEME_SCHEDULED_END_TIME = "theme_schedule_end_time";
-    public static final String PREF_THEME_SCHEDULED_REPEAT_DAILY = "theme_schedule_repeat_daily";
 
-    private boolean scheduledStartTheme = false;
-    private boolean scheduledEndTheme = false;
     private int mBackupLimit = 10;
     private static boolean mUseSharedPrefListener;
 
-    private AlarmManager mAlarmMgr;
-    private Calendar mStartDate, mEndDate;
     private Context mContext;
-    private DateFormat timeFormat;
     private IOverlayManager mOverlayManager;
-    private PendingIntent mStartPendingIntent, mEndPendingIntent;
     private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor sharedPreferencesEditor;
     private ThemeDatabase mThemeDatabase;
     private UiModeManager mUiModeManager;
 
-    private DropDownPreference mThemeSchedule;
     private ListPreference mAdaptiveIconShape;
     private ListPreference mFontPicker;
     private ListPreference mStatusbarIcons;
-    private ListPreference mThemeScheduledStartTheme;
-    private ListPreference mThemeScheduledEndTheme;
     private ListPreference mThemeSwitch;
     private Preference mAccentPicker;
     private Preference mBackupThemes;
     private Preference mRestoreThemes;
+    private Preference mThemeSchedule;
     private Preference mWpPreview;
-    private SwitchPreference mThemeScheduleRepeat;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -146,50 +114,28 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         // Shared preferences
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         mSharedPreferences.registerOnSharedPreferenceChangeListener(mSharedPrefListener);
-        sharedPreferencesEditor = mSharedPreferences.edit();
 
-        // Alarm receiver
-        mAlarmMgr = (AlarmManager) getActivity().getSystemService(ALARM_SERVICE);
-        mStartDate = Calendar.getInstance();
-        mEndDate = Calendar.getInstance();
-        Intent mStartIntent = new Intent(getActivity(), ThemesStartReceiver.class);
-        mStartPendingIntent = PendingIntent.getBroadcast(getActivity(), 0, mStartIntent, 0);
-        Intent mEndIntent = new Intent(getActivity(), ThemesEndReceiver.class);
-        mEndPendingIntent = PendingIntent.getBroadcast(getActivity(), 0, mEndIntent, 0);
-
-        // Time and Date format
-        timeFormat = android.text.format.DateFormat.getTimeFormat(mContext);
-
-        // Themes
+        // Theme services
         UiModeManager mUiModeManager = mContext.getSystemService(UiModeManager.class);
         mOverlayManager = IOverlayManager.Stub.asInterface(
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
 
         mWpPreview = findPreference(PREF_WP_PREVIEW);
 
-        mThemeSchedule = (DropDownPreference) findPreference(PREF_THEME_SCHEDULE);
-        mThemeScheduleRepeat = (SwitchPreference) findPreference(PREF_THEME_SCHEDULED_REPEAT_DAILY);
-
-        if (mThemeScheduleRepeat != null) {
-            if (mThemeScheduleRepeat.isChecked()) {
-                mSharedPreferences.edit().putBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, true).commit();
-            } else {
-                mSharedPreferences.edit().putBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, false).commit();
+        // Theme schedule
+        mThemeSchedule = (Preference) findPreference(PREF_THEME_SCHEDULE);
+        assert mThemeSchedule != null;
+        mThemeSchedule.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(getActivity(), Schedule.class);
+                startActivity(intent);
+                return true;
             }
-        }
+        });
 
-        mThemeScheduledStartTheme = (ListPreference) findPreference(PREF_THEME_SCHEDULED_START_THEME);
-        if (mThemeScheduledStartTheme != null) {
-            mThemeScheduledStartTheme.setTitle(mContext.getString(R.string.theme_schedule_theme_title));
-            mThemeScheduledStartTheme.setSummary(mContext.getString(R.string.theme_schedule_theme_summary));
-        }
-        mThemeScheduledEndTheme = (ListPreference) findPreference(PREF_THEME_SCHEDULED_END_THEME);
-        if (mThemeScheduledEndTheme != null) {
-            mThemeScheduledEndTheme.setTitle(mContext.getString(R.string.theme_schedule_theme_title));
-            mThemeScheduledEndTheme.setSummary(mContext.getString(R.string.theme_schedule_theme_summary));
-        }
-
-        mAccentPicker = findPreference(PREF_THEME_ACCENT_PICKER);
+        // Accent picker
+        mAccentPicker = (Preference) findPreference(PREF_THEME_ACCENT_PICKER);
         assert mAccentPicker != null;
         mAccentPicker.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
@@ -265,6 +211,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
             }
         });
 
+        // Themes
         mThemeSwitch = (ListPreference) findPreference(PREF_THEME_SWITCH);
         if (Utils.isThemeEnabled("com.android.theme.solarizeddark.system")) {
             mThemeSwitch.setValue("4");
@@ -279,6 +226,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         }
         mThemeSwitch.setSummary(mThemeSwitch.getEntry());
 
+        // Font picker
         mFontPicker = (ListPreference) findPreference(PREF_FONT_PICKER);
         if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
             mFontPicker.setValue("2");
@@ -323,6 +271,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         }
         mFontPicker.setSummary(mFontPicker.getEntry());
 
+        // Adaptive icon shape
         mAdaptiveIconShape = (ListPreference) findPreference(PREF_ADAPTIVE_ICON_SHAPE);
         if (Utils.isThemeEnabled("com.android.theme.icon.teardrop")) {
             mAdaptiveIconShape.setValue("2");
@@ -339,6 +288,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         }
         mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
 
+        // Statusbar icons
         mStatusbarIcons = (ListPreference) findPreference(PREF_STATUSBAR_ICONS);
         if (Utils.isThemeEnabled("com.android.theme.icon_pack.filled.android")) {
             mStatusbarIcons.setValue("2");
@@ -351,6 +301,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         }
         mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
 
+        updateThemeScheduleSummary();
         setWallpaperPreview();
         updateBackupPref();
         updateRestorePref();
@@ -1611,106 +1562,6 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                 }
                 mThemeSwitch.setSummary(mThemeSwitch.getEntry());
             }
-
-            if (key.equals(PREF_THEME_SCHEDULE)) {
-                switch (getThemeSchedule(mSharedPreferences)) {
-                    case "1":
-                        sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME_VALUE);
-                        sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME);
-                        sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_TIME);
-                        sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME_VALUE);
-                        sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME);
-                        sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_TIME);
-                        sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_REPEAT_DAILY);
-                        sharedPreferencesEditor.commit();
-                        mThemeScheduleRepeat.setVisible(false);
-                        mThemeScheduledStartTheme.setVisible(false);
-                        mThemeScheduledEndTheme.setVisible(false);
-                        mThemeSchedule.setValue("1");
-                        break;
-                    case "2":
-                        mThemeScheduleRepeat.setVisible(true);
-                        mThemeScheduleRepeat.setEnabled(true);
-                        mThemeScheduledStartTheme.setVisible(true);
-                        mThemeScheduledStartTheme.setEnabled(true);
-                        break;
-                }
-                mThemeSchedule.setSummary(mThemeSchedule.getEntry());
-            }
-
-            class ScheduledStartTheme extends AsyncTask<Void, Void, Void> {
-
-                protected Void doInBackground(Void... param) {
-                    return null;
-                }
-
-                protected void onPostExecute(Void param) {
-                    showStartTimePicker();
-                }
-
-                @Override
-                protected void onPreExecute() {
-                    super.onPreExecute();
-                    sharedPreferencesEditor.putString(PREF_THEME_SCHEDULED_START_THEME_VALUE,
-                            getScheduledStartTheme(mSharedPreferences));
-                    sharedPreferencesEditor.commit();
-                }
-            }
-
-            if (key.equals(PREF_THEME_SCHEDULED_START_THEME) && getThemeSchedule(mSharedPreferences) != "1") {
-                if (getScheduledStartTheme(mSharedPreferences) != null
-                        && getScheduledStartThemeValue(mSharedPreferences) == null) {
-                    mThemeScheduledStartTheme.setSummary(mThemeScheduledStartTheme.getEntry());
-                    new ScheduledStartTheme().execute();
-                    scheduledStartTheme = true;
-                } else {
-                    sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME_VALUE);
-                    sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME);
-                    sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_TIME);
-                    sharedPreferencesEditor.commit();
-                    mThemeScheduledStartTheme.setTitle(mContext.getString(R.string.theme_schedule_theme_title));
-                    mThemeScheduledStartTheme.setSummary(mContext.getString(R.string.theme_schedule_theme_summary));
-                    mThemeScheduledStartTheme.setValue(null);
-                    scheduledStartTheme = false;
-                }
-            }
-
-            class ScheduledEndTheme extends AsyncTask<Void, Void, Void> {
-
-                protected Void doInBackground(Void... param) {
-                    return null;
-                }
-
-                protected void onPostExecute(Void param) {
-                    showEndTimePicker();
-                }
-
-                @Override
-                protected void onPreExecute() {
-                    super.onPreExecute();
-                    sharedPreferencesEditor.putString(PREF_THEME_SCHEDULED_END_THEME_VALUE,
-                            getScheduledEndTheme(mSharedPreferences));
-                    sharedPreferencesEditor.commit();
-                }
-            }
-
-            if (key.equals(PREF_THEME_SCHEDULED_END_THEME) && getThemeSchedule(mSharedPreferences) != "1") {
-                if (getScheduledEndTheme(mSharedPreferences) != null
-                        && getScheduledEndThemeValue(mSharedPreferences) == null) {
-                    mThemeScheduledEndTheme.setSummary(mThemeScheduledEndTheme.getEntry());
-                    new ScheduledEndTheme().execute();
-                    scheduledEndTheme = true;
-                } else {
-                    sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME_VALUE);
-                    sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME);
-                    sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_TIME);
-                    sharedPreferencesEditor.commit();
-                    mThemeScheduledEndTheme.setTitle(mContext.getString(R.string.theme_schedule_theme_title));
-                    mThemeScheduledEndTheme.setSummary(mContext.getString(R.string.theme_schedule_theme_summary));
-                    mThemeScheduledEndTheme.setValue(null);
-                    scheduledEndTheme = false;
-                }
-            }
         }
     };
 
@@ -1737,7 +1588,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         updateAccentSummary();
         updateIconShapeSummary();
         updateStatusbarIconsSummary();
-        updateThemeSchedule();
+        updateThemeScheduleSummary();
     }
 
     @Override
@@ -1746,7 +1597,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         if (!mUseSharedPrefListener) {
             mSharedPreferences.unregisterOnSharedPreferenceChangeListener(mSharedPrefListener);
         }
-        updateThemeSchedule();
+        updateThemeScheduleSummary();
     }
 
     @Override
@@ -1755,90 +1606,20 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         if (!mUseSharedPrefListener) {
             mSharedPreferences.unregisterOnSharedPreferenceChangeListener(mSharedPrefListener);
         }
-        updateThemeSchedule();
+        updateThemeScheduleSummary();
     }
 
-    private void updateThemeSchedule() {
-        if (getScheduledEndTheme(mSharedPreferences) == null && getScheduledStartTheme(mSharedPreferences) == null) {
-            mThemeScheduleRepeat.setEnabled(false);
-            mThemeScheduledEndTheme.setEnabled(false);
-            scheduledEndTheme = false;
-        }
-
-        if (getScheduledStartTheme(mSharedPreferences) != null) {
-            mThemeScheduleRepeat.setEnabled(false);
-            mThemeScheduledEndTheme.setEnabled(true);
-            scheduledEndTheme = false;
-        }
-
-        if (getScheduledEndTheme(mSharedPreferences) != null && getScheduledStartTheme(mSharedPreferences) != null) {
-            mThemeScheduleRepeat.setEnabled(false);
-            mThemeScheduledStartTheme.setEnabled(false);
-            mThemeScheduledEndTheme.setEnabled(false);
-            scheduledStartTheme = true;
-            scheduledEndTheme = true;
-        }
-
-        if (getScheduledEndTheme(mSharedPreferences) == null && getScheduledStartTheme(mSharedPreferences) == null) {
-            sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME_VALUE);
-            sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME);
-            sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_TIME);
-            sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME_VALUE);
-            sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME);
-            sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_TIME);
-            sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_REPEAT_DAILY);
-            sharedPreferencesEditor.commit();
-            mThemeScheduleRepeat.setVisible(false);
-            mThemeScheduledStartTheme.setVisible(false);
-            mThemeScheduledEndTheme.setVisible(false);
-            mThemeSchedule.setValue("1");
-            scheduledStartTheme = false;
-            scheduledEndTheme = false;
-        }
-        if (mThemeScheduledStartTheme != null) {
-            if (scheduledStartTheme) {
-                mThemeScheduledStartTheme.setTitle(getScheduledStartThemeSummary(mSharedPreferences, mContext)
-                        + " " + getString(R.string.theme_schedule_start_scheduled));
-                mThemeScheduledStartTheme.setSummary(getScheduledStartThemeTime(mSharedPreferences));
-                mThemeScheduledEndTheme.setTitle(getScheduledEndThemeSummary(mSharedPreferences, mContext)
-                        + " " + getString(R.string.theme_schedule_start_scheduled));
-                mThemeScheduledEndTheme.setSummary(getScheduledEndThemeTime(mSharedPreferences));
-                scheduledStartTheme = false;
+    private void updateThemeScheduleSummary() {
+        if (mThemeSchedule != null) {
+            if (getThemeSchedule(mSharedPreferences).equals("1")) {
+                mThemeSchedule.setSummary(mContext.getString(R.string.theme_schedule_summary));
             } else {
-                mThemeScheduledStartTheme.setTitle(mContext.getString(R.string.theme_schedule_theme_title));
-                mThemeScheduledStartTheme.setSummary(mContext.getString(R.string.theme_schedule_theme_summary));
-
-                mThemeScheduledEndTheme.setTitle(mContext.getString(R.string.theme_schedule_theme_title));
-                mThemeScheduledEndTheme.setSummary(mContext.getString(R.string.theme_schedule_theme_summary));
-                scheduledStartTheme = true;
+                if (!Calendar.getInstance().before(getScheduledStartThemeTime(mSharedPreferences))) {
+                    mThemeSchedule.setSummary(getScheduledStartThemeSummary(mSharedPreferences, mContext)
+                            + " " + mContext.getString(R.string.theme_schedule_dyn_summary));
+                }
             }
         }
-        if (mThemeScheduledEndTheme != null) {
-            if (scheduledEndTheme) {
-                mThemeScheduledEndTheme.setTitle(getScheduledEndThemeSummary(mSharedPreferences, mContext)
-                        + " " + getString(R.string.theme_schedule_start_scheduled));
-                mThemeScheduledEndTheme.setSummary(getScheduledEndThemeTime(mSharedPreferences));
-                mThemeScheduledEndTheme.setTitle(getScheduledEndThemeSummary(mSharedPreferences, mContext)
-                        + " " + getString(R.string.theme_schedule_start_scheduled));
-                mThemeScheduledEndTheme.setSummary(getScheduledEndThemeTime(mSharedPreferences));
-                scheduledEndTheme = false;
-            } else {
-                mThemeScheduledEndTheme.setTitle(mContext.getString(R.string.theme_schedule_theme_title));
-                mThemeScheduledEndTheme.setSummary(mContext.getString(R.string.theme_schedule_theme_summary));
-
-                mThemeScheduledEndTheme.setTitle(mContext.getString(R.string.theme_schedule_theme_title));
-                mThemeScheduledEndTheme.setSummary(mContext.getString(R.string.theme_schedule_theme_summary));
-                scheduledEndTheme = true;
-            }
-        }
-        if (mThemeScheduleRepeat != null) {
-            if (mThemeScheduleRepeat.isChecked()) {
-                mSharedPreferences.edit().putBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, true).commit();
-            } else {
-                mSharedPreferences.edit().putBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, false).commit();
-            }
-        }
-        mThemeSchedule.setSummary(mThemeSchedule.getEntry());
     }
 
     private void updateAccentSummary() {
@@ -1896,89 +1677,35 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     }
 
     private void updateIconShapeSummary() {
-        if (Utils.isThemeEnabled("com.android.theme.icon.teardrop")) {
-            mAdaptiveIconShape.setSummary(mContext.getString(R.string.adaptive_icon_shape_teardrop));
-        } else if (Utils.isThemeEnabled("com.android.theme.icon.squircle")) {
-            mAdaptiveIconShape.setSummary(mContext.getString(R.string.adaptive_icon_shape_squircle));
-        } else if (Utils.isThemeEnabled("com.android.theme.icon.roundedrect")) {
-            mAdaptiveIconShape.setSummary(mContext.getString(R.string.adaptive_icon_shape_roundedrect));
-        } else if (Utils.isThemeEnabled("com.android.theme.icon.cylinder")) {
-            mAdaptiveIconShape.setSummary(mContext.getString(R.string.adaptive_icon_shape_cylinder));
-        } else if (Utils.isThemeEnabled("com.android.theme.icon.hexagon")) {
-            mAdaptiveIconShape.setSummary(mContext.getString(R.string.adaptive_icon_shape_roundedrect));
-        } else {
+        if (mAdaptiveIconShape != null) {
+            if (Utils.isThemeEnabled("com.android.theme.icon.teardrop")) {
+                mAdaptiveIconShape.setSummary(mContext.getString(R.string.adaptive_icon_shape_teardrop));
+            } else if (Utils.isThemeEnabled("com.android.theme.icon.squircle")) {
+                mAdaptiveIconShape.setSummary(mContext.getString(R.string.adaptive_icon_shape_squircle));
+            } else if (Utils.isThemeEnabled("com.android.theme.icon.roundedrect")) {
+                mAdaptiveIconShape.setSummary(mContext.getString(R.string.adaptive_icon_shape_roundedrect));
+            } else if (Utils.isThemeEnabled("com.android.theme.icon.cylinder")) {
+                mAdaptiveIconShape.setSummary(mContext.getString(R.string.adaptive_icon_shape_cylinder));
+            } else if (Utils.isThemeEnabled("com.android.theme.icon.hexagon")) {
+                mAdaptiveIconShape.setSummary(mContext.getString(R.string.adaptive_icon_shape_roundedrect));
+            } else {
             mAdaptiveIconShape.setSummary(mContext.getString(R.string.adaptive_icon_shape_default));
+            }
         }
     }
 
     private void updateStatusbarIconsSummary() {
-        if (Utils.isThemeEnabled("com.android.theme.icon_pack.filled.android")) {
-            mStatusbarIcons.setSummary(mContext.getString(R.string.statusbar_icons_filled));
-        } else if (Utils.isThemeEnabled("com.android.theme.icon_pack.rounded.android")) {
-            mStatusbarIcons.setSummary(mContext.getString(R.string.statusbar_icons_rounded));
-        } else if (Utils.isThemeEnabled("com.android.theme.icon_pack.circular.android")) {
-            mStatusbarIcons.setSummary(mContext.getString(R.string.statusbar_icons_circular));
-        } else {
-            mStatusbarIcons.setSummary(mContext.getString(R.string.statusbar_icons_default));
+        if (mStatusbarIcons != null) {
+            if (Utils.isThemeEnabled("com.android.theme.icon_pack.filled.android")) {
+                mStatusbarIcons.setSummary(mContext.getString(R.string.statusbar_icons_filled));
+            } else if (Utils.isThemeEnabled("com.android.theme.icon_pack.rounded.android")) {
+                mStatusbarIcons.setSummary(mContext.getString(R.string.statusbar_icons_rounded));
+            } else if (Utils.isThemeEnabled("com.android.theme.icon_pack.circular.android")) {
+                mStatusbarIcons.setSummary(mContext.getString(R.string.statusbar_icons_circular));
+            } else {
+                mStatusbarIcons.setSummary(mContext.getString(R.string.statusbar_icons_default));
+            }
         }
-    }
-
-    public void showStartTimePicker() {
-        new TimePickerDialog(mContext, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                mStartDate.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                mStartDate.set(Calendar.MINUTE, minute);
-
-                if (!PreferenceManager.getDefaultSharedPreferences(mContext)
-                        .getBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, false)) {
-                    mAlarmMgr.setExact(AlarmManager.RTC_WAKEUP, mStartDate.getTimeInMillis(), mStartPendingIntent);
-                } else {
-                    mAlarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, mStartDate.getTimeInMillis(),
-                            AlarmManager.INTERVAL_DAY, mStartPendingIntent);
-                }
-
-                if (mThemeScheduledStartTheme != null) {
-                    mThemeScheduledStartTheme.setTitle(getScheduledStartThemeSummary(mSharedPreferences, mContext)
-                            + " " + mContext.getString(R.string.theme_schedule_start_scheduled));
-                    mThemeScheduledStartTheme.setSummary(timeFormat.format(mStartDate.getTime()));
-                    sharedPreferencesEditor.putString(PREF_THEME_SCHEDULED_START_TIME, timeFormat.format(mStartDate.getTime())).commit();
-                    mThemeScheduledEndTheme.setVisible(true);
-                    mThemeScheduledEndTheme.setEnabled(true);
-                    mThemeScheduleRepeat.setEnabled(false);
-                    scheduledStartTheme = true;
-                }
-            }
-        }, mStartDate.get(Calendar.HOUR_OF_DAY), mStartDate.get(Calendar.MINUTE), false).show();
-    }
-
-    public void showEndTimePicker() {
-        new TimePickerDialog(mContext, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                mEndDate.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                mEndDate.set(Calendar.MINUTE, minute);
-
-                if (!PreferenceManager.getDefaultSharedPreferences(mContext)
-                        .getBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, false)) {
-                    mAlarmMgr.setExact(AlarmManager.RTC_WAKEUP, mEndDate.getTimeInMillis(), mEndPendingIntent);
-                } else {
-                    mAlarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, mEndDate.getTimeInMillis(),
-                            AlarmManager.INTERVAL_DAY, mEndPendingIntent);
-                }
-
-                if (mThemeScheduledEndTheme != null) {
-                    mThemeScheduledEndTheme.setTitle(getScheduledEndThemeSummary(mSharedPreferences, mContext)
-                            + " " + mContext.getString(R.string.theme_schedule_start_scheduled));
-                    mThemeScheduledEndTheme.setSummary(timeFormat.format(mEndDate.getTime()));
-                    sharedPreferencesEditor.putString(PREF_THEME_SCHEDULED_END_TIME, timeFormat.format(mEndDate.getTime())).commit();
-                    mThemeScheduledStartTheme.setEnabled(false);
-                    mThemeScheduledEndTheme.setEnabled(false);
-                    mThemeScheduleRepeat.setEnabled(false);
-                    scheduledEndTheme = true;
-                }
-            }
-        }, mEndDate.get(Calendar.HOUR_OF_DAY), mEndDate.get(Calendar.MINUTE), false).show();
     }
 
     @Override

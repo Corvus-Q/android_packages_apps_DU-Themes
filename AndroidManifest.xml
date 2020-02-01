@@ -27,6 +27,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Schedule"/>
+
         <receiver
             android:name=".receivers.ThemesStartReceiver">
             <intent-filter >

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2019 The Dirty Unicorns Project
+<!-- Copyright (C) 2019-2020 The Dirty Unicorns Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -100,11 +100,15 @@
 
     <!-- Theme schedule -->
     <string name="theme_schedule_title">Schedule</string>
+    <string name="theme_schedule_summary">Set a schedule for system themes</string>
+    <string name="theme_schedule_dyn_summary">theme is scheduled</string>
     <string name="theme_schedule_theme_title">Schedule theme</string>
     <string name="theme_schedule_theme_summary">Select a theme to schedule</string>
     <string name="theme_schedule_none">None</string>
     <string name="theme_schedule_custom_time">Turns on at a custom time</string>
     <string name="theme_schedule_applied">theme applied</string>
     <string name="theme_schedule_start_scheduled">theme starts at</string>
+    <string name="theme_schedule_repeat_title">Repeat schedule</string>
+    <string name="theme_schedule_repeat_summary">Repeats the schedule daily</string>
 
 </resources>

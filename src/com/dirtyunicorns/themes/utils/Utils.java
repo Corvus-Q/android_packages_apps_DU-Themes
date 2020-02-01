@@ -16,20 +16,24 @@
 
 package com.dirtyunicorns.themes.utils;
 
+import static android.content.Context.ALARM_SERVICE;
 import static android.os.UserHandle.USER_SYSTEM;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULE;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_END_THEME;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_END_THEME_VALUE;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_END_TIME;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_START_THEME;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_START_THEME_VALUE;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_START_TIME;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULE;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_END_THEME;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_END_THEME_VALUE;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_END_TIME;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_START_THEME;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_START_THEME_VALUE;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_START_TIME;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.UiModeManager;
 import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.om.IOverlayManager;
 import android.os.RemoteException;
@@ -37,12 +41,21 @@ import android.text.TextUtils;
 import android.widget.Button;
 
 import com.dirtyunicorns.themes.R;
+import com.dirtyunicorns.themes.receivers.ThemesEndReceiver;
 
 import com.android.internal.util.du.ThemesUtils;
 
 import java.util.Objects;
 
 public class Utils {
+
+    public static boolean isLiveWallpaper(Context context) {
+        WallpaperInfo info = WallpaperManager.getInstance(context).getWallpaperInfo();
+        WallpaperManager wallpaperManager = WallpaperManager.getInstance(context);
+
+        return info != null && !TextUtils.isEmpty(info.getComponent().getPackageName())
+                && wallpaperManager.isSetWallpaperAllowed();
+    }
 
     public static String getThemeSchedule(SharedPreferences mSharedPreferences) {
         return mSharedPreferences.getString(PREF_THEME_SCHEDULE, "1");
@@ -148,12 +161,12 @@ public class Utils {
         }
     }
 
-    public static boolean isLiveWallpaper(Context context) {
-        WallpaperInfo info = WallpaperManager.getInstance(context).getWallpaperInfo();
-        WallpaperManager wallpaperManager = WallpaperManager.getInstance(context);
-
-        return info != null && !TextUtils.isEmpty(info.getComponent().getPackageName())
-                && wallpaperManager.isSetWallpaperAllowed();
+    public static void clearAlarms(Context context) {
+        Intent intent = new Intent(context, ThemesEndReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+        assert am != null;
+        am.cancel(pendingIntent);
     }
 
     public static void setDefaultAccentColor(IOverlayManager overlayManager) {

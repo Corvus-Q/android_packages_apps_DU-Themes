@@ -17,7 +17,7 @@
 package com.dirtyunicorns.themes.receivers;
 
 import static android.os.UserHandle.USER_SYSTEM;
-import static com.dirtyunicorns.themes.Themes.PREF_THEME_SCHEDULED_START_THEME_VALUE;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_START_THEME_VALUE;
 import static com.dirtyunicorns.themes.utils.Utils.handleBackgrounds;
 
 import android.app.UiModeManager;
