@@ -18,7 +18,6 @@ package com.dirtyunicorns.themes;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.TimePickerDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -97,6 +96,7 @@ public class Schedule extends Activity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            setRetainInstance(true);
             addPreferencesFromResource(R.xml.schedule);
 
             ActionBar actionBar = getActivity().getActionBar();
@@ -303,6 +303,7 @@ public class Schedule extends Activity {
             }
 
             if (getScheduledEndTheme(mSharedPreferences) == null && getScheduledStartTheme(mSharedPreferences) == null) {
+                clearAlarms(mContext);
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME_VALUE);
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME);
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_TIME);
@@ -435,3 +436,4 @@ public class Schedule extends Activity {
         activity.finish();
     }
 }
+

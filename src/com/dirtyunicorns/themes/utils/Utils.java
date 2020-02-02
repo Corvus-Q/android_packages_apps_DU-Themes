@@ -178,11 +178,15 @@ public class Utils {
         PendingIntent mEndPendingIntent = PendingIntent.getBroadcast(context, 0, mEndIntent, 0);
         if (!PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, false)) {
-            mAlarmMgr.setExact(AlarmManager.RTC_WAKEUP, getEndTime(context),
-                mEndPendingIntent);
+            if (mAlarmMgr != null) {
+                mAlarmMgr.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, getEndTime(context),
+                    mEndPendingIntent);
+            }
         } else {
-            mAlarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, getEndTime(context),
-                AlarmManager.INTERVAL_DAY, mEndPendingIntent);
+            if (mAlarmMgr != null) {
+                mAlarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, getEndTime(context),
+                    AlarmManager.INTERVAL_DAY, mEndPendingIntent);
+            }
         }
     }
 
@@ -192,11 +196,15 @@ public class Utils {
         PendingIntent mStartPendingIntent = PendingIntent.getBroadcast(context, 0, mStartIntent, 0);
         if (!PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, false)) {
-            mAlarmMgr.setExact(AlarmManager.RTC_WAKEUP, getStartTime(context),
-                mStartPendingIntent);
+            if (mAlarmMgr != null) {
+                mAlarmMgr.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, getStartTime(context),
+                    mStartPendingIntent);
+            }
         } else {
-            mAlarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, getStartTime(context),
-                AlarmManager.INTERVAL_DAY, mStartPendingIntent);
+            if (mAlarmMgr != null) {
+                mAlarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, getStartTime(context),
+                    AlarmManager.INTERVAL_DAY, mStartPendingIntent);
+            }
         }
     }
 

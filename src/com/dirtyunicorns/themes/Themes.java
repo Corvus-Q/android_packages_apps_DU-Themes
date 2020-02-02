@@ -27,7 +27,6 @@ import static com.dirtyunicorns.themes.utils.Utils.isLiveWallpaper;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
