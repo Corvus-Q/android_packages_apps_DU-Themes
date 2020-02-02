@@ -19,6 +19,7 @@ package com.dirtyunicorns.themes.receivers;
 import static android.os.UserHandle.USER_SYSTEM;
 import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_START_THEME_VALUE;
 import static com.dirtyunicorns.themes.utils.Utils.handleBackgrounds;
+import static com.dirtyunicorns.themes.utils.Utils.setStartAlarm;
 
 import android.app.UiModeManager;
 import android.content.BroadcastReceiver;
@@ -41,13 +42,16 @@ public class ThemesStartReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
         mOverlayManager = IOverlayManager.Stub.asInterface(
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String scheduledStartThemeValue = mSharedPreferences.getString(PREF_THEME_SCHEDULED_START_THEME_VALUE, null);
 
-        if (scheduledStartThemeValue != null) {
+        if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction()) && scheduledStartThemeValue != null) {
+            setStartAlarm(context);
+        } else if (scheduledStartThemeValue != null) {
             switch (scheduledStartThemeValue) {
                 case "1":
                     handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.PITCH_BLACK, mOverlayManager);

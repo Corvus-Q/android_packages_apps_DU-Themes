@@ -19,10 +19,10 @@ package com.dirtyunicorns.themes;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,6 +42,7 @@ import com.dirtyunicorns.themes.receivers.ThemesStartReceiver;
 import java.text.DateFormat;
 import java.util.Calendar;
 
+import static com.dirtyunicorns.themes.utils.Utils.clearAlarms;
 import static com.dirtyunicorns.themes.utils.Utils.getScheduledEndTheme;
 import static com.dirtyunicorns.themes.utils.Utils.getScheduledEndThemeSummary;
 import static com.dirtyunicorns.themes.utils.Utils.getScheduledEndThemeTime;
@@ -51,6 +52,10 @@ import static com.dirtyunicorns.themes.utils.Utils.getScheduledStartThemeSummary
 import static com.dirtyunicorns.themes.utils.Utils.getScheduledStartThemeTime;
 import static com.dirtyunicorns.themes.utils.Utils.getScheduledStartThemeValue;
 import static com.dirtyunicorns.themes.utils.Utils.getThemeSchedule;
+import static com.dirtyunicorns.themes.utils.Utils.setEndAlarm;
+import static com.dirtyunicorns.themes.utils.Utils.setEndTime;
+import static com.dirtyunicorns.themes.utils.Utils.setStartAlarm;
+import static com.dirtyunicorns.themes.utils.Utils.setStartTime;
 
 public class Schedule extends Activity {
 
@@ -71,12 +76,13 @@ public class Schedule extends Activity {
         public static final String PREF_THEME_SCHEDULED_END_THEME_VALUE = "scheduled_end_theme_value";
         public static final String PREF_THEME_SCHEDULED_END_TIME = "theme_schedule_end_time";
         public static final String PREF_THEME_SCHEDULED_REPEAT_DAILY = "theme_schedule_repeat_daily";
+        public static final String PREF_ALARM_START_TIME = "theme_scheduled_start_time";
+        public static final String PREF_ALARM_END_TIME = "theme_scheduled_end_time";
 
-        private AlarmManager mAlarmMgr;
         private Calendar mStartDate, mEndDate;
         private Context mContext;
         private DateFormat timeFormat;
-        private PendingIntent mStartPendingIntent, mEndPendingIntent;
+        private PackageManager mPm;
         private SharedPreferences mSharedPreferences;
         private SharedPreferences.Editor sharedPreferencesEditor;
 
@@ -102,13 +108,9 @@ public class Schedule extends Activity {
             mContext = getActivity();
 
             // Alarm receiver
-            mAlarmMgr = (AlarmManager) getActivity().getSystemService(ALARM_SERVICE);
-            mStartDate = Calendar.getInstance();
             mEndDate = Calendar.getInstance();
-            Intent mStartIntent = new Intent(getActivity(), ThemesStartReceiver.class);
-            mStartPendingIntent = PendingIntent.getBroadcast(getActivity(), 0, mStartIntent, 0);
-            Intent mEndIntent = new Intent(getActivity(), ThemesEndReceiver.class);
-            mEndPendingIntent = PendingIntent.getBroadcast(getActivity(), 0, mEndIntent, 0);
+            mStartDate = Calendar.getInstance();
+            mPm = mContext.getPackageManager();
 
             // Time format
             timeFormat = android.text.format.DateFormat.getTimeFormat(mContext);
@@ -150,6 +152,7 @@ public class Schedule extends Activity {
             if (key.equals(PREF_THEME_SCHEDULE)) {
                 switch (getThemeSchedule(mSharedPreferences)) {
                     case "1":
+                        clearAlarms(mContext);
                         sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME_VALUE);
                         sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME);
                         sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_TIME);
@@ -157,6 +160,8 @@ public class Schedule extends Activity {
                         sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME);
                         sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_TIME);
                         sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_REPEAT_DAILY);
+                        sharedPreferencesEditor.remove(PREF_ALARM_START_TIME);
+                        sharedPreferencesEditor.remove(PREF_ALARM_END_TIME);
                         sharedPreferencesEditor.commit();
                         mThemeScheduleRepeat.setVisible(false);
                         mThemeScheduledStartTheme.setVisible(false);
@@ -202,6 +207,7 @@ public class Schedule extends Activity {
                     sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME_VALUE);
                     sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_THEME);
                     sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_START_TIME);
+                    sharedPreferencesEditor.remove(PREF_ALARM_START_TIME);
                     sharedPreferencesEditor.commit();
                     mThemeScheduledStartTheme.setTitle(mContext.getString(R.string.theme_schedule_theme_title));
                     mThemeScheduledStartTheme.setSummary(mContext.getString(R.string.theme_schedule_theme_summary));
@@ -239,6 +245,7 @@ public class Schedule extends Activity {
                     sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME_VALUE);
                     sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME);
                     sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_TIME);
+                    sharedPreferencesEditor.remove(PREF_ALARM_END_TIME);
                     sharedPreferencesEditor.commit();
                     mThemeScheduledEndTheme.setTitle(mContext.getString(R.string.theme_schedule_theme_title));
                     mThemeScheduledEndTheme.setSummary(mContext.getString(R.string.theme_schedule_theme_summary));
@@ -303,6 +310,8 @@ public class Schedule extends Activity {
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME);
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_TIME);
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_REPEAT_DAILY);
+                sharedPreferencesEditor.remove(PREF_ALARM_START_TIME);
+                sharedPreferencesEditor.remove(PREF_ALARM_END_TIME);
                 sharedPreferencesEditor.commit();
                 mThemeScheduleRepeat.setVisible(false);
                 mThemeScheduledStartTheme.setVisible(false);
@@ -367,15 +376,11 @@ public class Schedule extends Activity {
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     mStartDate.set(Calendar.HOUR_OF_DAY, hourOfDay);
                     mStartDate.set(Calendar.MINUTE, minute);
-
-                    if (!PreferenceManager.getDefaultSharedPreferences(mContext)
-                            .getBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, false)) {
-                        mAlarmMgr.setExact(AlarmManager.RTC_WAKEUP, mStartDate.getTimeInMillis(), mStartPendingIntent);
-                    } else {
-                        mAlarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, mStartDate.getTimeInMillis(),
-                                AlarmManager.INTERVAL_DAY, mStartPendingIntent);
-                    }
-
+                    setStartTime(mContext, mStartDate);
+                    setStartAlarm(mContext);
+                    ComponentName mStartReceiver = new ComponentName(mContext, ThemesStartReceiver.class);
+                    mPm.setComponentEnabledSetting(mStartReceiver, PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                            PackageManager.DONT_KILL_APP);
                     if (mThemeScheduledStartTheme != null) {
                         mThemeScheduledStartTheme.setTitle(getScheduledStartThemeSummary(mSharedPreferences, mContext)
                                 + " " + mContext.getString(R.string.theme_schedule_start_scheduled));
@@ -396,15 +401,11 @@ public class Schedule extends Activity {
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                     mEndDate.set(Calendar.HOUR_OF_DAY, hourOfDay);
                     mEndDate.set(Calendar.MINUTE, minute);
-
-                    if (!PreferenceManager.getDefaultSharedPreferences(mContext)
-                            .getBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, false)) {
-                        mAlarmMgr.setExact(AlarmManager.RTC_WAKEUP, mEndDate.getTimeInMillis(), mEndPendingIntent);
-                    } else {
-                        mAlarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, mEndDate.getTimeInMillis(),
-                                AlarmManager.INTERVAL_DAY, mEndPendingIntent);
-                    }
-
+                    setEndTime(mContext, mEndDate);
+                    setEndAlarm(mContext);
+                    ComponentName mEndReceiver = new ComponentName(mContext, ThemesEndReceiver.class);
+                    mPm.setComponentEnabledSetting(mEndReceiver, PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                            PackageManager.DONT_KILL_APP);
                     if (mThemeScheduledEndTheme != null) {
                         mThemeScheduledEndTheme.setTitle(getScheduledEndThemeSummary(mSharedPreferences, mContext)
                                 + " " + mContext.getString(R.string.theme_schedule_start_scheduled));

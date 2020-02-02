@@ -24,6 +24,7 @@ import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHE
 import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_START_THEME_VALUE;
 import static com.dirtyunicorns.themes.utils.Utils.clearAlarms;
 import static com.dirtyunicorns.themes.utils.Utils.handleBackgrounds;
+import static com.dirtyunicorns.themes.utils.Utils.setEndAlarm;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -56,7 +57,9 @@ public class ThemesEndReceiver extends BroadcastReceiver {
         String scheduledEndThemeValue = mSharedPreferences.getString(PREF_THEME_SCHEDULED_END_THEME_VALUE, null);
         SharedPreferences.Editor sharedPreferencesEditor = mSharedPreferences.edit();
 
-        if (scheduledEndThemeValue != null) {
+        if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction()) && scheduledEndThemeValue != null) {
+            setEndAlarm(context);
+        } else if (scheduledEndThemeValue != null) {
             switch (scheduledEndThemeValue) {
                 case "1":
                     handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.PITCH_BLACK, mOverlayManager);
@@ -82,7 +85,7 @@ public class ThemesEndReceiver extends BroadcastReceiver {
                     Toast.makeText(context, context.getString(R.string.theme_type_solarized_dark) + " "
                             + context.getString(R.string.theme_schedule_applied), Toast.LENGTH_SHORT).show();
                     break;
-            }            
+            }
             if (!PreferenceManager.getDefaultSharedPreferences(context)
                     .getBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, false)) {
                 sharedPreferencesEditor.putString(PREF_THEME_SCHEDULE, "1");

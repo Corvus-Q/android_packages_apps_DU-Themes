@@ -22,9 +22,12 @@ import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHE
 import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_END_THEME;
 import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_END_THEME_VALUE;
 import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_END_TIME;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_REPEAT_DAILY;
 import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_START_THEME;
 import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_START_THEME_VALUE;
 import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_START_TIME;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_ALARM_START_TIME;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_ALARM_END_TIME;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -32,22 +35,30 @@ import android.app.PendingIntent;
 import android.app.UiModeManager;
 import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.om.IOverlayManager;
+import android.content.pm.PackageManager;
 import android.os.RemoteException;
 import android.text.TextUtils;
 import android.widget.Button;
 
-import com.dirtyunicorns.themes.R;
-import com.dirtyunicorns.themes.receivers.ThemesEndReceiver;
+import androidx.preference.PreferenceManager;
 
 import com.android.internal.util.du.ThemesUtils;
+import com.dirtyunicorns.themes.R;
+import com.dirtyunicorns.themes.receivers.ThemesEndReceiver;
+import com.dirtyunicorns.themes.receivers.ThemesStartReceiver;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 public class Utils {
+
+    private static long mAlarmEndTime;
+    private static long mAlarmStartTime;
 
     public static boolean isLiveWallpaper(Context context) {
         WallpaperInfo info = WallpaperManager.getInstance(context).getWallpaperInfo();
@@ -161,12 +172,78 @@ public class Utils {
         }
     }
 
+    public static void setEndAlarm(Context context) {
+        AlarmManager mAlarmMgr = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+        Intent mEndIntent = new Intent(context, ThemesEndReceiver.class);
+        PendingIntent mEndPendingIntent = PendingIntent.getBroadcast(context, 0, mEndIntent, 0);
+        if (!PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, false)) {
+            mAlarmMgr.setExact(AlarmManager.RTC_WAKEUP, getEndTime(context),
+                mEndPendingIntent);
+        } else {
+            mAlarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, getEndTime(context),
+                AlarmManager.INTERVAL_DAY, mEndPendingIntent);
+        }
+    }
+
+    public static void setStartAlarm(Context context) {
+        AlarmManager mAlarmMgr = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+        Intent mStartIntent = new Intent(context, ThemesStartReceiver.class);
+        PendingIntent mStartPendingIntent = PendingIntent.getBroadcast(context, 0, mStartIntent, 0);
+        if (!PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(PREF_THEME_SCHEDULED_REPEAT_DAILY, false)) {
+            mAlarmMgr.setExact(AlarmManager.RTC_WAKEUP, getStartTime(context),
+                mStartPendingIntent);
+        } else {
+            mAlarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, getStartTime(context),
+                AlarmManager.INTERVAL_DAY, mStartPendingIntent);
+        }
+    }
+
+    private static long getEndTime(Context context) {
+        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        mAlarmEndTime = mSharedPreferences.getLong(PREF_ALARM_END_TIME, 0);
+        return mAlarmEndTime;
+    }
+
+    public static void setEndTime(Context context, Calendar endTime) {
+        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor sharedPreferencesEditor = mSharedPreferences.edit();
+        mAlarmEndTime = endTime.getTimeInMillis();
+        sharedPreferencesEditor.putLong(PREF_ALARM_END_TIME, mAlarmEndTime);
+        sharedPreferencesEditor.apply();
+    }
+
+    private static long getStartTime(Context context) {
+        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        mAlarmStartTime = mSharedPreferences.getLong(PREF_ALARM_START_TIME, 0);
+        return mAlarmStartTime;
+    }
+
+    public static void setStartTime(Context context, Calendar startTime) {
+        SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor sharedPreferencesEditor = mSharedPreferences.edit();
+        mAlarmStartTime = startTime.getTimeInMillis();
+        sharedPreferencesEditor.putLong(PREF_ALARM_START_TIME, mAlarmStartTime);
+        sharedPreferencesEditor.apply();
+    }
+
     public static void clearAlarms(Context context) {
-        Intent intent = new Intent(context, ThemesEndReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        ComponentName endReceiver = new ComponentName(context, ThemesEndReceiver.class);
+        ComponentName startReceiver = new ComponentName(context, ThemesStartReceiver.class);
+        PackageManager pm = context.getPackageManager();
+        pm.setComponentEnabledSetting(endReceiver,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+        pm.setComponentEnabledSetting(startReceiver,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+        Intent endIntent = new Intent(context, ThemesEndReceiver.class);
+        Intent startIntent = new Intent(context, ThemesStartReceiver.class);
+        PendingIntent endPendingIntent = PendingIntent.getBroadcast(context, 0, endIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent startPendingIntent = PendingIntent.getBroadcast(context, 0, startIntent, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager am = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         assert am != null;
-        am.cancel(pendingIntent);
+        am.cancel(endPendingIntent);
+        am.cancel(startPendingIntent);
     }
 
     public static void setDefaultAccentColor(IOverlayManager overlayManager) {
