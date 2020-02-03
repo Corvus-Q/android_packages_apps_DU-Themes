@@ -19,6 +19,7 @@ package com.dirtyunicorns.themes;
 import static android.os.UserHandle.USER_SYSTEM;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -26,6 +27,7 @@ import android.app.FragmentManager;
 import android.app.UiModeManager;
 import android.app.WallpaperManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.om.IOverlayManager;
 import android.content.SharedPreferences;
@@ -44,9 +46,12 @@ import androidx.preference.SwitchPreference;
 
 import com.android.internal.util.du.ThemesUtils;
 import com.android.internal.util.du.Utils;
+
 import com.dirtyunicorns.themes.db.ThemeDatabase;
 
 import java.util.Objects;
+
+import static com.dirtyunicorns.themes.utils.Utils.isLiveWallpaper;
 
 public class Themes extends PreferenceFragment implements ThemesListener {
 
@@ -121,13 +126,41 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         mBackupThemes.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                FragmentManager manager = getFragmentManager();
-                Fragment frag = manager.findFragmentByTag(BackupThemes.TAG_BACKUP_THEMES);
-                if (frag != null) {
-                    manager.beginTransaction().remove(frag).commit();
+                if (isLiveWallpaper(getActivity())) {
+                    new AlertDialog.Builder(getActivity(), R.style.AccentDialogTheme)
+                            .setTitle(getContext().getString(R.string.theme_backup_dialog_title))
+                            .setMessage(getContext().getString(R.string.theme_backup_dialog_message))
+                            .setCancelable(false)
+                            .setPositiveButton(getContext().getString(R.string.theme_backup_dialog_positive),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            FragmentManager manager = getFragmentManager();
+                                            Fragment frag = manager.findFragmentByTag(BackupThemes.TAG_BACKUP_THEMES);
+                                            if (frag != null) {
+                                                manager.beginTransaction().remove(frag).commit();
+                                            }
+                                            BackupThemes backupThemesFragment = new BackupThemes(Themes.this);
+                                            backupThemesFragment.show(manager, BackupThemes.TAG_BACKUP_THEMES);
+                                        }
+                                    })
+                            .setNegativeButton(getContext().getString(R.string.theme_backup_dialog_negative),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    }).show();
+
+                } else {
+                    FragmentManager manager = getFragmentManager();
+                    Fragment frag = manager.findFragmentByTag(BackupThemes.TAG_BACKUP_THEMES);
+                    if (frag != null) {
+                        manager.beginTransaction().remove(frag).commit();
+                    }
+                    BackupThemes backupThemesFragment = new BackupThemes(Themes.this);
+                    backupThemesFragment.show(manager, BackupThemes.TAG_BACKUP_THEMES);
                 }
-                BackupThemes backupThemesFragment = new BackupThemes(Themes.this);
-                backupThemesFragment.show(manager, BackupThemes.TAG_BACKUP_THEMES);
                 return true;
             }
         });
