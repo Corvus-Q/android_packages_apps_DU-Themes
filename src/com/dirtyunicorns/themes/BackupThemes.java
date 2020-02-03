@@ -188,7 +188,7 @@ public class BackupThemes extends DialogFragment {
     }
 
     private String getAccentPicker() {
-        String accentPicker = AccentPicker.getAccentColor();
+        String accentPicker = mSharedPreferences.getString("theme_accent_color", "default");
         return accentPicker;
     }
 

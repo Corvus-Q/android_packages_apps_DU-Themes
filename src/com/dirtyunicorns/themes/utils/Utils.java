@@ -16,10 +16,16 @@
 
 package com.dirtyunicorns.themes.utils;
 
+import static android.os.UserHandle.USER_SYSTEM;
+
 import android.app.WallpaperInfo;
 import android.app.WallpaperManager;
 import android.content.Context;
+import android.content.om.IOverlayManager;
+import android.os.RemoteException;
 import android.text.TextUtils;
+
+import com.android.internal.util.du.ThemesUtils;
 
 public class Utils {
 
@@ -29,5 +35,32 @@ public class Utils {
 
         return info != null && !TextUtils.isEmpty(info.getComponent().getPackageName())
                 && wallpaperManager.isSetWallpaperAllowed();
+    }
+
+    public static void setDefaultAccentColor(IOverlayManager overlayManager) {
+        for (int i = 0; i < ThemesUtils.ACCENTS.length; i++) {
+            String accent = ThemesUtils.ACCENTS[i];
+            try {
+                overlayManager.setEnabled(accent, false, USER_SYSTEM);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void enableAccentColor(IOverlayManager overlayManager, String accentPicker) {
+        try {
+            for (int i = 0; i < ThemesUtils.ACCENTS.length; i++) {
+                String accent = ThemesUtils.ACCENTS[i];
+                try {
+                    overlayManager.setEnabled(accent, false, USER_SYSTEM);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+            overlayManager.setEnabled(accentPicker, true, USER_SYSTEM);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -57,12 +57,13 @@ public class Themes extends PreferenceFragment implements ThemesListener {
 
     private static final String PREF_BACKUP_THEMES = "backup_themes";
     private static final String PREF_RESTORE_THEMES = "restore_themes";
-    public static final String PREF_ACCENT_PICKER = "accent_picker";
+    private static final String PREF_WP_PREVIEW = "wp_preview";
+    private static final String PREF_THEME_ACCENT_PICKER = "theme_accent_picker";
+    public static final String PREF_THEME_ACCENT_COLOR = "theme_accent_color";
     public static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
     public static final String PREF_FONT_PICKER = "font_picker";
     public static final String PREF_STATUSBAR_ICONS = "statusbar_icons";
     public static final String PREF_THEME_SWITCH = "theme_switch";
-    private static final String PREF_WP_PREVIEW = "wp_preview";
 
     private static boolean mUseSharedPrefListener;
     private int mBackupLimit = 10;
@@ -105,7 +106,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
 
         mWpPreview = findPreference(PREF_WP_PREVIEW);
 
-        mAccentPicker = findPreference(PREF_ACCENT_PICKER);
+        mAccentPicker = findPreference(PREF_THEME_ACCENT_PICKER);
         mAccentPicker.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {

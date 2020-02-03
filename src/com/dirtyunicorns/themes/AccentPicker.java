@@ -24,6 +24,8 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.om.IOverlayManager;
+import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -31,26 +33,38 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.preference.PreferenceManager;
+
 import com.android.internal.util.du.ThemesUtils;
 import com.android.internal.util.du.Utils;
+
+import static com.dirtyunicorns.themes.utils.Utils.enableAccentColor;
+import static com.dirtyunicorns.themes.utils.Utils.setDefaultAccentColor;
 
 public class AccentPicker extends DialogFragment {
 
     public static final String TAG_ACCENT_PICKER = "accent_picker";
 
-    public static String mAccentColor;
-    private View mView;
+    private Context mContext;
     private IOverlayManager mOverlayManager;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mSharedPreferencesEditor;
+    private View mView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mContext = getActivity();
         mOverlayManager = IOverlayManager.Stub.asInterface(
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        mSharedPreferencesEditor = mSharedPreferences.edit();
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(
                 getActivity(), R.style.AccentDialogTheme);
         LayoutInflater inflater = getActivity().getLayoutInflater();
@@ -68,14 +82,9 @@ public class AccentPicker extends DialogFragment {
 
         builder.setNeutralButton(getString(R.string.theme_accent_picker_default), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                for (int i = 0; i < ThemesUtils.ACCENTS.length; i++) {
-                    String accent = ThemesUtils.ACCENTS[i];
-                    try {
-                        mOverlayManager.setEnabled(accent, false, USER_SYSTEM);
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
-                }
+                setDefaultAccentColor(mOverlayManager);
+                mSharedPreferencesEditor.putString("theme_accent_color", "default");
+                mSharedPreferencesEditor.apply();
                 dismiss();
             }
         });
@@ -188,42 +197,17 @@ public class AccentPicker extends DialogFragment {
         }
     }
 
-    private void setAccent(final String accent, final Button buttonAccent) {
+    private void setAccent(String accent, Button buttonAccent) {
         if (buttonAccent != null) {
             buttonAccent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    enableAccent(accent);
+                    enableAccentColor(mOverlayManager, accent);
+                    mSharedPreferencesEditor.putString("theme_accent_color", accent);
+                    mSharedPreferencesEditor.apply();
                     dismiss();
                 }
             });
         }
-    }
-
-    public static void enableAccent(final String accentPicker) {
-        try {
-            for (int i = 0; i < ThemesUtils.ACCENTS.length; i++) {
-                String accent = ThemesUtils.ACCENTS[i];
-                try {
-                    IOverlayManager.Stub.asInterface(ServiceManager.getService(
-                        Context.OVERLAY_SERVICE)).setEnabled(accent, false, USER_SYSTEM);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-            }
-            IOverlayManager.Stub.asInterface(ServiceManager.getService(
-                Context.OVERLAY_SERVICE)).setEnabled(accentPicker, true, USER_SYSTEM);
-            setAccentColor(accentPicker);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static String getAccentColor() {
-        return mAccentColor;
-    }
- 
-    private static void setAccentColor(String accentColor) {
-        mAccentColor = accentColor;
     }
 }

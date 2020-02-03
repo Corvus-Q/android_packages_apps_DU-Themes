@@ -19,10 +19,12 @@ package com.dirtyunicorns.themes;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.WallpaperManager;
+import android.content.om.IOverlayManager;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.ServiceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -44,9 +46,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.dirtyunicorns.themes.utils.Utils.enableAccentColor;
+import static com.dirtyunicorns.themes.utils.Utils.setDefaultAccentColor;
+
 public class RestoreThemes extends Activity {
 
     public static final String TAG_RESTORE_THEMES = "restore_themes";
+
+    private IOverlayManager mOverlayManager;
+    private LinearLayoutManager mLayoutManager;
+    private List<ThemesListItem> mThemesList;
+    private RecyclerView mThemesRecyclerView;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mSharedPrefEditor;
+    private ThemesAdapter mThemesAdapter;
+    private ThemeDatabase mThemeDatabase;
+    private WallpaperManager mWallpaperManager;
 
     private Button mDeleteTheme;
     private Button mApplyTheme;
@@ -56,14 +71,6 @@ public class RestoreThemes extends Activity {
     private Switch mIconShapeSwitch;
     private Switch mSbIconSwitch;
     private Switch mWpSwitch;
-    private LinearLayoutManager mLayoutManager;
-    private List<ThemesListItem> mThemesList;
-    private RecyclerView mThemesRecyclerView;
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mSharedPrefEditor;
-    private ThemesAdapter mThemesAdapter;
-    private ThemeDatabase mThemeDatabase;
-    private WallpaperManager mWallpaperManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +83,8 @@ public class RestoreThemes extends Activity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        mOverlayManager = IOverlayManager.Stub.asInterface(
+                    ServiceManager.getService(this.OVERLAY_SERVICE));
         mThemesList = new ArrayList<>();
         mThemesAdapter = new ThemesAdapter(this, mThemesList);
         mThemeDatabase = new ThemeDatabase(this);
@@ -203,41 +212,45 @@ public class RestoreThemes extends Activity {
     }
 
     private void applyThemeSwitch() {
-        String newValue = mThemesList.get(getCurrentItem()).getThemeSwitch();
         if (mThemeSwitch.isChecked()) {
+            String newValue = mThemesList.get(getCurrentItem()).getThemeSwitch();
             mSharedPrefEditor.putString("theme_switch", newValue);
             mSharedPrefEditor.apply();
         }
     }
 
     private void applyThemeFont() {
-        String newValue = mThemesList.get(getCurrentItem()).getThemeFont();
         if (mFontSwitch.isChecked()) {
+            String newValue = mThemesList.get(getCurrentItem()).getThemeFont();
             mSharedPrefEditor.putString("font_picker", newValue);
             mSharedPrefEditor.apply();
         }
     }
 
     private void applyThemeIconShape() {
-        String newValue = mThemesList.get(getCurrentItem()).getAdaptiveIconShape();
         if (mIconShapeSwitch.isChecked()) {
+            String newValue = mThemesList.get(getCurrentItem()).getAdaptiveIconShape();
             mSharedPrefEditor.putString("adapative_icon_shape", newValue);
             mSharedPrefEditor.apply();
         }
     }
 
     private void applyThemeSbIcons() {
-        String newValue = mThemesList.get(getCurrentItem()).getThemeSbIcons();
         if (mSbIconSwitch.isChecked()) {
+            String newValue = mThemesList.get(getCurrentItem()).getThemeSbIcons();
             mSharedPrefEditor.putString("statusbar_icons", newValue);
             mSharedPrefEditor.apply();
         }
     }
 
     private void applyThemeAccent() {
-        String newValue = mThemesList.get(getCurrentItem()).getAccentPicker();
         if (mAccentSwitch.isChecked()) {
-            AccentPicker.enableAccent(newValue);
+            String newValue = mThemesList.get(getCurrentItem()).getAccentPicker();
+            if (newValue == "default") {
+                setDefaultAccentColor(mOverlayManager);
+            } else {
+                enableAccentColor(mOverlayManager, newValue);
+            }
         }
     }
 

@@ -28,7 +28,7 @@
         android:entryValues="@array/theme_type_values" />
 
     <Preference
-        android:key="accent_picker"
+        android:key="theme_accent_picker"
         android:title="@string/theme_accent_picker_title"
         android:summary="@string/theme_accent_picker_summary" />
 
