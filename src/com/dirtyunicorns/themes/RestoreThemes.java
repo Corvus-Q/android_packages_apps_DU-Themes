@@ -97,6 +97,7 @@ public class RestoreThemes extends Activity {
         mThemesRecyclerView.setHasFixedSize(true);
         mThemesRecyclerView.setLayoutManager(mLayoutManager);
         mThemesRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mThemesRecyclerView.setNestedScrollingEnabled(true);
         mThemesRecyclerView.setAdapter(mThemesAdapter);
 
         mDeleteTheme = (Button) findViewById(R.id.deleteTheme);
@@ -311,3 +312,4 @@ public class RestoreThemes extends Activity {
         return false;
     }
 }
+

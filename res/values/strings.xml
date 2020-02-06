@@ -92,6 +92,7 @@
     <string name="theme_switch_restore_font_type">Font type</string>
     <string name="theme_switch_restore_adaptative_icons">Adaptative icons</string>
     <string name="theme_switch_restore_sb_icons">Status bar icons</string>
+    <string name="theme_switch_restore_wallpaper">Wallpaper</string>
     <string name="theme_backup_edittext_hint">Backup_</string>
     <string name="theme_backup_dialog_title">Live wallpaper detected</string>
     <string name="theme_backup_dialog_message">It appears that you have a live wallpaper applied.\n\nPlease note that live wallpapers will not be backed up. Instead the default wallpaper will be backed up.</string>
@@ -112,3 +113,4 @@
     <string name="theme_schedule_repeat_summary">Repeats the schedule daily</string>
 
 </resources>
+

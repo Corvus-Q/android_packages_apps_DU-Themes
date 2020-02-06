@@ -42,8 +42,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:layout_gravity="center|top"
-                    xmlns:tools="http://schemas.android.com/tools">
+                    android:layout_gravity="center|top">
 
                     <ImageView
                         android:id="@+id/wp_bg_main_filled"
@@ -60,143 +59,143 @@
                     android:layout_height="80dp"
                     android:layout_gravity="center|top">
 
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginEnd="4dp">
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="4dp">
 
-                            <ImageView
-                                android:id="@+id/qs_accent_main_filled_wifi"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                tools:ignore="ContentDescription" />
+                        <ImageView
+                            android:id="@+id/qs_accent_main_filled_wifi"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            tools:ignore="ContentDescription" />
 
-                            <ImageView
-                                android:id="@+id/qs_tile_main_filled_wifi_active"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:padding="3dp"
-                                android:layout_centerInParent="true"
-                                android:src="@drawable/ic_themes_filled_wifi"
-                                tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/qs_tile_main_filled_wifi_active"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="3dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_themes_filled_wifi"
+                            tools:ignore="ContentDescription" />
+                    </FrameLayout>
 
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginEnd="4dp">
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp">
 
-                            <ImageView
-                                android:id="@+id/qs_tile_main_filled_bg_bluetooth_inactive"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                tools:ignore="ContentDescription" />
+                        <ImageView
+                            android:id="@+id/qs_tile_main_filled_bg_bluetooth_inactive"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            tools:ignore="ContentDescription" />
 
-                            <ImageView
-                                android:id="@+id/qs_tile_main_filled_icon_bluetooth_inactive"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:padding="3dp"
-                                android:layout_centerInParent="true"
-                                android:src="@drawable/ic_themes_filled_bluetooth"
-                                tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/qs_tile_main_filled_icon_bluetooth_inactive"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="3dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_themes_filled_bluetooth"
+                            tools:ignore="ContentDescription" />
+                    </FrameLayout>
 
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginEnd="4dp">
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp">
 
-                            <ImageView
-                                android:id="@+id/qs_accent_main_filled_dnd"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                tools:ignore="ContentDescription" />
+                        <ImageView
+                            android:id="@+id/qs_accent_main_filled_dnd"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            tools:ignore="ContentDescription" />
 
-                            <ImageView
-                                android:id="@+id/qs_tile_main_filled_dnd_active"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:padding="3dp"
-                                android:layout_centerInParent="true"
-                                android:src="@drawable/ic_themes_filled_dnd"
-                                tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/qs_tile_main_filled_dnd_active"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="3dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_themes_filled_dnd"
+                            tools:ignore="ContentDescription" />
+                    </FrameLayout>
 
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginEnd="4dp">
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp">
 
-                            <ImageView
-                                android:id="@+id/qs_tile_main_filled_bg_flashlight_inactive"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                tools:ignore="ContentDescription" />
+                        <ImageView
+                            android:id="@+id/qs_tile_main_filled_bg_flashlight_inactive"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            tools:ignore="ContentDescription" />
 
-                            <ImageView
-                                android:id="@+id/qs_tile_main_filled_icon_flashlight_inactive"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:padding="3dp"
-                                android:layout_centerInParent="true"
-                                android:src="@drawable/ic_themes_filled_flashlight"
-                                tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/qs_tile_main_filled_icon_flashlight_inactive"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="3dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_themes_filled_flashlight"
+                            tools:ignore="ContentDescription" />
+                    </FrameLayout>
 
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginEnd="4dp">
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp">
 
-                            <ImageView
-                                android:id="@+id/qs_accent_main_filled_autorotate"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                tools:ignore="ContentDescription" />
+                        <ImageView
+                            android:id="@+id/qs_accent_main_filled_autorotate"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            tools:ignore="ContentDescription" />
 
-                            <ImageView
-                                android:id="@+id/qs_tile_main_filled_autorotate_active"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:padding="3dp"
-                                android:layout_centerInParent="true"
-                                android:src="@drawable/ic_themes_filled_autorotate"
-                                tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/qs_tile_main_filled_autorotate_active"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="3dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_themes_filled_autorotate"
+                            tools:ignore="ContentDescription" />
+                    </FrameLayout>
 
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginEnd="8dp">
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="8dp">
 
-                            <ImageView
-                                android:id="@+id/qs_tile_main_filled_bg_battery_saver_inactive"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                tools:ignore="ContentDescription" />
+                        <ImageView
+                            android:id="@+id/qs_tile_main_filled_bg_battery_saver_inactive"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            tools:ignore="ContentDescription" />
 
-                            <ImageView
-                                android:id="@+id/qs_tile_main_filled_icon_battery_saver_inactive"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:padding="3dp"
-                                android:layout_centerInParent="true"
-                                android:src="@drawable/ic_themes_filled_battery_saver"
-                                tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/qs_tile_main_filled_icon_battery_saver_inactive"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:padding="3dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_themes_filled_battery_saver"
+                            tools:ignore="ContentDescription" />
+                    </FrameLayout>
 
                 </LinearLayout>
 
@@ -227,3 +226,4 @@
         style="@style/RestoreThemeNameStyle" />
 
 </LinearLayout>
+

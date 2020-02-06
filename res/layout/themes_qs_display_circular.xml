@@ -28,7 +28,7 @@
         android:gravity="center|top"
         android:layout_marginTop="15dp">
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -45,13 +45,13 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:padding="3dp"
-                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_themes_circular_wifi"
                 android:tint="@color/qs_tile_icon_active"
                 tools:ignore="ContentDescription" />
-        </RelativeLayout>
+        </FrameLayout>
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -68,13 +68,13 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:padding="3dp"
-                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_themes_circular_bluetooth"
                 android:tint="@color/qs_tile_icon_inactive"
                 tools:ignore="ContentDescription" />
-        </RelativeLayout>
+        </FrameLayout>
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -91,13 +91,13 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:padding="3dp"
-                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_themes_circular_dnd"
                 android:tint="@color/qs_tile_icon_active"
                 tools:ignore="ContentDescription" />
-        </RelativeLayout>
+        </FrameLayout>
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -114,13 +114,13 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:padding="3dp"
-                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_themes_circular_flashlight"
                 android:tint="@color/qs_tile_icon_inactive"
                 tools:ignore="ContentDescription" />
-        </RelativeLayout>
+        </FrameLayout>
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -137,13 +137,13 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:padding="3dp"
-                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_themes_circular_autorotate"
                 android:tint="@color/qs_tile_icon_active"
                 tools:ignore="ContentDescription" />
-        </RelativeLayout>
+        </FrameLayout>
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -160,13 +160,14 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:padding="3dp"
-                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_themes_circular_battery_saver"
                 android:tint="@color/qs_tile_icon_inactive"
                 tools:ignore="ContentDescription" />
-        </RelativeLayout>
+        </FrameLayout>
 
     </LinearLayout>
 
 </LinearLayout>
+
 

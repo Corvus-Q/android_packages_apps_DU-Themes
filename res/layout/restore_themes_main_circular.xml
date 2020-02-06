@@ -42,8 +42,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:layout_gravity="center|top"
-                    xmlns:tools="http://schemas.android.com/tools">
+                    android:layout_gravity="center|top">
 
                     <ImageView
                         android:id="@+id/wp_bg_main_circular"
@@ -60,7 +59,7 @@
                     android:layout_height="80dp"
                     android:layout_gravity="center|top">
 
-                        <RelativeLayout
+                        <FrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -78,12 +77,12 @@
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:padding="3dp"
-                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
                                 android:src="@drawable/ic_themes_circular_wifi"
                                 tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        </FrameLayout>
 
-                        <RelativeLayout
+                        <FrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -101,12 +100,12 @@
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:padding="3dp"
-                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
                                 android:src="@drawable/ic_themes_circular_bluetooth"
                                 tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        </FrameLayout>
 
-                        <RelativeLayout
+                        <FrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -124,12 +123,12 @@
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:padding="3dp"
-                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
                                 android:src="@drawable/ic_themes_circular_dnd"
                                 tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        </FrameLayout>
 
-                        <RelativeLayout
+                        <FrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -147,12 +146,12 @@
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:padding="3dp"
-                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
                                 android:src="@drawable/ic_themes_circular_flashlight"
                                 tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        </FrameLayout>
 
-                        <RelativeLayout
+                        <FrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -170,12 +169,12 @@
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:padding="3dp"
-                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
                                 android:src="@drawable/ic_themes_circular_autorotate"
                                 tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        </FrameLayout>
 
-                        <RelativeLayout
+                        <FrameLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -193,10 +192,10 @@
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
                                 android:padding="3dp"
-                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
                                 android:src="@drawable/ic_themes_circular_battery_saver"
                                 tools:ignore="ContentDescription" />
-                        </RelativeLayout>
+                        </FrameLayout>
 
                 </LinearLayout>
 
@@ -227,3 +226,4 @@
         style="@style/RestoreThemeNameStyle" />
 
 </LinearLayout>
+
