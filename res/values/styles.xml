@@ -28,6 +28,7 @@
     <style name="MainTheme" parent="@android:style/Theme.DeviceDefault.Settings">
         <item name="android:alertDialogTheme">@style/FontDialogTheme</item>
         <item name="android:navigationBarColor">#00000000</item>
+        <item name="android:timePickerDialogTheme">@style/TimePickerDialogTheme</item>
     </style>
 
     <style name="FontDialogTheme" parent="@*android:style/Theme.DeviceDefault.Light.Dialog.Alert">
@@ -50,6 +51,19 @@
     <style name="RestoreThemeNameStyle" parent="android:style/Widget.TextView">
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TimePickerDialogTheme" parent="@*android:style/Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@*android:color/accent_device_default_light</item>
+        <item name="android:timePickerStyle">@style/TimePickerDialogStyle</item>
+        <item name="android:colorBackgroundFloating">@*android:color/notification_material_background_color</item>
+    </style>
+
+    <style name="TimePickerDialogStyle" parent="@android:style/Widget.Material.TimePicker">
+        <item name="android:headerBackground">@*android:color/accent_device_default_light</item>
+        <item name="android:numbersTextColor">?android:attr/textColorPrimaryInverse</item>
+        <item name="android:numbersSelectorColor">?android:attr/textColorPrimary</item>
+        <item name="android:numbersBackgroundColor">@*android:color/accent_device_default_light</item>
     </style>
 
 </resources>
