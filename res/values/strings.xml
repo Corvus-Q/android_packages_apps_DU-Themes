@@ -39,15 +39,14 @@
     <string name="font_type_10">Fira Sans</string>
     <string name="font_type_11">San Francisco Pro</string>
     <string name="font_type_12">CircularStd</string>
-    <string name="font_type_13">Burnstown</string>
-    <string name="font_type_14">Cool Story</string>
-    <string name="font_type_15">Rubik</string>
-    <string name="font_type_16">Arvolato</string>
-    <string name="font_type_17">Surfer</string>
-    <string name="font_type_18">Aclonica</string>
-    <string name="font_type_19">Amarante</string>
-    <string name="font_type_20">Bariol</string>
-    <string name="font_type_21">Comic Sans</string>
+    <string name="font_type_13">Cool Story</string>
+    <string name="font_type_14">Rubik</string>
+    <string name="font_type_15">Arvolato</string>
+    <string name="font_type_16">Surfer</string>
+    <string name="font_type_16">Aclonica</string>
+    <string name="font_type_17">Amarante</string>
+    <string name="font_type_18">Bariol</string>
+    <string name="font_type_19">Comic Sans</string>
 
     <!-- Adaptive icon shapes -->
     <string name="adaptive_icon_shape_default">Default</string>

@@ -152,24 +152,22 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
             mFontPicker.setValue("11");
         } else if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
             mFontPicker.setValue("12");
-        } else if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-            mFontPicker.setValue("13");
         } else if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
-            mFontPicker.setValue("14");
+            mFontPicker.setValue("13");
         } else if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
-            mFontPicker.setValue("15");
+            mFontPicker.setValue("14");
         } else if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
-            mFontPicker.setValue("16");
+            mFontPicker.setValue("15");
         } else if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
-            mFontPicker.setValue("17");
+            mFontPicker.setValue("16");
         } else if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
-            mFontPicker.setValue("18");
+            mFontPicker.setValue("17");
         } else if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
-            mFontPicker.setValue("19");
+            mFontPicker.setValue("18");
         } else if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
-            mFontPicker.setValue("20");
+            mFontPicker.setValue("19");
         } else if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
-            mFontPicker.setValue("21");
+            mFontPicker.setValue("20");
         } else {
             mFontPicker.setValue("1");
         }
@@ -261,9 +259,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
@@ -320,9 +315,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
@@ -382,9 +374,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
@@ -441,9 +430,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
@@ -502,9 +488,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
@@ -561,9 +544,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
@@ -622,9 +602,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
@@ -681,9 +658,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
@@ -742,9 +716,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
@@ -802,9 +773,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
@@ -861,9 +829,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
                             handleOverlays("com.android.theme.font.sfpro", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
@@ -925,9 +890,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
-                            handleOverlays("com.android.theme.font.coolstorysource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
                             handleOverlays("com.android.theme.font.rubikrubik", false);
                         }
@@ -949,7 +911,7 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
                             handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
-                        handleOverlays("com.android.theme.font.burnstownsource", true);
+                        handleOverlays("com.android.theme.font.coolstorysource", true);
                         break;
                     case "14":
                         if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
@@ -985,11 +947,8 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
-                            handleOverlays("com.android.theme.font.rubikrubik", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
+                            handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
                             handleOverlays("com.android.theme.font.arvolato", false);
@@ -1009,7 +968,7 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
                             handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
-                        handleOverlays("com.android.theme.font.coolstorysource", true);
+                        handleOverlays("com.android.theme.font.rubikrubik", true);
                         break;
                     case "15":
                         if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
@@ -1045,14 +1004,11 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
-                            handleOverlays("com.android.theme.font.arvolato", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
+                            handleOverlays("com.android.theme.font.rubikrubik", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
                             handleOverlays("com.android.theme.font.surfersource", false);
@@ -1069,7 +1025,7 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
                             handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
-                        handleOverlays("com.android.theme.font.rubikrubik", true);
+                        handleOverlays("com.android.theme.font.arvolato", true);
                         break;
                     case "16":
                         if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
@@ -1105,17 +1061,14 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
                             handleOverlays("com.android.theme.font.rubikrubik", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
-                            handleOverlays("com.android.theme.font.surfersource", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
+                            handleOverlays("com.android.theme.font.arvolato", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
                             handleOverlays("com.android.theme.font.aclonicasource", false);
@@ -1129,7 +1082,7 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
                             handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
-                        handleOverlays("com.android.theme.font.arvolato", true);
+                        handleOverlays("com.android.theme.font.surfersource", true);
                         break;
                     case "17":
                         if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
@@ -1165,9 +1118,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
@@ -1177,8 +1127,8 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
                             handleOverlays("com.android.theme.font.arvolato", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
-                            handleOverlays("com.android.theme.font.aclonicasource", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
+                            handleOverlays("com.android.theme.font.surfersource", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
                             handleOverlays("com.android.theme.font.amarantesource", false);
@@ -1189,7 +1139,7 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
                             handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
-                        handleOverlays("com.android.theme.font.surfersource", true);
+                        handleOverlays("com.android.theme.font.aclonicasource", true);
                         break;
                     case "18":
                         if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
@@ -1225,9 +1175,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
@@ -1240,8 +1187,8 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
                             handleOverlays("com.android.theme.font.surfersource", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
-                            handleOverlays("com.android.theme.font.amarantesource", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
+                            handleOverlays("com.android.theme.font.aclonicasource", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
                             handleOverlays("com.android.theme.font.bariolsource", false);
@@ -1249,7 +1196,7 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
                             handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
-                        handleOverlays("com.android.theme.font.aclonicasource", true);
+                        handleOverlays("com.android.theme.font.amarantesource", true);
                         break;
                     case "19":
                         if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
@@ -1285,9 +1232,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
                         }
@@ -1303,13 +1247,13 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
                             handleOverlays("com.android.theme.font.aclonicasource", false);
                         }
-                        if (Utils.isThemeEnabled("com.android.theme.font.bariolsource")) {
-                            handleOverlays("com.android.theme.font.bariolsource", false);
+                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
+                            handleOverlays("com.android.theme.font.amarantesource", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
                             handleOverlays("com.android.theme.font.comicsanssource", false);
                         }
-                        handleOverlays("com.android.theme.font.amarantesource", true);
+                        handleOverlays("com.android.theme.font.bariolsource", true);
                         break;
                     case "20":
                         if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
@@ -1344,69 +1288,6 @@ public class Themes extends PreferenceFragment implements SharedPreferences.OnSh
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
                             handleOverlays("com.android.theme.font.circularstd", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
-                            handleOverlays("com.android.theme.font.coolstorysource", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.rubikrubik")) {
-                            handleOverlays("com.android.theme.font.rubikrubik", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.arvolato")) {
-                            handleOverlays("com.android.theme.font.arvolato", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.surfersource")) {
-                            handleOverlays("com.android.theme.font.surfersource", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.aclonicasource")) {
-                            handleOverlays("com.android.theme.font.aclonicasource", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.amarantesource")) {
-                            handleOverlays("com.android.theme.font.amarantesource", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.comicsanssource")) {
-                            handleOverlays("com.android.theme.font.comicsanssource", false);
-                        }
-                        handleOverlays("com.android.theme.font.bariolsource", true);
-                        break;
-                    case "21":
-                        if (Utils.isThemeEnabled("com.android.theme.font.notoserifsource")) {
-                            handleOverlays("com.android.theme.font.notoserifsource", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.cagliostrosource")) {
-                            handleOverlays("com.android.theme.font.cagliostrosource", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.lgsmartgothicsource")) {
-                            handleOverlays("com.android.theme.font.lgsmartgothicsource", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.rosemarysource")) {
-                            handleOverlays("com.android.theme.font.rosemarysource", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.sonysketchsource")) {
-                            handleOverlays("com.android.theme.font.sonysketchsource", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.googlesans")) {
-                            handleOverlays("com.android.theme.font.googlesans", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.slateforoneplus")) {
-                            handleOverlays("com.android.theme.font.slateforoneplus", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.samsungone")) {
-                            handleOverlays("com.android.theme.font.samsungone", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.firasans")) {
-                            handleOverlays("com.android.theme.font.firasans", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.sfpro")) {
-                            handleOverlays("com.android.theme.font.sfpro", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.circularstd")) {
-                            handleOverlays("com.android.theme.font.circularstd", false);
-                        }
-                        if (Utils.isThemeEnabled("com.android.theme.font.burnstownsource")) {
-                            handleOverlays("com.android.theme.font.burnstownsource", false);
                         }
                         if (Utils.isThemeEnabled("com.android.theme.font.coolstorysource")) {
                             handleOverlays("com.android.theme.font.coolstorysource", false);
