@@ -27,13 +27,16 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.preference.PreferenceManager;
@@ -54,15 +57,19 @@ public class BackupThemes extends DialogFragment {
 
     public static final String TAG_BACKUP_THEMES = "backup_themes";
 
-    private boolean mThemeName = false;
-    private int mRelativeLayout;
-
-    private Resources mResources;
-    private ThemesListener mThemesListener;
+    private boolean mThemeNameExist = false;
     private Drawable mWallpaperDrawable;
+    private EditText mThemeNameInput;
+    private int mRelativeLayout;
+    private ProgressBar mBackupProgressBar;
+    private Resources mResources;
     private SharedPreferences mSharedPreferences;
-    private ThemeDatabase mThemeDatabase;
+    private String mBackupDate;
+    private String mThemeName;
     private String mTimeStamp;
+    private String mWpThemeName = null;
+    private ThemeDatabase mThemeDatabase;
+    private ThemesListener mThemesListener;
     private UiModeManager mUiModeManager;
 
     public BackupThemes(ThemesListener themesListener) {
@@ -72,7 +79,6 @@ public class BackupThemes extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mResources = getResources();
         WallpaperManager wallpaperManager = WallpaperManager.getInstance(getContext());
         mWallpaperDrawable = wallpaperManager.getDrawable();
@@ -84,27 +90,31 @@ public class BackupThemes extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(
-                getActivity(), R.style.AccentDialogTheme);
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.themes_backup, null);
         ViewStub stub = (ViewStub) view.findViewById(R.id.themes_backup_preview);
         ImageView imgView = (ImageView) view.findViewById(R.id.wp_background);
-        final EditText themeNameInput = (EditText) view.findViewById(R.id.themeName);
-        final String backupDate = getString(R.string.theme_backup_edittext_hint) + mTimeStamp;
-        int maxLength = 20;
-        themeNameInput.setHint(backupDate);
-        themeNameInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
-        themeNameInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            public void onFocusChange(View v, boolean hasFocus) {
-                themeNameInput.setHint(hasFocus ? "" : backupDate);
-            }
-        });
+        mThemeNameInput = (EditText) view.findViewById(R.id.themeName);
+        mBackupProgressBar = (ProgressBar) view.findViewById(R.id.backupBar);
+        mBackupDate = getString(R.string.theme_backup_edittext_hint) + mTimeStamp;
         stub.setLayoutResource(getThemeBackupPreview());
         imgView.setImageDrawable(mWallpaperDrawable);
         stub.inflate();
-        builder.setTitle(R.string.theme_backup_title);
-        builder.setView(view);
+        int maxLength = 20;
+        final AlertDialog.Builder builder = new AlertDialog.Builder(
+                getActivity(), R.style.AccentDialogTheme)
+        .setTitle(R.string.theme_backup_title)
+        .setPositiveButton(android.R.string.ok, null)
+        .setView(view);
+
+        mThemeNameInput.setHint(mBackupDate);
+        mThemeNameInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
+        mThemeNameInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                mThemeNameInput.setHint(hasFocus ? "" : mBackupDate);
+            }
+        });
+
         builder.setNegativeButton(getString(android.R.string.cancel),
                     new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -112,37 +122,77 @@ public class BackupThemes extends DialogFragment {
             }
         });
 
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                String themeName = themeNameInput.getText().toString().trim();
-                if (themeName.isEmpty()) {
-                    themeName = backupDate;
-                }
-                if (!isThemeNameExist(themeName)) {
-                    mThemeDatabase.addThemeDbUtils(new ThemeDbUtils(themeName, isDarkMode(),
-                        getIconsAccentColor(), getThemeNightColor(), getAccentPicker(),
-                        getThemeSwitch(), getAdaptiveIconShape(), getFont(), getIconsShape(),
-                        getSbIcons(), getThemeWp()));
-                } else {
-                    Toast.makeText(getActivity(), getString(R.string.theme_name_exist_warning),
-                        Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                dialog.dismiss();
-            }
-        });
+        return builder.create();
+    }
 
-        builder.create();
+    @Override
+    public void onResume() {
+        super.onResume();
+        final AlertDialog dialog = (AlertDialog) getDialog();
+        if (dialog != null) {
+            Button positiveButton = (Button) dialog.getButton(Dialog.BUTTON_POSITIVE);
+            positiveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mThemeName = mThemeNameInput.getText().toString().trim();
+                    if (mThemeName.isEmpty()) {
+                        mThemeName = mBackupDate;
+                    }
+                    if (!isThemeNameExist(mThemeName)) {
+                        new AsyncTask<Integer, Integer, String>() {
 
-        return builder.show();
+                            @Override
+                            protected void onPreExecute() {
+                                super.onPreExecute();
+                                mBackupProgressBar.setVisibility(View.VISIBLE);
+                            }
+
+                            @Override
+                            protected String doInBackground(Integer... params) {
+                                addThemeBackup();
+                                for (int i = 0; i < params[0]; i++) {
+                                    if (mWpThemeName == null) {
+                                        try {
+                                            Thread.sleep(500);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
+                                return "Backup finished";
+                            }
+
+                            @Override
+                            protected void onPostExecute(String result) {
+                                super.onPostExecute(result);
+                                mBackupProgressBar.setVisibility(View.INVISIBLE);
+                                dialog.dismiss();
+                            }
+
+                        }.execute(20);
+                    } else {
+                        Toast.makeText(getActivity(), getString(R.string.theme_name_exist_warning),
+                            Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+            });
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
         if (mThemesListener != null) {
-           mThemesListener.onCloseBackupDialog(null);
+            mThemesListener.onCloseBackupDialog(null);
         }
+    }
+
+    private void addThemeBackup() {
+        mThemeDatabase.addThemeDbUtils(new ThemeDbUtils(mThemeName, isDarkMode(),
+            getIconsAccentColor(), getThemeNightColor(), getAccentPicker(),
+            getThemeSwitch(), getAdaptiveIconShape(), getFont(), getIconsShape(),
+            getSbIcons(), getThemeWp()));
     }
 
     private int getThemeBackupPreview() {
@@ -217,34 +267,28 @@ public class BackupThemes extends DialogFragment {
             rootDir.mkdirs();
         }
         File themeWpBackup = new File(rootDir + File.separator + mTimeStamp);
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Bitmap themeWpBitmap = ((BitmapDrawable) mWallpaperDrawable).getBitmap();
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    themeWpBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                    themeWpBackup.createNewFile();
-                    FileOutputStream fos = new FileOutputStream(themeWpBackup);
-                    fos.write(baos.toByteArray());
-                    fos.flush();
-                    fos.close();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }.start();
+        try {
+            Bitmap themeWpBitmap = ((BitmapDrawable) mWallpaperDrawable).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            themeWpBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            themeWpBackup.createNewFile();
+            FileOutputStream fos = new FileOutputStream(themeWpBackup);
+            fos.write(baos.toByteArray());
+            fos.flush();
+            fos.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         return themeWpBackup;
     }
 
     private String getThemeWp() {
-        String wpThemeName = null;
         try {
-            wpThemeName = getWallpaperBitmap().toString();
+            mWpThemeName = getWallpaperBitmap().toString();
         } catch(Exception ex) {
             ex.printStackTrace();
         }
-        return wpThemeName;
+        return mWpThemeName;
     }
 
     private boolean isThemeNameExist(String themeName) {
@@ -252,9 +296,9 @@ public class BackupThemes extends DialogFragment {
         for (ThemeDbUtils name : themeDatabaseList) {
             String str = name.getThemeName();
             if (str.equals(themeName)) {
-                mThemeName = true;
+                mThemeNameExist = true;
             }
         }
-        return mThemeName;
+        return mThemeNameExist;
     }
 }
