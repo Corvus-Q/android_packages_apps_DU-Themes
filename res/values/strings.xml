@@ -111,6 +111,8 @@
     <string name="theme_schedule_start_scheduled">theme starts at</string>
     <string name="theme_schedule_repeat_title">Repeat schedule</string>
     <string name="theme_schedule_repeat_summary">Repeats the schedule daily</string>
+    <string name="theme_schedule_toasts_title">Show toasts</string>
+    <string name="theme_schedule_toasts_summary">Show toasts when scheduled themes are launched</string>
 
 </resources>
 

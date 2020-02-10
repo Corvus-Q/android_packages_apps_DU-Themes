@@ -78,6 +78,7 @@ public class Schedule extends Activity {
         public static final String PREF_THEME_SCHEDULED_REPEAT_DAILY = "theme_schedule_repeat_daily";
         public static final String PREF_ALARM_START_TIME = "theme_scheduled_start_time";
         public static final String PREF_ALARM_END_TIME = "theme_scheduled_end_time";
+        public static final String PREF_THEME_SCHEDULED_TOAST = "theme_schedule_toast";
 
         private Calendar mStartDate, mEndDate;
         private Context mContext;
@@ -90,6 +91,7 @@ public class Schedule extends Activity {
         private ListPreference mThemeScheduledStartTheme;
         private ListPreference mThemeScheduledEndTheme;
         private SwitchPreference mThemeScheduleRepeat;
+        private SwitchPreference mThemeScheduleToast;
 
         private boolean scheduledStartTheme = false;
         private boolean scheduledEndTheme = false;
@@ -127,6 +129,7 @@ public class Schedule extends Activity {
             mThemeScheduledStartTheme = (ListPreference) findPreference(PREF_THEME_SCHEDULED_START_THEME);
             mThemeScheduledEndTheme = (ListPreference) findPreference(PREF_THEME_SCHEDULED_END_THEME);
             mThemeScheduleRepeat = (SwitchPreference) findPreference(PREF_THEME_SCHEDULED_REPEAT_DAILY);
+            mThemeScheduleToast = (SwitchPreference) findPreference(PREF_THEME_SCHEDULED_TOAST);
 
             updateThemeSchedule();
         }
@@ -144,10 +147,12 @@ public class Schedule extends Activity {
                         sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME);
                         sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_TIME);
                         sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_REPEAT_DAILY);
+                        sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_TOAST);
                         sharedPreferencesEditor.remove(PREF_ALARM_START_TIME);
                         sharedPreferencesEditor.remove(PREF_ALARM_END_TIME);
                         sharedPreferencesEditor.commit();
                         mThemeScheduleRepeat.setVisible(false);
+                        mThemeScheduleToast.setVisible(false);
                         mThemeScheduledStartTheme.setVisible(false);
                         mThemeScheduledEndTheme.setVisible(false);
                         mThemeSchedule.setValue("1");
@@ -155,6 +160,8 @@ public class Schedule extends Activity {
                     case "2":
                         mThemeScheduleRepeat.setVisible(true);
                         mThemeScheduleRepeat.setEnabled(true);
+                        mThemeScheduleToast.setVisible(true);
+                        mThemeScheduleToast.setEnabled(true);
                         mThemeScheduledStartTheme.setVisible(true);
                         mThemeScheduledStartTheme.setEnabled(true);
                         break;
@@ -291,10 +298,12 @@ public class Schedule extends Activity {
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME);
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_TIME);
                 sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_REPEAT_DAILY);
+                sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_TOAST);
                 sharedPreferencesEditor.remove(PREF_ALARM_START_TIME);
                 sharedPreferencesEditor.remove(PREF_ALARM_END_TIME);
                 sharedPreferencesEditor.commit();
                 mThemeScheduleRepeat.setVisible(false);
+                mThemeScheduleToast.setVisible(false);
                 mThemeScheduledStartTheme.setVisible(false);
                 mThemeScheduledEndTheme.setVisible(false);
                 mThemeSchedule.setValue("1");
@@ -336,6 +345,17 @@ public class Schedule extends Activity {
                     sharedPreferencesEditor.apply();
                 }
             }
+            if (mThemeScheduleToast != null) {
+                if (mThemeScheduleToast.isChecked()) {
+                    sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_TOAST);
+                    sharedPreferencesEditor.putBoolean(PREF_THEME_SCHEDULED_TOAST, true);
+                    sharedPreferencesEditor.apply();
+                } else {
+                    sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_TOAST);
+                    sharedPreferencesEditor.putBoolean(PREF_THEME_SCHEDULED_TOAST, false);
+                    sharedPreferencesEditor.apply();
+                }
+            }
             mThemeSchedule.setSummary(mThemeSchedule.getEntry());
         }
 
@@ -347,10 +367,12 @@ public class Schedule extends Activity {
             sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_THEME);
             sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_END_TIME);
             sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_REPEAT_DAILY);
+            sharedPreferencesEditor.remove(PREF_THEME_SCHEDULED_TOAST);
             sharedPreferencesEditor.remove(PREF_ALARM_START_TIME);
             sharedPreferencesEditor.remove(PREF_ALARM_END_TIME);
             sharedPreferencesEditor.commit();
             mThemeScheduleRepeat.setVisible(false);
+            mThemeScheduleToast.setVisible(false);
             mThemeScheduledStartTheme.setVisible(false);
             mThemeScheduledEndTheme.setVisible(false);
             mThemeSchedule.setValue("1");
