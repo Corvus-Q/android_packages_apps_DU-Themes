@@ -18,6 +18,7 @@ package com.dirtyunicorns.themes.receivers;
 
 import static android.os.UserHandle.USER_SYSTEM;
 import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_START_THEME_VALUE;
+import static com.dirtyunicorns.themes.Schedule.ScheduleFragment.PREF_THEME_SCHEDULED_TOAST;
 import static com.dirtyunicorns.themes.utils.Utils.handleBackgrounds;
 import static com.dirtyunicorns.themes.utils.Utils.setStartAlarm;
 
@@ -56,26 +57,38 @@ public class ThemesStartReceiver extends BroadcastReceiver {
                 case "1":
                     handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.PITCH_BLACK, mOverlayManager);
                     handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_NO, ThemesUtils.SOLARIZED_DARK, mOverlayManager);
-                    Toast.makeText(context, context.getString(R.string.theme_type_light) + " "
-                            + context.getString(R.string.theme_schedule_applied), Toast.LENGTH_SHORT).show();
+                    if (PreferenceManager.getDefaultSharedPreferences(context)
+                            .getBoolean(PREF_THEME_SCHEDULED_TOAST, true)) {
+                        Toast.makeText(context, context.getString(R.string.theme_type_light) + " "
+                                + context.getString(R.string.theme_schedule_applied), Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case "2":
                     handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK, mOverlayManager);
                     handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK, mOverlayManager);
-                    Toast.makeText(context, context.getString(R.string.theme_type_google_dark) + " "
-                            + context.getString(R.string.theme_schedule_applied), Toast.LENGTH_SHORT).show();
+                    if (PreferenceManager.getDefaultSharedPreferences(context)
+                            .getBoolean(PREF_THEME_SCHEDULED_TOAST, true)) {
+                        Toast.makeText(context, context.getString(R.string.theme_type_google_dark) + " "
+                                + context.getString(R.string.theme_schedule_applied), Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case "3":
                     handleBackgrounds(true, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK, mOverlayManager);
                     handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK, mOverlayManager);
-                    Toast.makeText(context, context.getString(R.string.theme_type_pitch_black) + " "
-                            + context.getString(R.string.theme_schedule_applied), Toast.LENGTH_SHORT).show();
+                    if (PreferenceManager.getDefaultSharedPreferences(context)
+                            .getBoolean(PREF_THEME_SCHEDULED_TOAST, true)) {
+                        Toast.makeText(context, context.getString(R.string.theme_type_pitch_black) + " "
+                                + context.getString(R.string.theme_schedule_applied), Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case "4":
                     handleBackgrounds(false, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.PITCH_BLACK, mOverlayManager);
                     handleBackgrounds(true, context, UiModeManager.MODE_NIGHT_YES, ThemesUtils.SOLARIZED_DARK, mOverlayManager);
-                    Toast.makeText(context, context.getString(R.string.theme_type_solarized_dark) + " "
-                            + context.getString(R.string.theme_schedule_applied), Toast.LENGTH_SHORT).show();
+                    if (PreferenceManager.getDefaultSharedPreferences(context)
+                            .getBoolean(PREF_THEME_SCHEDULED_TOAST, true)) {
+                        Toast.makeText(context, context.getString(R.string.theme_type_solarized_dark) + " "
+                                + context.getString(R.string.theme_schedule_applied), Toast.LENGTH_SHORT).show();
+                    }
                     break;
             }
         }

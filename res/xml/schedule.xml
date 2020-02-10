@@ -22,6 +22,12 @@
         android:entryValues="@array/theme_schedule_values"/>
 
     <SwitchPreference
+        android:key="theme_schedule_toast"
+        android:title="@string/theme_schedule_toasts_title"
+        android:summary="@string/theme_schedule_toasts_summary"
+        android:defaultValue="true" />
+
+    <SwitchPreference
         android:key="theme_schedule_repeat_daily"
         android:title="@string/theme_schedule_repeat_title"
         android:summary="@string/theme_schedule_repeat_summary"
