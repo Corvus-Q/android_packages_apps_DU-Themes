@@ -27,7 +27,9 @@ import android.os.Bundle;
 import android.os.ServiceManager;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 
 import androidx.preference.PreferenceManager;
@@ -57,6 +59,7 @@ public class RestoreThemes extends Activity {
     private LinearLayoutManager mLayoutManager;
     private List<ThemesListItem> mThemesList;
     private RecyclerView mThemesRecyclerView;
+    private RelativeLayout mThemePopup;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedPrefEditor;
     private ThemesAdapter mThemesAdapter;
@@ -99,6 +102,28 @@ public class RestoreThemes extends Activity {
         mThemesRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mThemesRecyclerView.setNestedScrollingEnabled(true);
         mThemesRecyclerView.setAdapter(mThemesAdapter);
+
+        mThemePopup = findViewById(R.id.theme_popup);
+        mThemesRecyclerView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+
+                if (mThemesRecyclerView.canScrollHorizontally(1) &&
+                        mThemesRecyclerView.computeHorizontalScrollRange() >= mThemesRecyclerView.getWidth()) {
+                    mThemePopup.setVisibility(mSharedPreferences.getBoolean(
+                            "ThemeReminder", true) ? View.VISIBLE : View.GONE);
+                    mThemePopup.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mSharedPrefEditor.putBoolean("ThemeReminder", false).apply();
+                            mThemePopup.setVisibility(View.GONE);
+                        }
+                    });
+                } else {
+                    mThemePopup.setVisibility(View.GONE);
+                }
+            }
+        });
 
         mDeleteTheme = (Button) findViewById(R.id.deleteTheme);
         mDeleteTheme.setOnClickListener(new View.OnClickListener() {
@@ -312,4 +337,5 @@ public class RestoreThemes extends Activity {
         return false;
     }
 }
+
 
