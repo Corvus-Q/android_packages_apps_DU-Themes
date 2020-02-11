@@ -43,10 +43,10 @@
     <string name="font_type_14">Rubik</string>
     <string name="font_type_15">Arvolato</string>
     <string name="font_type_16">Surfer</string>
-    <string name="font_type_16">Aclonica</string>
-    <string name="font_type_17">Amarante</string>
-    <string name="font_type_18">Bariol</string>
-    <string name="font_type_19">Comic Sans</string>
+    <string name="font_type_17">Aclonica</string>
+    <string name="font_type_18">Amarante</string>
+    <string name="font_type_19">Bariol</string>
+    <string name="font_type_20">Comic Sans</string>
 
     <!-- Adaptive icon shapes -->
     <string name="adaptive_icon_shape_default">Default</string>
