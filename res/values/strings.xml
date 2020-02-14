@@ -86,6 +86,7 @@
     <string name="theme_restore_no_backup_summary">No backup available</string>
     <string name="theme_restore_popup_title">Swipe horizontally to view more backups</string>
     <string name="theme_name_exist_warning">This backup name already exist. Enter a new one.</string>
+    <string name="theme_rename_dialog_title">Rename theme</string>
     <string name="theme_button_apply_theme">Apply theme</string>
     <string name="theme_button_delete_theme">Delete theme</string>
     <string name="theme_switch_persistent_title">Persistent switches state</string>
