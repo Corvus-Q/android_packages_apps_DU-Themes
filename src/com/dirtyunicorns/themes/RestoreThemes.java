@@ -25,6 +25,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.ServiceManager;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -91,6 +93,20 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        mThemePopup = findViewById(R.id.theme_popup);
+        mThemeSwitch = (Switch) findViewById(R.id.themeSwitch);
+        mThemeSwitch.setOnCheckedChangeListener(this);
+        mAccentSwitch = (Switch) findViewById(R.id.accentSwitch);
+        mAccentSwitch.setOnCheckedChangeListener(this);
+        mFontSwitch = (Switch) findViewById(R.id.fontSwitch);
+        mFontSwitch.setOnCheckedChangeListener(this);
+        mIconShapeSwitch = (Switch) findViewById(R.id.iconShapeSwitch);
+        mIconShapeSwitch.setOnCheckedChangeListener(this);
+        mSbIconSwitch = (Switch) findViewById(R.id.sbIconSwitch);
+        mSbIconSwitch.setOnCheckedChangeListener(this);
+        mWpSwitch = (Switch) findViewById(R.id.wpSwitch);
+        mWpSwitch.setOnCheckedChangeListener(this);
+
         mOverlayManager = IOverlayManager.Stub.asInterface(
                     ServiceManager.getService(this.OVERLAY_SERVICE));
         mSwitchArray = new Switch[mNumSwitches];
@@ -113,7 +129,6 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
         mThemesRecyclerView.setNestedScrollingEnabled(true);
         mThemesRecyclerView.setAdapter(mThemesAdapter);
 
-        mThemePopup = findViewById(R.id.theme_popup);
         mThemesRecyclerView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
@@ -157,32 +172,10 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
             }
         });
 
-        mThemeSwitch = (Switch) findViewById(R.id.themeSwitch);
-        mThemeSwitch.setOnCheckedChangeListener(this);
-        mThemeSwitch.setChecked(mSharedPreferences.getBoolean(mSwitchList.get(0), true));
-
-        mAccentSwitch = (Switch) findViewById(R.id.accentSwitch);
-        mAccentSwitch.setOnCheckedChangeListener(this);
-        mAccentSwitch.setChecked(mSharedPreferences.getBoolean(mSwitchList.get(1), true));
-
-        mFontSwitch = (Switch) findViewById(R.id.fontSwitch);
-        mFontSwitch.setOnCheckedChangeListener(this);
-        mFontSwitch.setChecked(mSharedPreferences.getBoolean(mSwitchList.get(2), true));
-
-        mIconShapeSwitch = (Switch) findViewById(R.id.iconShapeSwitch);
-        mIconShapeSwitch.setOnCheckedChangeListener(this);
-        mIconShapeSwitch.setChecked(mSharedPreferences.getBoolean(mSwitchList.get(3), true));
-
-        mSbIconSwitch = (Switch) findViewById(R.id.sbIconSwitch);
-        mSbIconSwitch.setOnCheckedChangeListener(this);
-        mSbIconSwitch.setChecked(mSharedPreferences.getBoolean(mSwitchList.get(4), true));
-
-        mWpSwitch = (Switch) findViewById(R.id.wpSwitch);
-        mWpSwitch.setOnCheckedChangeListener(this);
-        mWpSwitch.setChecked(mSharedPreferences.getBoolean(mSwitchList.get(5), true));
-
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(mThemesRecyclerView);
+
+        setSwitchesChecked();
         setThemesData();
     }
 
@@ -216,7 +209,7 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
         }
         mSharedPrefEditor.putBoolean("switch" + String.valueOf(mSwitchId + 1),
             mSwitchArray[mSwitchId].isChecked());
-        mSharedPrefEditor.commit();
+        mSharedPrefEditor.apply();
     }
 
     @Override
@@ -235,6 +228,38 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
     public void onStop() {
         super.onStop();
         Themes.setSharedPrefListener(false);
+    }
+
+    private void setSwitchesChecked() {
+        if (isPersistentSwitches()) {
+            mThemeSwitch.setChecked(mSharedPreferences.getBoolean(
+                mSwitchList.get(0), mThemeSwitch.isChecked()));
+            mAccentSwitch.setChecked(mSharedPreferences.getBoolean(
+                mSwitchList.get(1), mAccentSwitch.isChecked()));
+            mFontSwitch.setChecked(mSharedPreferences.getBoolean(
+                mSwitchList.get(2), mFontSwitch.isChecked()));
+            mIconShapeSwitch.setChecked(mSharedPreferences.getBoolean(
+                mSwitchList.get(3), mIconShapeSwitch.isChecked()));
+            mSbIconSwitch.setChecked(mSharedPreferences.getBoolean(
+                mSwitchList.get(4), mSbIconSwitch.isChecked()));
+            mWpSwitch.setChecked(mSharedPreferences.getBoolean(
+                mSwitchList.get(5), mWpSwitch.isChecked()));
+        } else {
+            for (int i = 0; i < mNumSwitches; i++) {
+                mSharedPrefEditor.remove(mSwitchList.get(i));
+            }
+            mSharedPrefEditor.apply();
+            mThemeSwitch.setChecked(mThemeSwitch.isChecked());
+            mAccentSwitch.setChecked(mAccentSwitch.isChecked());
+            mFontSwitch.setChecked(mFontSwitch.isChecked());
+            mIconShapeSwitch.setChecked(mIconShapeSwitch.isChecked());
+            mSbIconSwitch.setChecked(mSbIconSwitch.isChecked());
+            mWpSwitch.setChecked(mWpSwitch.isChecked());
+        }
+    }
+
+    private boolean isPersistentSwitches() {
+        return mSharedPreferences.getBoolean("persistentSwitches", true);
     }
 
     private int getCurrentItem(){
@@ -378,13 +403,28 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.restore_themes_menu, menu);
+        MenuItem switchesItem = menu.findItem(R.id.persistent_switch);
+        switchesItem.setChecked(isPersistentSwitches());
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            case R.id.persistent_switch:
+                item.setChecked(!item.isChecked());
+                mSharedPrefEditor.putBoolean("persistentSwitches", item.isChecked());
+                mSharedPrefEditor.apply();
+                setSwitchesChecked();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return false;
     }
 }
-
-
