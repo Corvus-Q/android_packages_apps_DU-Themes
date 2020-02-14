@@ -88,6 +88,7 @@
     <string name="theme_name_exist_warning">This backup name already exist. Enter a new one.</string>
     <string name="theme_button_apply_theme">Apply theme</string>
     <string name="theme_button_delete_theme">Delete theme</string>
+    <string name="theme_switch_persistent_title">Persistent switches state</string>
     <string name="theme_switch_restore_theme_color">Background color</string>
     <string name="theme_switch_restore_accent_color">Accent color</string>
     <string name="theme_switch_restore_font_type">Font type</string>
