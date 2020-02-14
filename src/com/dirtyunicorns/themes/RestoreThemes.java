@@ -18,19 +18,24 @@ package com.dirtyunicorns.themes;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.WallpaperManager;
+import android.content.DialogInterface;
 import android.content.om.IOverlayManager;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.ServiceManager;
+import android.text.InputFilter;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -402,6 +407,58 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
         Collections.reverse(mThemesList);
     }
 
+    private void renameTheme() {
+        LayoutInflater inflater = getLayoutInflater();
+        final View view = inflater.inflate(R.layout.rename_theme_dialog, null, false);
+        final EditText renameThemeInput = (EditText) view.findViewById(R.id.renameTheme);
+        String oldThemeName = mThemesList.get(getCurrentItem()).getThemeName();
+        int maxLength = 20;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AccentDialogTheme)
+        .setTitle(R.string.theme_rename_dialog_title)
+        .setView(view)
+        .setPositiveButton(android.R.string.ok, null)
+        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        renameThemeInput.setHint(oldThemeName);
+        renameThemeInput.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
+        renameThemeInput.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                renameThemeInput.setHint(hasFocus ? "" : oldThemeName);
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newThemeName = renameThemeInput.getText().toString().trim();
+                if (newThemeName.isEmpty()) {
+                    newThemeName = oldThemeName;
+                }
+                mThemeDatabase.updateThemeDbUtils(new ThemeDbUtils(newThemeName,
+                    mThemesList.get(getCurrentItem()).geThemeDayOrNight(),
+                    mThemesList.get(getCurrentItem()).getThemeAccent(),
+                    mThemesList.get(getCurrentItem()).getThemeNightColor(),
+                    mThemesList.get(getCurrentItem()).getAccentPicker(),
+                    mThemesList.get(getCurrentItem()).getThemeSwitch(),
+                    mThemesList.get(getCurrentItem()).getAdaptiveIconShape(),
+                    mThemesList.get(getCurrentItem()).getThemeFont(),
+                    mThemesList.get(getCurrentItem()).getThemeIconShape(),
+                    mThemesList.get(getCurrentItem()).getThemeSbIcons(),
+                    mThemesList.get(getCurrentItem()).getThemeWp()), oldThemeName);
+                setThemesData();
+                dialog.dismiss();
+            }
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -416,6 +473,9 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                return true;
+            case R.id.rename_theme:
+                renameTheme();
                 return true;
             case R.id.persistent_switch:
                 item.setChecked(!item.isChecked());

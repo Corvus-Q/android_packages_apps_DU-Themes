@@ -14,17 +14,20 @@
      limitations under the License.
 -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <item
-        android:id="@+id/rename_theme"
-        android:title="@string/theme_rename_dialog_title"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/persistent_switch"
-        android:title="@string/theme_switch_persistent_title"
-        android:checkable="true"
-        app:showAsAction="never" />
+    <EditText
+        android:id="@+id/renameTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center"
+        android:inputType="text" />
 
-</menu>
+</LinearLayout>
