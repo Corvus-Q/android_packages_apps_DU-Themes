@@ -30,6 +30,7 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     androidx.preference_preference \
     androidx.recyclerview_recyclerview
 
+include vendor/du/support/common.mk
 include frameworks/base/packages/SettingsLib/common.mk
 
 include $(BUILD_PACKAGE)

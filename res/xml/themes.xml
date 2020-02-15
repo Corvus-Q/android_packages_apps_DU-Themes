@@ -46,8 +46,8 @@
         android:entries="@array/statusbar_icons_titles"
         android:entryValues="@array/statusbar_icons_values" />
 
-    <PreferenceCategory
-        android:title="System theme" >
+    <com.dirtyunicorns.support.preferences.CustomPreferenceCategory
+        android:title="@string/theme_type_title" >
 
         <ListPreference
             android:key="theme_switch"
@@ -61,9 +61,9 @@
             android:key="theme_schedule"
             android:title="@string/theme_schedule_title" />
 
-    </PreferenceCategory>
+    </com.dirtyunicorns.support.preferences.CustomPreferenceCategory>
 
-    <PreferenceCategory
+    <com.dirtyunicorns.support.preferences.CustomPreferenceCategory
         android:key="theme_other_category"
         android:title="@string/theme_other_category_title">
 
@@ -75,6 +75,6 @@
             android:key="restore_themes"
             android:title="@string/theme_restore_title" />
 
-    </PreferenceCategory>
+    </com.dirtyunicorns.support.preferences.CustomPreferenceCategory>
 
 </PreferenceScreen>
