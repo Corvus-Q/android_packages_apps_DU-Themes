@@ -49,6 +49,7 @@ public class AccentPicker extends DialogFragment {
     private IOverlayManager mOverlayManager;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedPreferencesEditor;
+    private String[] mAccentButtons;
     private View mView;
 
     @Override
@@ -60,6 +61,7 @@ public class AccentPicker extends DialogFragment {
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         mSharedPreferencesEditor = mSharedPreferences.edit();
+        mAccentButtons = getResources().getStringArray(R.array.accent_picker_buttons);
     }
 
     @Override
@@ -95,97 +97,13 @@ public class AccentPicker extends DialogFragment {
     }
 
     private void initView() {
-        Button spaceAccent = mView.findViewById(R.id.spaceAccent);
-        setAccent("com.android.theme.color.space", spaceAccent);
-        setForegroundDrawable("com.android.theme.color.space", spaceAccent, getActivity());
-
-        Button purpleAccent = mView.findViewById(R.id.purpleAccent);
-        setAccent("com.android.theme.color.purple", purpleAccent);
-        setForegroundDrawable("com.android.theme.color.purple", purpleAccent, getActivity());
-
-        Button orchidAccent = mView.findViewById(R.id.orchidAccent);
-        setAccent("com.android.theme.color.orchid", orchidAccent);
-        setForegroundDrawable("com.android.theme.color.orchid", orchidAccent, getActivity());
-
-        Button oceanAccent = mView.findViewById(R.id.oceanAccent);
-        setAccent("com.android.theme.color.ocean", oceanAccent);
-        setForegroundDrawable("com.android.theme.color.ocean", oceanAccent, getActivity());
-
-        Button greenAccent = mView.findViewById(R.id.greenAccent);
-        setAccent("com.android.theme.color.green", greenAccent);
-        setForegroundDrawable("com.android.theme.color.green", greenAccent, getActivity());
-
-        Button cinnamonAccent = mView.findViewById(R.id.cinnamonAccent);
-        setAccent("com.android.theme.color.cinnamon", cinnamonAccent);
-        setForegroundDrawable("com.android.theme.color.cinnamon", cinnamonAccent, getActivity());
-
-        Button amberAccent = mView.findViewById(R.id.amberAccent);
-        setAccent("com.android.theme.color.amber", amberAccent);
-        setForegroundDrawable("com.android.theme.color.amber", amberAccent, getActivity());
-
-        Button blueAccent = mView.findViewById(R.id.blueAccent);
-        setAccent("com.android.theme.color.blue", blueAccent);
-        setForegroundDrawable("com.android.theme.color.blue", blueAccent, getActivity());
-
-        Button blueGreyAccent = mView.findViewById(R.id.blueGreyAccent);
-        setAccent("com.android.theme.color.bluegrey", blueGreyAccent);
-        setForegroundDrawable("com.android.theme.color.bluegrey", blueGreyAccent, getActivity());
-
-        Button brownAccent = mView.findViewById(R.id.brownAccent);
-        setAccent("com.android.theme.color.brown", brownAccent);
-        setForegroundDrawable("com.android.theme.color.brown", brownAccent, getActivity());
-
-        Button cyanAccent = mView.findViewById(R.id.cyanAccent);
-        setAccent("com.android.theme.color.cyan", cyanAccent);
-        setForegroundDrawable("com.android.theme.color.cyan", cyanAccent, getActivity());
-
-        Button deepOrangeAccent = mView.findViewById(R.id.deepOrangeAccent);
-        setAccent("com.android.theme.color.deeporange", deepOrangeAccent);
-        setForegroundDrawable("com.android.theme.color.deeporange", deepOrangeAccent, getActivity());
-
-        Button deepPurpleAccent = mView.findViewById(R.id.deepPurpleAccent);
-        setAccent("com.android.theme.color.deeppurple", deepPurpleAccent);
-        setForegroundDrawable("com.android.theme.color.deeppurple", deepPurpleAccent, getActivity());
-
-        Button greyAccent = mView.findViewById(R.id.greyAccent);
-        setAccent("com.android.theme.color.grey", greyAccent);
-        setForegroundDrawable("com.android.theme.color.grey", greyAccent, getActivity());
-
-        Button indigoAccent = mView.findViewById(R.id.indigoAccent);
-        setAccent("com.android.theme.color.indigo", indigoAccent);
-        setForegroundDrawable("com.android.theme.color.indigo", indigoAccent, getActivity());
-
-        Button lightBlueAccent = mView.findViewById(R.id.lightBlueAccent);
-        setAccent("com.android.theme.color.lightblue", lightBlueAccent);
-        setForegroundDrawable("com.android.theme.color.lightblue", lightBlueAccent, getActivity());
-
-        Button lightGreenAccent = mView.findViewById(R.id.lightGreenAccent);
-        setAccent("com.android.theme.color.lightgreen", lightGreenAccent);
-        setForegroundDrawable("com.android.theme.color.lightgreen", lightGreenAccent, getActivity());
-
-        Button limeAccent = mView.findViewById(R.id.limeAccent);
-        setAccent("com.android.theme.color.lime", limeAccent);
-        setForegroundDrawable("com.android.theme.color.lime", limeAccent, getActivity());
-
-        Button orangeAccent = mView.findViewById(R.id.orangeAccent);
-        setAccent("com.android.theme.color.orange", orangeAccent);
-        setForegroundDrawable("com.android.theme.color.orange", orangeAccent, getActivity());
-
-        Button pinkAccent = mView.findViewById(R.id.pinkAccent);
-        setAccent("com.android.theme.color.pink", pinkAccent);
-        setForegroundDrawable("com.android.theme.color.pink", pinkAccent, getActivity());
-
-        Button redAccent = mView.findViewById(R.id.redAccent);
-        setAccent("com.android.theme.color.red", redAccent);
-        setForegroundDrawable("com.android.theme.color.red", redAccent, getActivity());
-
-        Button tealAccent = mView.findViewById(R.id.tealAccent);
-        setAccent("com.android.theme.color.teal", tealAccent);
-        setForegroundDrawable("com.android.theme.color.teal", tealAccent, getActivity());
-
-        Button yellowAccent = mView.findViewById(R.id.yellowAccent);
-        setAccent("com.android.theme.color.yellow", yellowAccent);
-        setForegroundDrawable("com.android.theme.color.yellow", yellowAccent, getActivity());
+        for (int i = 0; i < mAccentButtons.length; i++) {
+            int buttonId = getResources().getIdentifier(mAccentButtons[i], "id", mContext.getPackageName());
+            Button button = (Button) mView.findViewById(buttonId);
+            String accent = ThemesUtils.ACCENTS[i];
+            setAccent(accent, button);
+            setForegroundDrawable(accent, button, getActivity());
+        }
     }
 
     private void setAccent(String accent, Button buttonAccent) {

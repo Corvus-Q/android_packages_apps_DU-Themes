@@ -136,4 +136,58 @@
         <item>4</item>
     </string-array>
 
+    <!-- Accent name -->
+    <string-array name="accent_name">
+        <item>@string/accent_colors_space</item>
+        <item>@string/accent_colors_purple</item>
+        <item>@string/accent_colors_orchid</item>
+        <item>@string/accent_colors_ocean</item>
+        <item>@string/accent_colors_green</item>
+        <item>@string/accent_colors_cinnamon</item>
+        <item>@string/accent_colors_amber</item>
+        <item>@string/accent_colors_blue</item>
+        <item>@string/accent_colors_bluegrey</item>
+        <item>@string/accent_colors_brown</item>
+        <item>@string/accent_colors_cyan</item>
+        <item>@string/accent_colors_deeporange</item>
+        <item>@string/accent_colors_deeppurple</item>
+        <item>@string/accent_colors_grey</item>
+        <item>@string/accent_colors_indigo</item>
+        <item>@string/accent_colors_lightblue</item>
+        <item>@string/accent_colors_lightgreen</item>
+        <item>@string/accent_colors_lime</item>
+        <item>@string/accent_colors_orange</item>
+        <item>@string/accent_colors_pink</item>
+        <item>@string/accent_colors_red</item>
+        <item>@string/accent_colors_teal</item>
+        <item>@string/accent_colors_yellow</item>
+    </string-array>
+
+    <!-- Accent Picker Buttons -->
+    <string-array name="accent_picker_buttons">
+        <item>spaceAccent</item>
+        <item>purpleAccent</item>
+        <item>orchidAccent</item>
+        <item>oceanAccent</item>
+        <item>greenAccent</item>
+        <item>cinnamonAccent</item>
+        <item>amberAccent</item>
+        <item>blueAccent</item>
+        <item>blueGreyAccent</item>
+        <item>brownAccent</item>
+        <item>cyanAccent</item>
+        <item>deepOrangeAccent</item>
+        <item>deepPurpleAccent</item>
+        <item>greyAccent</item>
+        <item>indigoAccent</item>
+        <item>lightBlueAccent</item>
+        <item>lightGreenAccent</item>
+        <item>limeAccent</item>
+        <item>orangeAccent</item>
+        <item>pinkAccent</item>
+        <item>redAccent</item>
+        <item>tealAccent</item>
+        <item>yellowAccent</item>
+    </string-array>
+
 </resources>
