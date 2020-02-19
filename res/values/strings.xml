@@ -99,8 +99,9 @@
     <string name="theme_backup_edittext_hint">Backup_</string>
     <string name="theme_backup_dialog_title">Live wallpaper detected</string>
     <string name="theme_backup_dialog_message">It appears that you have a live wallpaper applied.\n\nPlease note that live wallpapers will not be backed up. Instead the default wallpaper will be backed up.</string>
-    <string name="theme_backup_dialog_positive">OK</string>
-    <string name="theme_backup_dialog_negative">Cancel</string>
+    <string name="theme_reset_dialog_title">Reset theme options</string>
+    <string name="theme_reset_dialog_message">All theme options will be reset to default. Schedule will not be affected by this.</string>
+    <string name="theme_reset_toast">Theme options back to default</string>
 
     <!-- Theme schedule -->
     <string name="theme_schedule_title">Schedule</string>

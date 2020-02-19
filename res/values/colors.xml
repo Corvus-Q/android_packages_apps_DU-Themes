@@ -29,5 +29,6 @@
     <color name="qs_tile_icon_active_night">#FF221F25</color>
     <color name="qs_tile_icon_inactive_day">#FF656565</color>
     <color name="qs_tile_icon_inactive_night">#FFCBCACD</color>
+    <color name="themes_reset_menu_item">#FF000000</color>
 
 </resources>

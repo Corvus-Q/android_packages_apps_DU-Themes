@@ -106,7 +106,7 @@ public class AccentPicker extends DialogFragment {
         }
     }
 
-    private void setAccent(String accent, Button buttonAccent) {
+    private void setAccent(final String accent, Button buttonAccent) {
         if (buttonAccent != null) {
             buttonAccent.setOnClickListener(new View.OnClickListener() {
                 @Override
