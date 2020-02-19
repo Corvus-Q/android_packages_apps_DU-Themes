@@ -43,7 +43,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -108,6 +111,8 @@ public class Themes extends PreferenceFragment implements ThemesListener {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        setHasOptionsMenu(true);
+
         mUiModeManager = getContext().getSystemService(UiModeManager.class);
         mThemeDatabase = new ThemeDatabase(mContext);
 
@@ -169,7 +174,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                             .setTitle(getContext().getString(R.string.theme_backup_dialog_title))
                             .setMessage(getContext().getString(R.string.theme_backup_dialog_message))
                             .setCancelable(false)
-                            .setPositiveButton(getContext().getString(R.string.theme_backup_dialog_positive),
+                            .setPositiveButton(getContext().getString(android.R.string.ok),
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -182,7 +187,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                                             backupThemesFragment.show(manager, BackupThemes.TAG_BACKUP_THEMES);
                                         }
                                     })
-                            .setNegativeButton(getContext().getString(R.string.theme_backup_dialog_negative),
+                            .setNegativeButton(getContext().getString(android.R.string.cancel),
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -343,7 +348,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                     }
                     if (fontTypeValue > 1) {
                         handleOverlays(ThemesUtils.FONTS[fontTypeValue - 2],
-                            true, mOverlayManager);
+                                true, mOverlayManager);
                     }
                     mFontPicker.setSummary(mFontPicker.getEntry());
                 }
@@ -362,7 +367,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                 }
                 if (adapativeIconShapeValue > 1) {
                     handleOverlays(ThemesUtils.ADAPTIVE_ICON_SHAPE[adapativeIconShapeValue - 2],
-                        true, mOverlayManager);
+                            true, mOverlayManager);
                 }
                 mAdaptiveIconShape.setSummary(mAdaptiveIconShape.getEntry());
             }
@@ -376,7 +381,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                 }
                 if (statusbarIconsValue > 1) {
                     handleOverlays(ThemesUtils.STATUSBAR_ICONS[statusbarIconsValue - 2],
-                        true, mOverlayManager);
+                            true, mOverlayManager);
                 }
                 mStatusbarIcons.setSummary(mStatusbarIcons.getEntry());
             }
@@ -481,11 +486,80 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.themes_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            getActivity().finish();
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getActivity().finish();
+                return true;
+            case R.id.themes_reset:
+                resetThemes();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return false;
+    }
+
+    private void resetThemes() {
+        new AlertDialog.Builder(getActivity(), R.style.AccentDialogTheme)
+                .setTitle(mContext.getString(R.string.theme_reset_dialog_title))
+                .setMessage(mContext.getString(R.string.theme_reset_dialog_message))
+                .setCancelable(false)
+                .setPositiveButton(getContext().getString(android.R.string.ok),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                new resetThemes().execute();
+                            }
+                        })
+                .setNegativeButton(getContext().getString(android.R.string.cancel),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).show();
+    }
+
+    class resetThemes extends AsyncTask<Void, Void, Void> {
+
+        protected Void doInBackground(Void... param) {
+            return null;
+        }
+
+        protected void onPostExecute(Void param) {
+            Toast.makeText(mContext, mContext.getString(R.string.theme_reset_toast), Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Accents
+            String accents = getOverlayName(ThemesUtils.ACCENTS);
+            handleOverlays(accents, false, mOverlayManager);
+
+            // Fonts
+            String fonts = getOverlayName(ThemesUtils.FONTS);
+            handleOverlays(fonts, false, mOverlayManager);
+
+            // Adapative icons
+            String shapes = getOverlayName(ThemesUtils.ADAPTIVE_ICON_SHAPE);
+            handleOverlays(shapes, false, mOverlayManager);
+
+            // Statusbar icons
+            String sbIcons = getOverlayName(ThemesUtils.STATUSBAR_ICONS);
+            handleOverlays(sbIcons, false, mOverlayManager);
+
+            // Themes
+            handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                    ThemesUtils.PITCH_BLACK, mOverlayManager);
+            handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                    ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+        }
     }
 }
