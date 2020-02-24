@@ -17,7 +17,7 @@
 
     <!-- Fonts -->
     <string-array name="font_type_titles">
-        <item>@string/theme_picker_default</item>
+        <item>@string/theme_accent_picker_default</item>
         <item>@string/font_type_2</item>
         <item>@string/font_type_3</item>
         <item>@string/font_type_4</item>
