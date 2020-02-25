@@ -55,7 +55,6 @@ import androidx.preference.PreferenceManager;
 
 import com.android.internal.util.du.ThemesUtils;
 import com.android.internal.util.du.Utils;
-
 import com.dirtyunicorns.themes.db.ThemeDatabase;
 
 import java.util.Calendar;
@@ -125,13 +124,10 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         mOverlayManager = IOverlayManager.Stub.asInterface(
                 ServiceManager.getService(Context.OVERLAY_SERVICE));
 
-        // Accent color
+        // Accent summary
         mAccentName = getResources().getStringArray(R.array.accent_name);
-        String accentName = getOverlayName(ThemesUtils.ACCENTS);
-        if (accentName != null) {
-            mSharedPreferences.edit().putString("theme_accent_color", accentName).commit();
-        }
 
+        // Wallpaper preview
         mWpPreview = (Preference) findPreference(PREF_WP_PREVIEW);
 
         // Theme schedule
@@ -222,6 +218,12 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                 return true;
             }
         });
+
+        // Accent
+        String accentName = getOverlayName(ThemesUtils.ACCENTS);
+        if (accentName != null) {
+            mSharedPreferences.edit().putString("theme_accent_color", accentName).apply();
+        }
 
         // Themes
         mThemeSwitch = (ListPreference) findPreference(PREF_THEME_SWITCH);
@@ -351,6 +353,17 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                                 true, mOverlayManager);
                     }
                     mFontPicker.setSummary(mFontPicker.getEntry());
+                }
+            }
+
+            if (key.equals(PREF_THEME_ACCENT_COLOR)) {
+                String accentColor = sharedPreferences.getString(PREF_THEME_ACCENT_COLOR, "default");
+                String overlayName = getOverlayName(ThemesUtils.ACCENTS);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (accentColor != "default") {
+                    handleOverlays(accentColor, true, mOverlayManager);
                 }
             }
 
@@ -529,6 +542,19 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     class resetThemes extends AsyncTask<Void, Void, Void> {
 
         protected Void doInBackground(Void... param) {
+            mSharedPreferences.edit()
+            // Accents
+            .remove(PREF_THEME_ACCENT_COLOR)
+            // Fonts
+            .remove(PREF_FONT_PICKER)
+            // Adapative icons
+            .remove(PREF_ADAPTIVE_ICON_SHAPE)
+            // Statusbar icons
+            .remove(PREF_STATUSBAR_ICONS)
+            // Themes
+            .remove(PREF_THEME_SWITCH)
+            .apply();
+
             return null;
         }
 
@@ -539,27 +565,6 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // Accents
-            String accents = getOverlayName(ThemesUtils.ACCENTS);
-            handleOverlays(accents, false, mOverlayManager);
-
-            // Fonts
-            String fonts = getOverlayName(ThemesUtils.FONTS);
-            handleOverlays(fonts, false, mOverlayManager);
-
-            // Adapative icons
-            String shapes = getOverlayName(ThemesUtils.ADAPTIVE_ICON_SHAPE);
-            handleOverlays(shapes, false, mOverlayManager);
-
-            // Statusbar icons
-            String sbIcons = getOverlayName(ThemesUtils.STATUSBAR_ICONS);
-            handleOverlays(sbIcons, false, mOverlayManager);
-
-            // Themes
-            handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
-                    ThemesUtils.PITCH_BLACK, mOverlayManager);
-            handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
-                    ThemesUtils.SOLARIZED_DARK, mOverlayManager);
         }
     }
 }

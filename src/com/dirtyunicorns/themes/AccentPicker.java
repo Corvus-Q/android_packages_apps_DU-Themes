@@ -16,9 +16,6 @@
 
 package com.dirtyunicorns.themes;
 
-import static android.os.UserHandle.USER_SYSTEM;
-import static com.dirtyunicorns.themes.utils.Utils.enableAccentColor;
-import static com.dirtyunicorns.themes.utils.Utils.setDefaultAccentColor;
 import static com.dirtyunicorns.themes.utils.Utils.setForegroundDrawable;
 
 import android.app.AlertDialog;
@@ -26,12 +23,9 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.om.IOverlayManager;
 import android.content.SharedPreferences;
-
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -39,14 +33,12 @@ import android.widget.Button;
 import androidx.preference.PreferenceManager;
 
 import com.android.internal.util.du.ThemesUtils;
-import com.android.internal.util.du.Utils;
 
 public class AccentPicker extends DialogFragment {
 
     public static final String TAG_ACCENT_PICKER = "accent_picker";
 
     private Context mContext;
-    private IOverlayManager mOverlayManager;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mSharedPreferencesEditor;
     private String[] mAccentButtons;
@@ -55,10 +47,7 @@ public class AccentPicker extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mContext = getActivity();
-        mOverlayManager = IOverlayManager.Stub.asInterface(
-                ServiceManager.getService(Context.OVERLAY_SERVICE));
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         mSharedPreferencesEditor = mSharedPreferences.edit();
         mAccentButtons = getResources().getStringArray(R.array.accent_picker_buttons);
@@ -84,8 +73,7 @@ public class AccentPicker extends DialogFragment {
 
         builder.setNeutralButton(mContext.getString(R.string.theme_accent_picker_default), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                setDefaultAccentColor(mOverlayManager);
-                mSharedPreferencesEditor.putString("theme_accent_color", "default");
+                mSharedPreferencesEditor.remove("theme_accent_color");
                 mSharedPreferencesEditor.apply();
                 dismiss();
             }
@@ -111,7 +99,6 @@ public class AccentPicker extends DialogFragment {
             buttonAccent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    enableAccentColor(mOverlayManager, accent);
                     mSharedPreferencesEditor.putString("theme_accent_color", accent);
                     mSharedPreferencesEditor.apply();
                     dismiss();

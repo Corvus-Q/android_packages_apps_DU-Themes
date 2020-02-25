@@ -47,7 +47,6 @@ import android.widget.Button;
 
 import androidx.preference.PreferenceManager;
 
-import com.android.internal.util.du.ThemesUtils;
 import com.dirtyunicorns.themes.R;
 import com.dirtyunicorns.themes.receivers.ThemesEndReceiver;
 import com.dirtyunicorns.themes.receivers.ThemesStartReceiver;
@@ -141,8 +140,7 @@ public class Utils {
 
     public static void handleOverlays(String packagename, Boolean state, IOverlayManager mOverlayManager) {
         try {
-            mOverlayManager.setEnabled(packagename,
-                    state, USER_SYSTEM);
+            mOverlayManager.setEnabled(packagename, state, USER_SYSTEM);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -252,32 +250,5 @@ public class Utils {
         assert am != null;
         am.cancel(endPendingIntent);
         am.cancel(startPendingIntent);
-    }
-
-    public static void setDefaultAccentColor(IOverlayManager overlayManager) {
-        for (int i = 0; i < ThemesUtils.ACCENTS.length; i++) {
-            String accent = ThemesUtils.ACCENTS[i];
-            try {
-                overlayManager.setEnabled(accent, false, USER_SYSTEM);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void enableAccentColor(IOverlayManager overlayManager, String accentPicker) {
-        try {
-            for (int i = 0; i < ThemesUtils.ACCENTS.length; i++) {
-                String accent = ThemesUtils.ACCENTS[i];
-                try {
-                    overlayManager.setEnabled(accent, false, USER_SYSTEM);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-            }
-            overlayManager.setEnabled(accentPicker, true, USER_SYSTEM);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
     }
 }
