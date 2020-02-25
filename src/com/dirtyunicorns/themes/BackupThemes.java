@@ -41,7 +41,6 @@ import android.widget.Toast;
 
 import androidx.preference.PreferenceManager;
 
-import com.android.internal.util.du.Utils;
 import com.dirtyunicorns.themes.db.ThemeDatabase;
 import com.dirtyunicorns.themes.utils.ThemeDbUtils;
 
