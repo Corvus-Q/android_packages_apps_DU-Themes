@@ -355,7 +355,8 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
                     try {
                         Bitmap themeWpBitmap = BitmapFactory.decodeFile(
                                 getWallpaperBackupFile().getPath());
-                        mWallpaperManager.setBitmap(themeWpBitmap);
+                        mWallpaperManager.setBitmap(themeWpBitmap, null,
+                                false, WallpaperManager.FLAG_SYSTEM);
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
