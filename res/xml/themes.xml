@@ -30,6 +30,11 @@
         android:summary="@string/rgb_accent_picker_summary"
         android:persistent="false" />
 
+    <Preference
+        android:key="theme_navbar_picker"
+        android:title="@string/theme_navbar_picker_title"
+        android:summary="@string/theme_navbar_picker_summary" />
+
     <ListPreference
         android:key="font_picker"
         android:title="@string/font_type_title"
