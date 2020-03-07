@@ -24,6 +24,11 @@
         android:title="@string/theme_accent_picker_title"
         android:summary="@string/theme_accent_picker_summary" />
 
+    <Preference
+        android:key="theme_navbar_picker"
+        android:title="@string/theme_navbar_picker_title"
+        android:summary="@string/theme_navbar_picker_summary" />
+
     <ListPreference
         android:key="font_picker"
         android:title="@string/font_type_title"
