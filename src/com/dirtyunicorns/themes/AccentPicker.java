@@ -26,6 +26,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +38,7 @@ import com.android.internal.util.du.ThemesUtils;
 public class AccentPicker extends DialogFragment {
 
     public static final String TAG_ACCENT_PICKER = "accent_picker";
+    private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
 
     private Context mContext;
     private SharedPreferences mSharedPreferences;
@@ -85,6 +87,11 @@ public class AccentPicker extends DialogFragment {
     }
 
     private void initView() {
+        String colorVal = SystemProperties.get(ACCENT_COLOR_PROP, "-1");
+        if (! "-1".equals(colorVal)) {
+            mSharedPreferencesEditor.remove("theme_accent_color");
+            mSharedPreferencesEditor.apply();
+        }
         for (int i = 0; i < mAccentButtons.length; i++) {
             int buttonId = getResources().getIdentifier(mAccentButtons[i], "id", mContext.getPackageName());
             Button button = (Button) mView.findViewById(buttonId);
