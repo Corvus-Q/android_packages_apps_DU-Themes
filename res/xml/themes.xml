@@ -28,7 +28,6 @@
         android:key="rgb_accent_picker"
         android:title="@string/rgb_accent_picker_title"
         android:summary="@string/rgb_accent_picker_summary"
-        android:defaultValue="0xFFFFFFFF"
         android:persistent="false" />
 
     <ListPreference
