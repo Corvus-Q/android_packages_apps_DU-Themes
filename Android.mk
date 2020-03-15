@@ -23,7 +23,7 @@ LOCAL_AAPT_FLAGS := \
     --extra-packages androidx.recyclerview_recyclerview
 
 LOCAL_STATIC_ANDROID_LIBRARIES := \
-    VendorSupportlib
+    VendorSupportLib
 
 LOCAL_STATIC_JAVA_LIBRARIES := \
     androidx.appcompat_appcompat \
