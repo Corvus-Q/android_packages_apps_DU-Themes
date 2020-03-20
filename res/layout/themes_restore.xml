@@ -204,10 +204,40 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/wpSwitchLayout"
+                android:id="@+id/navbarSwitchLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/sbIconSwitchLayout">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/theme_switch_restore_navbar"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="?android:attr/textColorSecondary"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <Switch
+                    android:id="@+id/navbarSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:checked="true" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/wpSwitchLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/navbarSwitchLayout">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"

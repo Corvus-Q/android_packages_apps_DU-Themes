@@ -30,5 +30,6 @@
     <color name="qs_tile_icon_inactive_day">#FF656565</color>
     <color name="qs_tile_icon_inactive_night">#FFCBCACD</color>
     <color name="themes_reset_menu_item">#FF000000</color>
+    <color name="themes_preview_navbar_bg">#FF212121</color>
 
 </resources>
