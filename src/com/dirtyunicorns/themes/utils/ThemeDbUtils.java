@@ -30,6 +30,7 @@ public class ThemeDbUtils {
     private String mThemeIconShape;
     private String mThemeSbIcons;
     private String mThemeWp;
+    private String mThemeNavbarStyle;
 
     public ThemeDbUtils() {
         //
@@ -37,7 +38,7 @@ public class ThemeDbUtils {
 
     public ThemeDbUtils(int id, String themeName, String themeDayOrNight, String themeAccent, String themeNightColor,
                 String accentPicker, String themeSwitch, String adaptativeIconShape, String themeFont,
-                String themeIconShape, String themeSbIcons, String themeWp) {
+                String themeIconShape, String themeSbIcons, String themeWp, String themeNavbarStyle) {
         mId = id;
         mThemeName = themeName;
         mThemeDayOrNight = themeDayOrNight;
@@ -50,11 +51,12 @@ public class ThemeDbUtils {
         mThemeIconShape = themeIconShape;
         mThemeSbIcons = themeSbIcons;
         mThemeWp = themeWp;
+        mThemeNavbarStyle = themeNavbarStyle;
     }
 
     public ThemeDbUtils(String themeName, String themeDayOrNight, String themeAccent, String themeNightColor,
                 String accentPicker, String themeSwitch, String adaptativeIconShape, String themeFont,
-                String themeIconShape, String themeSbIcons, String themeWp) {
+                String themeIconShape, String themeSbIcons, String themeWp, String themeNavbarStyle) {
         mThemeName = themeName;
         mThemeDayOrNight = themeDayOrNight;
         mThemeAccent = themeAccent;
@@ -66,6 +68,7 @@ public class ThemeDbUtils {
         mThemeIconShape = themeIconShape;
         mThemeSbIcons = themeSbIcons;
         mThemeWp = themeWp;
+        mThemeNavbarStyle = themeNavbarStyle;
     }
 
     public int getID() {
@@ -84,7 +87,7 @@ public class ThemeDbUtils {
         mThemeName = themeName;
     }
 
-    public String geThemeDayOrNight() {
+    public String getThemeDayOrNight() {
         return mThemeDayOrNight;
     }
 
@@ -162,5 +165,13 @@ public class ThemeDbUtils {
 
     public void setThemeWp(String themeWp) {
         mThemeWp = themeWp;
+    }
+
+    public String getThemeNavbarStyle() {
+        return mThemeNavbarStyle;
+    }
+
+    public void setThemeNavbarStyle(String themeNavbarStyle) {
+        mThemeNavbarStyle = themeNavbarStyle;
     }
 }

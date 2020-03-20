@@ -16,6 +16,8 @@
 
 package com.dirtyunicorns.themes;
 
+import static com.dirtyunicorns.themes.utils.Utils.threeButtonNavbarEnabled;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -27,6 +29,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff.Mode;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -39,6 +42,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.core.graphics.ColorUtils;
 import androidx.preference.PreferenceManager;
 
 import com.dirtyunicorns.themes.db.ThemeDatabase;
@@ -92,13 +96,21 @@ public class BackupThemes extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View view = inflater.inflate(R.layout.themes_backup, null);
         ViewStub stub = (ViewStub) view.findViewById(R.id.themes_backup_preview);
-        ImageView imgView = (ImageView) view.findViewById(R.id.wp_background);
+        ImageView wpImgView = (ImageView) view.findViewById(R.id.wp_background);
+        ImageView navbarImgView = (ImageView) view.findViewById(R.id.backup_navbar_style);
         mThemeNameInput = (EditText) view.findViewById(R.id.themeName);
         mBackupProgressBar = (ProgressBar) view.findViewById(R.id.backupBar);
         mBackupDate = getString(R.string.theme_backup_edittext_hint) + mTimeStamp;
         stub.setLayoutResource(getThemeBackupPreview());
-        imgView.setImageDrawable(mWallpaperDrawable);
         stub.inflate();
+        wpImgView.setImageDrawable(mWallpaperDrawable);
+        if (threeButtonNavbarEnabled(getContext())) {
+            navbarImgView.setImageDrawable(getThemeBackupNavbar());
+            navbarImgView.setBackgroundColor(ColorUtils.setAlphaComponent(
+                mResources.getColor(R.color.themes_preview_navbar_bg), 100));
+        } else {
+            navbarImgView.setVisibility(View.GONE);
+        }
         int maxLength = 20;
         final AlertDialog.Builder builder = new AlertDialog.Builder(
                 getActivity(), R.style.AccentDialogTheme)
@@ -191,7 +203,7 @@ public class BackupThemes extends DialogFragment {
         mThemeDatabase.addThemeDbUtils(new ThemeDbUtils(mThemeName, isDarkMode(),
             getIconsAccentColor(), getThemeNightColor(), getAccentPicker(),
             getThemeSwitch(), getAdaptiveIconShape(), getFont(), getIconsShape(),
-            getSbIcons(), getThemeWp()));
+            getSbIcons(), getThemeWp(), getNavbarStyle()));
     }
 
     private int getThemeBackupPreview() {
@@ -211,6 +223,30 @@ public class BackupThemes extends DialogFragment {
                 break;
         }
         return mRelativeLayout;
+    }
+
+    private Drawable getThemeBackupNavbar() {
+        Drawable navbarBackup = null;
+        switch (getNavbarStyle()) {
+            case "com.android.theme.navbar.asus":
+                navbarBackup = mResources.getDrawable(R.drawable.navbar_asus_layer);
+                break;
+            case "com.android.theme.navbar.oneplus":
+                navbarBackup = mResources.getDrawable(R.drawable.navbar_oneplus_layer);
+                break;
+            case "com.android.theme.navbar.oneui":
+                navbarBackup = mResources.getDrawable(R.drawable.navbar_oneui_layer);
+                break;
+            case "com.android.theme.navbar.tecno":
+                navbarBackup = mResources.getDrawable(R.drawable.navbar_tecno_layer);
+                break;
+            case "default":
+                navbarBackup = mResources.getDrawable(R.drawable.navbar_stock_layer);
+                break;
+        }
+        navbarBackup.setColorFilter(mResources.getColor(android.R.color.white), Mode.SRC_IN);
+
+        return navbarBackup;
     }
 
     private String isDarkMode() {
@@ -258,6 +294,11 @@ public class BackupThemes extends DialogFragment {
     private String getSbIcons() {
         String statusBarIcons = mSharedPreferences.getString("statusbar_icons", "1");
         return statusBarIcons;
+    }
+
+    private String getNavbarStyle() {
+        String navbarStyle = mSharedPreferences.getString("theme_navbar_style", "default");
+        return navbarStyle;
     }
 
     private File getWallpaperBitmap() throws IOException {

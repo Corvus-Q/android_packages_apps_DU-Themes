@@ -16,6 +16,8 @@
 
 package com.dirtyunicorns.themes;
 
+import static com.dirtyunicorns.themes.utils.Utils.threeButtonNavbarEnabled;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -59,7 +61,7 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
     public static final String TAG_RESTORE_THEMES = "restore_themes";
 
     private ArrayList<String> mSwitchList;
-    private int mNumSwitches = 6;
+    private int mNumSwitches = 7;
     private int mSwitchId;
     private LinearLayoutManager mLayoutManager;
     private List<ThemesListItem> mThemesList;
@@ -79,6 +81,7 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
     private Switch mFontSwitch;
     private Switch mIconShapeSwitch;
     private Switch mSbIconSwitch;
+    private Switch mNavbarSwitch;
     private Switch mWpSwitch;
 
     @Override
@@ -92,7 +95,7 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        mThemePopup = findViewById(R.id.theme_popup);
+        mThemePopup = (RelativeLayout) findViewById(R.id.theme_popup);
         mThemeSwitch = (Switch) findViewById(R.id.themeSwitch);
         mThemeSwitch.setOnCheckedChangeListener(this);
         mAccentSwitch = (Switch) findViewById(R.id.accentSwitch);
@@ -105,6 +108,14 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
         mSbIconSwitch.setOnCheckedChangeListener(this);
         mWpSwitch = (Switch) findViewById(R.id.wpSwitch);
         mWpSwitch.setOnCheckedChangeListener(this);
+        mNavbarSwitch = (Switch) findViewById(R.id.navbarSwitch);
+        View navbarSwitchLayout = (View) findViewById(R.id.navbarSwitchLayout);
+        if (threeButtonNavbarEnabled(this)) {
+            navbarSwitchLayout.setVisibility(View.VISIBLE);
+            mNavbarSwitch.setOnCheckedChangeListener(this);
+        } else {
+            navbarSwitchLayout.setVisibility(View.GONE);
+        }
 
         mSwitchArray = new Switch[mNumSwitches];
         mSwitchList = new ArrayList<String>();
@@ -198,9 +209,13 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
                 mSwitchId = 4;
                 mSwitchArray[4] = mSbIconSwitch;
                 break;
-            case R.id.wpSwitch:
+            case R.id.navbarSwitch:
                 mSwitchId = 5;
-                mSwitchArray[5] = mWpSwitch;
+                mSwitchArray[5] = mNavbarSwitch;
+                break;
+            case R.id.wpSwitch:
+                mSwitchId = 6;
+                mSwitchArray[6] = mWpSwitch;
                 break;
         }
         mSharedPrefEditor.putBoolean("switch" + String.valueOf(mSwitchId + 1),
@@ -238,8 +253,10 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
                 mSwitchList.get(3), mIconShapeSwitch.isChecked()));
             mSbIconSwitch.setChecked(mSharedPreferences.getBoolean(
                 mSwitchList.get(4), mSbIconSwitch.isChecked()));
+            mNavbarSwitch.setChecked(mSharedPreferences.getBoolean(
+                mSwitchList.get(5), mNavbarSwitch.isChecked()));
             mWpSwitch.setChecked(mSharedPreferences.getBoolean(
-                mSwitchList.get(5), mWpSwitch.isChecked()));
+                mSwitchList.get(6), mWpSwitch.isChecked()));
         } else {
             for (int i = 0; i < mNumSwitches; i++) {
                 mSharedPrefEditor.remove(mSwitchList.get(i));
@@ -250,6 +267,7 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
             mFontSwitch.setChecked(mFontSwitch.isChecked());
             mIconShapeSwitch.setChecked(mIconShapeSwitch.isChecked());
             mSbIconSwitch.setChecked(mSbIconSwitch.isChecked());
+            mNavbarSwitch.setChecked(mNavbarSwitch.isChecked());
             mWpSwitch.setChecked(mWpSwitch.isChecked());
         }
     }
@@ -304,6 +322,7 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
         applyThemeIconShape();
         applyThemeSbIcons();
         applyThemeAccent();
+        applyThemeNavbarStyle();
         applyThemeWp();
     }
 
@@ -347,6 +366,16 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
         }
     }
 
+    private void applyThemeNavbarStyle() {
+        if (threeButtonNavbarEnabled(this)) {
+            if (mNavbarSwitch.isChecked()) {
+                String newValue = mThemesList.get(getCurrentItem()).getThemeNavbarStyle();
+                mSharedPrefEditor.putString("theme_navbar_style", newValue);
+                mSharedPrefEditor.apply();
+            }
+        }
+    }
+
     private void applyThemeWp() {
         if (mWpSwitch.isChecked()) {
             new Thread() {
@@ -376,7 +405,7 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
         List<ThemeDbUtils> themesDatabaseList = mThemeDatabase.getAllThemeDbUtils();
         for (ThemeDbUtils themes : themesDatabaseList) {
             String themeName = themes.getThemeName();
-            String themeDayOrNight = themes.geThemeDayOrNight();
+            String themeDayOrNight = themes.getThemeDayOrNight();
             String themeAccent = themes.getThemeAccent();
             String themeNightColor = themes.getThemeNightColor();
             String accentPicker = themes.getAccentPicker();
@@ -386,10 +415,11 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
             String themeIconShape = themes.getThemeIconShape();
             String themeSbIcons = themes.getThemeSbIcons();
             String themeWp = themes.getThemeWp();
+            String themeNavbarStyle = themes.getThemeNavbarStyle();
             mThemesList.add(new ThemesListItem(themeName, themeDayOrNight,
                     themeAccent, themeNightColor, accentPicker, themeSwitch,
                     adaptativeIconShape, themeFont, themeIconShape, themeSbIcons,
-                    themeWp));
+                    themeWp, themeNavbarStyle));
         }
         mThemesAdapter.notifyDataSetChanged();
         assert mThemesList != null;
@@ -432,16 +462,18 @@ public class RestoreThemes extends Activity implements CompoundButton.OnCheckedC
                     newThemeName = oldThemeName;
                 }
                 mThemeDatabase.updateThemeDbUtils(new ThemeDbUtils(newThemeName,
-                    mThemesList.get(getCurrentItem()).geThemeDayOrNight(),
-                    mThemesList.get(getCurrentItem()).getThemeAccent(),
-                    mThemesList.get(getCurrentItem()).getThemeNightColor(),
-                    mThemesList.get(getCurrentItem()).getAccentPicker(),
-                    mThemesList.get(getCurrentItem()).getThemeSwitch(),
-                    mThemesList.get(getCurrentItem()).getAdaptiveIconShape(),
-                    mThemesList.get(getCurrentItem()).getThemeFont(),
-                    mThemesList.get(getCurrentItem()).getThemeIconShape(),
-                    mThemesList.get(getCurrentItem()).getThemeSbIcons(),
-                    mThemesList.get(getCurrentItem()).getThemeWp()), oldThemeName);
+                        mThemesList.get(getCurrentItem()).getThemeDayOrNight(),
+                        mThemesList.get(getCurrentItem()).getThemeAccent(),
+                        mThemesList.get(getCurrentItem()).getThemeNightColor(),
+                        mThemesList.get(getCurrentItem()).getAccentPicker(),
+                        mThemesList.get(getCurrentItem()).getThemeSwitch(),
+                        mThemesList.get(getCurrentItem()).getAdaptiveIconShape(),
+                        mThemesList.get(getCurrentItem()).getThemeFont(),
+                        mThemesList.get(getCurrentItem()).getThemeIconShape(),
+                        mThemesList.get(getCurrentItem()).getThemeSbIcons(),
+                        mThemesList.get(getCurrentItem()).getThemeWp(),
+                        mThemesList.get(getCurrentItem()).getThemeNavbarStyle()),
+                        oldThemeName);
                 setThemesData();
                 dialog.dismiss();
             }
