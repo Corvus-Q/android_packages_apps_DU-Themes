@@ -38,6 +38,14 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp" />
 
+        <ImageView
+            android:id="@+id/backup_navbar_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:layout_above="@id/themeName" />
+
         <EditText
             android:id="@+id/themeName"
             android:layout_width="match_parent"

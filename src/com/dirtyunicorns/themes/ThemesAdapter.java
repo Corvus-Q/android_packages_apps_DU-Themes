@@ -16,6 +16,8 @@
 
 package com.dirtyunicorns.themes;
 
+import static com.dirtyunicorns.themes.utils.Utils.threeButtonNavbarEnabled;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -39,6 +41,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dirtyunicorns.themes.utils.ThemesListItem;
@@ -72,6 +75,7 @@ public class ThemesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         ImageView mQsTileMainBgFlashlightInactive, mQsTileMainIconFlashlightInactive;
         ImageView mQsAccentMainAutorotate, mQsTileMainAutorotateActive;
         ImageView mQsTileMainBgBatterySaverInactive, mQsTileMainIconBatterySaverInactive;
+        ImageView mViewNavbarMain;
         LinearLayout mLlBgMain;
         TextView mThemeMainName;
         View mViewSpacerMain;
@@ -93,6 +97,7 @@ public class ThemesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             mQsTileMainBgBatterySaverInactive = view.findViewById(R.id.qs_tile_main_bg_battery_saver_inactive);
             mQsTileMainIconBatterySaverInactive = view.findViewById(R.id.qs_tile_main_icon_battery_saver_inactive);
             mViewSpacerMain = view.findViewById(R.id.ic_themes_qs_spacer_main);
+            mViewNavbarMain = view.findViewById(R.id.themes_navbar_style_main);
             mThemeMainName = view.findViewById(R.id.theme_main_name);
         }
     }
@@ -106,6 +111,7 @@ public class ThemesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         ImageView mQsTileMainFilledBgFlashlightInactive, mQsTileMainFilledIconFlashlightInactive;
         ImageView mQsAccentMainFilledAutorotate, mQsTileMainFilledAutorotateActive;
         ImageView mQsTileMainFilledBgBatterySaverInactive, mQsTileMainFilledIconBatterySaverInactive;
+        ImageView mViewNavbarMainFilled;
         LinearLayout mLlBgMainFilled;
         TextView mThemeMainFilledName;
         View mViewSpacerMainFilled;
@@ -127,6 +133,7 @@ public class ThemesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             mQsTileMainFilledBgBatterySaverInactive = view.findViewById(R.id.qs_tile_main_filled_bg_battery_saver_inactive);
             mQsTileMainFilledIconBatterySaverInactive = view.findViewById(R.id.qs_tile_main_filled_icon_battery_saver_inactive);
             mViewSpacerMainFilled = view.findViewById(R.id.ic_themes_qs_spacer_main_filled);
+            mViewNavbarMainFilled = view.findViewById(R.id.themes_navbar_style_main_filled);
             mThemeMainFilledName = view.findViewById(R.id.theme_main_filled_name);
         }
     }
@@ -140,6 +147,7 @@ public class ThemesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         ImageView mQsTileMainRoundedBgFlashlightInactive, mQsTileMainRoundedIconFlashlightInactive;
         ImageView mQsAccentMainRoundedAutorotate, mQsTileMainRoundedAutorotateActive;
         ImageView mQsTileMainRoundedBgBatterySaverInactive, mQsTileMainRoundedIconBatterySaverInactive;
+        ImageView mViewNavbarMainRounded;
         LinearLayout mLlBgMainRounded;
         TextView mThemeMainRoundedName;
         View mViewSpacerMainRounded;
@@ -161,6 +169,7 @@ public class ThemesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             mQsTileMainRoundedBgBatterySaverInactive = view.findViewById(R.id.qs_tile_main_rounded_bg_battery_saver_inactive);
             mQsTileMainRoundedIconBatterySaverInactive = view.findViewById(R.id.qs_tile_main_rounded_icon_battery_saver_inactive);
             mViewSpacerMainRounded = view.findViewById(R.id.ic_themes_qs_spacer_main_rounded);
+            mViewNavbarMainRounded = view.findViewById(R.id.themes_navbar_style_main_rounded);
             mThemeMainRoundedName = view.findViewById(R.id.theme_main_rounded_name);
         }
     }
@@ -174,6 +183,7 @@ public class ThemesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         ImageView mQsTileMainCircularBgFlashlightInactive, mQsTileMainCircularIconFlashlightInactive;
         ImageView mQsAccentMainCircularAutorotate, mQsTileMainCircularAutorotateActive;
         ImageView mQsTileMainCircularBgBatterySaverInactive, mQsTileMainCircularIconBatterySaverInactive;
+        ImageView mViewNavbarMainCircular;
         LinearLayout mLlBgMainCircular;
         TextView mThemeMainCircularName;
         View mViewSpacerMainCircular;
@@ -195,6 +205,7 @@ public class ThemesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             mQsTileMainCircularBgBatterySaverInactive = view.findViewById(R.id.qs_tile_main_circular_bg_battery_saver_inactive);
             mQsTileMainCircularIconBatterySaverInactive = view.findViewById(R.id.qs_tile_main_circular_icon_battery_saver_inactive);
             mViewSpacerMainCircular = view.findViewById(R.id.ic_themes_qs_spacer_main_circular);
+            mViewNavbarMainCircular = view.findViewById(R.id.themes_navbar_style_main_circular);
             mThemeMainCircularName = view.findViewById(R.id.theme_main_circular_name);
         }
     }
@@ -233,12 +244,13 @@ public class ThemesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         ThemesListItem themes = mThemesList.get(position);
-        mIsNightMode = Boolean.parseBoolean(themes.geThemeDayOrNight());
+        mIsNightMode = Boolean.parseBoolean(themes.getThemeDayOrNight());
         mThemeNightColor = Color.parseColor(themes.getThemeNightColor());
         mThemeFont = Integer.parseInt(themes.getThemeFont());
         mThemeWpBackup = themes.getThemeWp();
         int bgQsAccent = Color.parseColor(themes.getThemeAccent());
         int qsTileBgInactive, qsTileIconInactive, qsTileIconActive;
+        String themeNavbarStyle = themes.getThemeNavbarStyle();
         String pathShape = themes.getThemeIconShape();
         String themeName = themes.getThemeName();
         if (!mIsNightMode) {
@@ -254,104 +266,132 @@ public class ThemesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case 1:
                 ViewHolderMain viewHolderMain = (ViewHolderMain) holder;
                 new ThemeWallpaper(viewHolderMain.mWpBgMain).execute();
-                viewHolderMain.mLlBgMain.setBackgroundDrawable(getThemeDayNightBg());
-                viewHolderMain.mQsAccentMainWifi.setBackgroundDrawable(
+                viewHolderMain.mLlBgMain.setBackground(getThemeDayNightBg());
+                viewHolderMain.mQsAccentMainWifi.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderMain.mQSTileMainWifiActive.setColorFilter(qsTileIconActive);
-                viewHolderMain.mQsTileMainBgBluetoothInactive.setBackgroundDrawable(
+                viewHolderMain.mQsTileMainBgBluetoothInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderMain.mQsTileMainIconBluetoothInactive.setColorFilter(qsTileIconInactive);
-                viewHolderMain.mQsAccentMainDnd.setBackgroundDrawable(
+                viewHolderMain.mQsAccentMainDnd.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderMain.mQsTileMainDndActive.setColorFilter(qsTileIconActive);
-                viewHolderMain.mQsTileMainBgFlashlightInactive.setBackgroundDrawable(
+                viewHolderMain.mQsTileMainBgFlashlightInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderMain.mQsTileMainIconFlashlightInactive.setColorFilter(qsTileIconInactive);
-                viewHolderMain.mQsAccentMainAutorotate.setBackgroundDrawable(
+                viewHolderMain.mQsAccentMainAutorotate.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderMain.mQsTileMainAutorotateActive.setColorFilter(qsTileIconActive);
-                viewHolderMain.mQsTileMainBgBatterySaverInactive.setBackgroundDrawable(
+                viewHolderMain.mQsTileMainBgBatterySaverInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderMain.mQsTileMainIconBatterySaverInactive.setColorFilter(qsTileIconInactive);
-                viewHolderMain.mViewSpacerMain.setBackgroundDrawable(getThemeDayNightSpacer());
+                viewHolderMain.mViewSpacerMain.setBackground(getThemeDayNightSpacer());
+                if (threeButtonNavbarEnabled(mContext)) {
+                    viewHolderMain.mViewNavbarMain.setImageDrawable(getNavbarStyle(themeNavbarStyle));
+                    viewHolderMain.mViewNavbarMain.setBackgroundColor(ColorUtils.setAlphaComponent(
+                        mResources.getColor(R.color.themes_preview_navbar_bg), 100));
+                } else {
+                    viewHolderMain.mViewNavbarMain.setVisibility(View.GONE);
+                }
                 viewHolderMain.mThemeMainName.setText(themeName);
                 viewHolderMain.mThemeMainName.setTypeface(getTypeface());
                 break;
             case 2:
                 ViewHolderFilled viewHolderFilled = (ViewHolderFilled) holder;
                 new ThemeWallpaper(viewHolderFilled.mWpBgFilled).execute();
-                viewHolderFilled.mLlBgMainFilled.setBackgroundDrawable(getThemeDayNightBg());
-                viewHolderFilled.mQsAccentMainFilledWifi.setBackgroundDrawable(
+                viewHolderFilled.mLlBgMainFilled.setBackground(getThemeDayNightBg());
+                viewHolderFilled.mQsAccentMainFilledWifi.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderFilled.mQSTileMainFilledWifiActive.setColorFilter(qsTileIconActive);
-                viewHolderFilled.mQsTileMainFilledBgBluetoothInactive.setBackgroundDrawable(
+                viewHolderFilled.mQsTileMainFilledBgBluetoothInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderFilled.mQsTileMainFilledIconBluetoothInactive.setColorFilter(qsTileIconInactive);
-                viewHolderFilled.mQsAccentMainFilledDnd.setBackgroundDrawable(
+                viewHolderFilled.mQsAccentMainFilledDnd.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderFilled.mQsTileMainFilledDndActive.setColorFilter(qsTileIconActive);
-                viewHolderFilled.mQsTileMainFilledBgFlashlightInactive.setBackgroundDrawable(
+                viewHolderFilled.mQsTileMainFilledBgFlashlightInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderFilled.mQsTileMainFilledIconFlashlightInactive.setColorFilter(qsTileIconInactive);
-                viewHolderFilled.mQsAccentMainFilledAutorotate.setBackgroundDrawable(
+                viewHolderFilled.mQsAccentMainFilledAutorotate.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderFilled.mQsTileMainFilledAutorotateActive.setColorFilter(qsTileIconActive);
-                viewHolderFilled.mQsTileMainFilledBgBatterySaverInactive.setBackgroundDrawable(
+                viewHolderFilled.mQsTileMainFilledBgBatterySaverInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderFilled.mQsTileMainFilledIconBatterySaverInactive.setColorFilter(qsTileIconInactive);
-                viewHolderFilled.mViewSpacerMainFilled.setBackgroundDrawable(getThemeDayNightSpacer());
+                viewHolderFilled.mViewSpacerMainFilled.setBackground(getThemeDayNightSpacer());
+                if (threeButtonNavbarEnabled(mContext)) {
+                    viewHolderFilled.mViewNavbarMainFilled.setImageDrawable(getNavbarStyle(themeNavbarStyle));
+                    viewHolderFilled.mViewNavbarMainFilled.setBackgroundColor(ColorUtils.setAlphaComponent(
+                        mResources.getColor(R.color.themes_preview_navbar_bg), 100));
+                } else {
+                    viewHolderFilled.mViewNavbarMainFilled.setVisibility(View.GONE);
+                }
                 viewHolderFilled.mThemeMainFilledName.setText(themeName);
                 viewHolderFilled.mThemeMainFilledName.setTypeface(getTypeface());
                 break;
             case 3:
                 ViewHolderRounded viewHolderRounded = (ViewHolderRounded) holder;
                 new ThemeWallpaper(viewHolderRounded.mWpBgRounded).execute();
-                viewHolderRounded.mLlBgMainRounded.setBackgroundDrawable(getThemeDayNightBg());
-                viewHolderRounded.mQsAccentMainRoundedWifi.setBackgroundDrawable(
+                viewHolderRounded.mLlBgMainRounded.setBackground(getThemeDayNightBg());
+                viewHolderRounded.mQsAccentMainRoundedWifi.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderRounded.mQSTileMainRoundedWifiActive.setColorFilter(qsTileIconActive);
-                viewHolderRounded.mQsTileMainRoundedBgBluetoothInactive.setBackgroundDrawable(
+                viewHolderRounded.mQsTileMainRoundedBgBluetoothInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderRounded.mQsTileMainRoundedIconBluetoothInactive.setColorFilter(qsTileIconInactive);
-                viewHolderRounded.mQsAccentMainRoundedDnd.setBackgroundDrawable(
+                viewHolderRounded.mQsAccentMainRoundedDnd.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderRounded.mQsTileMainRoundedDndActive.setColorFilter(qsTileIconActive);
-                viewHolderRounded.mQsTileMainRoundedBgFlashlightInactive.setBackgroundDrawable(
+                viewHolderRounded.mQsTileMainRoundedBgFlashlightInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderRounded.mQsTileMainRoundedIconFlashlightInactive.setColorFilter(qsTileIconInactive);
-                viewHolderRounded.mQsAccentMainRoundedAutorotate.setBackgroundDrawable(
+                viewHolderRounded.mQsAccentMainRoundedAutorotate.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderRounded.mQsTileMainRoundedAutorotateActive.setColorFilter(qsTileIconActive);
-                viewHolderRounded.mQsTileMainRoundedBgBatterySaverInactive.setBackgroundDrawable(
+                viewHolderRounded.mQsTileMainRoundedBgBatterySaverInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderRounded.mQsTileMainRoundedIconBatterySaverInactive.setColorFilter(qsTileIconInactive);
-                viewHolderRounded.mViewSpacerMainRounded.setBackgroundDrawable(getThemeDayNightSpacer());
+                viewHolderRounded.mViewSpacerMainRounded.setBackground(getThemeDayNightSpacer());
+                if (threeButtonNavbarEnabled(mContext)) {
+                    viewHolderRounded.mViewNavbarMainRounded.setImageDrawable(getNavbarStyle(themeNavbarStyle));
+                    viewHolderRounded.mViewNavbarMainRounded.setBackgroundColor(ColorUtils.setAlphaComponent(
+                        mResources.getColor(R.color.themes_preview_navbar_bg), 100));
+                } else {
+                    viewHolderRounded.mViewNavbarMainRounded.setVisibility(View.GONE);
+                }
                 viewHolderRounded.mThemeMainRoundedName.setText(themeName);
                 viewHolderRounded.mThemeMainRoundedName.setTypeface(getTypeface());
                 break;
             case 4:
                 ViewHolderCircular viewHolderCircular = (ViewHolderCircular) holder;
                 new ThemeWallpaper(viewHolderCircular.mWpBgCircular).execute();
-                viewHolderCircular.mLlBgMainCircular.setBackgroundDrawable(getThemeDayNightBg());
-                viewHolderCircular.mQsAccentMainCircularWifi.setBackgroundDrawable(
+                viewHolderCircular.mLlBgMainCircular.setBackground(getThemeDayNightBg());
+                viewHolderCircular.mQsAccentMainCircularWifi.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderCircular.mQSTileMainCircularWifiActive.setColorFilter(qsTileIconActive);
-                viewHolderCircular.mQsTileMainCircularBgBluetoothInactive.setBackgroundDrawable(
+                viewHolderCircular.mQsTileMainCircularBgBluetoothInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderCircular.mQsTileMainCircularIconBluetoothInactive.setColorFilter(qsTileIconInactive);
-                viewHolderCircular.mQsAccentMainCircularDnd.setBackgroundDrawable(
+                viewHolderCircular.mQsAccentMainCircularDnd.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderCircular.mQsTileMainCircularDndActive.setColorFilter(qsTileIconActive);
-                viewHolderCircular.mQsTileMainCircularBgFlashlightInactive.setBackgroundDrawable(
+                viewHolderCircular.mQsTileMainCircularBgFlashlightInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderCircular.mQsTileMainCircularIconFlashlightInactive.setColorFilter(qsTileIconInactive);
-                viewHolderCircular.mQsAccentMainCircularAutorotate.setBackgroundDrawable(
+                viewHolderCircular.mQsAccentMainCircularAutorotate.setImageDrawable(
                     getShapeDrawable(pathShape, bgQsAccent));
                 viewHolderCircular.mQsTileMainCircularAutorotateActive.setColorFilter(qsTileIconActive);
-                viewHolderCircular.mQsTileMainCircularBgBatterySaverInactive.setBackgroundDrawable(
+                viewHolderCircular.mQsTileMainCircularBgBatterySaverInactive.setImageDrawable(
                     getShapeDrawable(pathShape, qsTileBgInactive));
                 viewHolderCircular.mQsTileMainCircularIconBatterySaverInactive.setColorFilter(qsTileIconInactive);
-                viewHolderCircular.mViewSpacerMainCircular.setBackgroundDrawable(getThemeDayNightSpacer());
+                viewHolderCircular.mViewSpacerMainCircular.setBackground(getThemeDayNightSpacer());
+                if (threeButtonNavbarEnabled(mContext)) {
+                    viewHolderCircular.mViewNavbarMainCircular.setImageDrawable(getNavbarStyle(themeNavbarStyle));
+                    viewHolderCircular.mViewNavbarMainCircular.setBackgroundColor(ColorUtils.setAlphaComponent(
+                        mResources.getColor(R.color.themes_preview_navbar_bg), 100));
+                } else {
+                    viewHolderCircular.mViewNavbarMainCircular.setVisibility(View.GONE);
+                }
                 viewHolderCircular.mThemeMainCircularName.setText(themeName);
                 viewHolderCircular.mThemeMainCircularName.setTypeface(getTypeface());
                 break;
@@ -480,6 +520,30 @@ public class ThemesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         shapeDrawable.getPaint().setFlags(Paint.ANTI_ALIAS_FLAG);
         shapeDrawable.setShape(new PathShape(shapePath, pathSize, pathSize));
         return shapeDrawable;
+    }
+
+    private Drawable getNavbarStyle(String navStyle) {
+        Drawable navbarStyle = null;
+        switch (navStyle) {
+            case "com.android.theme.navbar.asus":
+                navbarStyle = mResources.getDrawable(R.drawable.navbar_asus_layer);
+                break;
+            case "com.android.theme.navbar.oneplus":
+                navbarStyle = mResources.getDrawable(R.drawable.navbar_oneplus_layer);
+                break;
+            case "com.android.theme.navbar.oneui":
+                navbarStyle = mResources.getDrawable(R.drawable.navbar_oneui_layer);
+                break;
+            case "com.android.theme.navbar.tecno":
+                navbarStyle = mResources.getDrawable(R.drawable.navbar_tecno_layer);
+                break;
+            case "default":
+                navbarStyle = mResources.getDrawable(R.drawable.navbar_stock_layer);
+                break;
+        }
+        navbarStyle.setColorFilter(mResources.getColor(android.R.color.white), Mode.SRC_IN);
+
+        return navbarStyle;
     }
 
     @Override

@@ -212,6 +212,20 @@
 
                 </LinearLayout>
 
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center">
+
+                    <ImageView
+                        android:id="@+id/themes_navbar_style_main_filled"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp" />
+
+                </FrameLayout>
+
             </FrameLayout>
 
         </LinearLayout>
