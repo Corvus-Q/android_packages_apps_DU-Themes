@@ -72,6 +72,46 @@
                 android:layout_width="wrap_content"
                 android:layout_marginBottom="20dp"/>
 
+	    <include layout="@layout/navbar_android"
+                android:id="@+id/android_layout"
+                android:layout_centerHorizontal="true"
+		android:layout_below="@+id/tecno_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="20dp"/>
+
+	    <include layout="@layout/navbar_moto"
+                android:id="@+id/moto_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/android_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="20dp"/>
+
+            <include layout="@layout/navbar_nexus"
+                android:id="@+id/nexus_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/moto_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="20dp"/>
+
+	    <include layout="@layout/navbar_old"
+                android:id="@+id/old_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/nexus_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="20dp"/>
+
+	    <include layout="@layout/navbar_sammy"
+                android:id="@+id/sammy_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/old_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="20dp"/>
+
         </RelativeLayout>
 
     </LinearLayout>

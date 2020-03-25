@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2020 The Dirty Unicorns Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/navbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#04000000"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:text="@string/theme_navbar_picker_moto" />
+
+    <ImageView
+        android:id="@+id/navbar_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@+id/navbar_title"
+        android:background="@drawable/navbar_moto_back" />
+
+    <ImageView
+        android:id="@+id/navbar_home"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@+id/navbar_title"
+        android:layout_toEndOf="@+id/navbar_back"
+        android:background="@drawable/navbar_moto_home" />
+
+    <ImageView
+        android:id="@+id/navbar_recents"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@+id/navbar_title"
+        android:layout_toEndOf="@+id/navbar_home"
+        android:background="@drawable/navbar_moto_recents"/>
+
+</RelativeLayout>
