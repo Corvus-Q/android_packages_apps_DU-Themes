@@ -29,6 +29,8 @@
     <string name="accent_picker_custom_colors">Custom</string>
     <string name="rgb_accent_picker_title">Choose the accent color yourself</string>
     <string name="rgb_accent_picker_summary">Choose the accent color yourself with the RGB color picker</string>
+    <string name="rgb_gradient_picker_title">Choose the gradient color yourself</string>
+    <string name="rgb_gradient_picker_summary">Choose the gradient color yourself with the RGB color picker</string>
 
     <!-- Navbar Picker -->
     <string name="theme_navbar_picker_title">Navbar style</string>

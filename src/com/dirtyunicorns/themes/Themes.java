@@ -88,6 +88,8 @@ public class Themes extends PreferenceFragment implements ThemesListener, OnPref
 
     private static final String PREF_RGB_ACCENT_PICKER = "rgb_accent_picker";
     private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
+    private static final String PREF_RGB_GRADIENT_PICKER = "rgb_gradient_picker";
+    private static final String GRADIENT_COLOR_PROP = "persist.sys.theme.gradientcolor";
 
     private int mBackupLimit = 10;
     private static boolean mUseSharedPrefListener;
@@ -112,6 +114,7 @@ public class Themes extends PreferenceFragment implements ThemesListener, OnPref
     private Preference mWpPreview;
 
     private ColorPickerPreference rgbAccentPicker;
+    private ColorPickerPreference rgbGradientPicker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -327,6 +330,7 @@ public class Themes extends PreferenceFragment implements ThemesListener, OnPref
         updateBackupPref();
         updateRestorePref();
         setAccentPref();
+        setGradientPref();
     }
 
     private void setAccentPref() {
@@ -339,12 +343,33 @@ public class Themes extends PreferenceFragment implements ThemesListener, OnPref
         rgbAccentPicker.setOnPreferenceChangeListener(this);
     }
 
+    private void setGradientPref() {
+        rgbGradientPicker = (ColorPickerPreference) findPreference(PREF_RGB_GRADIENT_PICKER);
+        String colorVal = SystemProperties.get(GRADIENT_COLOR_PROP, "-1");
+        int color = "-1".equals(colorVal)
+                ? Color.WHITE
+                : Color.parseColor("#" + colorVal);
+        rgbGradientPicker.setNewPreviewColor(color);
+        rgbGradientPicker.setOnPreferenceChangeListener(this);
+    }
+
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == rgbAccentPicker) {
             int color = (Integer) newValue;
             String hexColor = String.format("%08X", (0xFFFFFFFF & color));
             SystemProperties.set(ACCENT_COLOR_PROP, hexColor);
+            mSharedPreferences.edit().remove(PREF_THEME_ACCENT_COLOR);
+            try {
+                 mOverlayManager.reloadAndroidAssets(UserHandle.USER_CURRENT);
+                 mOverlayManager.reloadAssets("com.android.settings", UserHandle.USER_CURRENT);
+                 mOverlayManager.reloadAssets("com.android.systemui", UserHandle.USER_CURRENT);
+             } catch (RemoteException ignored) {
+             }
+        } else if (preference == rgbGradientPicker) {
+            int color = (Integer) newValue;
+            String hexColor = String.format("%08X", (0xFFFFFFFF & color));
+            SystemProperties.set(GRADIENT_COLOR_PROP, hexColor);
             mSharedPreferences.edit().remove(PREF_THEME_ACCENT_COLOR);
             try {
                  mOverlayManager.reloadAndroidAssets(UserHandle.USER_CURRENT);
@@ -438,7 +463,8 @@ public class Themes extends PreferenceFragment implements ThemesListener, OnPref
             }
 
             if (key.equals(PREF_THEME_ACCENT_COLOR)) {
-                SystemProperties.set(ACCENT_COLOR_PROP, "-1");
+                SystemProperties.get(ACCENT_COLOR_PROP, 
+		SystemProperties.get(GRADIENT_COLOR_PROP, "-1"));
                 String accentColor = sharedPreferences.getString(PREF_THEME_ACCENT_COLOR, "default");
                 String overlayName = getOverlayName(ThemesUtils.ACCENTS);
                 if (overlayName != null) {
@@ -619,7 +645,8 @@ public class Themes extends PreferenceFragment implements ThemesListener, OnPref
 
     private void updateAccentSummary() {
         if (mAccentPicker != null) {
-            String colorVal = SystemProperties.get(ACCENT_COLOR_PROP, "-1");
+            String colorVal = SystemProperties.get(ACCENT_COLOR_PROP, 
+		SystemProperties.get(GRADIENT_COLOR_PROP, "-1"));
             if ("-1".equals(colorVal)) {
                 int value = getOverlayPosition(ThemesUtils.ACCENTS);
                 if (value != -1) {

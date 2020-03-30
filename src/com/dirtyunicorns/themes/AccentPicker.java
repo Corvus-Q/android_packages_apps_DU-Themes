@@ -39,6 +39,7 @@ public class AccentPicker extends DialogFragment {
 
     public static final String TAG_ACCENT_PICKER = "accent_picker";
     private static final String ACCENT_COLOR_PROP = "persist.sys.theme.accentcolor";
+    private static final String GRADIENT_COLOR_PROP = "persist.sys.theme.gradientcolor";
 
     private Context mContext;
     private SharedPreferences mSharedPreferences;
@@ -87,7 +88,8 @@ public class AccentPicker extends DialogFragment {
     }
 
     private void initView() {
-        String colorVal = SystemProperties.get(ACCENT_COLOR_PROP, "-1");
+        String colorVal = SystemProperties.get(ACCENT_COLOR_PROP, 
+		SystemProperties.get(GRADIENT_COLOR_PROP, "-1"));
         if (! "-1".equals(colorVal)) {
             mSharedPreferencesEditor.remove("theme_accent_color");
             mSharedPreferencesEditor.apply();
