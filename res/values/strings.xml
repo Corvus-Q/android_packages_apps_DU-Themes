@@ -51,17 +51,18 @@
     <string name="font_type_7">Cagliostro</string>
     <string name="font_type_8">CircularStd</string>
     <string name="font_type_9">Comic Sans</string>
-    <string name="font_type_10">Cool Story</string>
-    <string name="font_type_11">Fira Sans</string>
-    <string name="font_type_12">Google Sans</string>
-    <string name="font_type_13">LG Smart Gothic</string>
-    <string name="font_type_14">Rosemary</string>
-    <string name="font_type_15">Rubik</string>
-    <string name="font_type_16">Samsung One</string>
-    <string name="font_type_17">San Francisco Pro</string>
-    <string name="font_type_18">OnePlus Slate</string>
-    <string name="font_type_19">Sony Sketch</string>
-    <string name="font_type_20">Surfer</string>
+    <string name="font_type_10">Comfortaa</string>
+    <string name="font_type_11">Cool Story</string>
+    <string name="font_type_12">Fira Sans</string>
+    <string name="font_type_13">Google Sans</string>
+    <string name="font_type_14">LG Smart Gothic</string>
+    <string name="font_type_15">Rosemary</string>
+    <string name="font_type_16">Rubik</string>
+    <string name="font_type_17">Samsung One</string>
+    <string name="font_type_18">San Francisco Pro</string>
+    <string name="font_type_19">OnePlus Slate</string>
+    <string name="font_type_20">Sony Sketch</string>
+    <string name="font_type_21">Surfer</string>
 
     <!-- Adaptive icon shapes -->
     <string name="adaptive_icon_shape_default">Default</string>
