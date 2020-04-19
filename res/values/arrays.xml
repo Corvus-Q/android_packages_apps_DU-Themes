@@ -37,6 +37,7 @@
         <item>@string/font_type_18</item>
         <item>@string/font_type_19</item>
         <item>@string/font_type_20</item>
+        <item>@string/font_type_21</item>
     </string-array>
 
     <string-array name="font_type_values">
@@ -60,6 +61,7 @@
         <item>18</item>
         <item>19</item>
         <item>20</item>
+        <item>21</item>
     </string-array>
 
     <!-- Adaptive icon shapes -->
