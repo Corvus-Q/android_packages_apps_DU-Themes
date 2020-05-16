@@ -74,6 +74,8 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     private static final String PREF_THEME_ACCENT_PICKER = "theme_accent_picker";
     private static final String PREF_THEME_NAVBAR_PICKER = "theme_navbar_picker";
     private static final String PREF_QS_HEADER_STYLE = "qs_header_style";
+    private static final String PREF_SWITCH_STYLE = "switch_style";
+
     public static final String PREF_THEME_NAVBAR_STYLE = "theme_navbar_style";
     public static final String PREF_THEME_ACCENT_COLOR = "theme_accent_color";
     public static final String PREF_ADAPTIVE_ICON_SHAPE = "adapative_icon_shape";
@@ -97,6 +99,7 @@ public class Themes extends PreferenceFragment implements ThemesListener {
     private ListPreference mStatusbarIcons;
     private ListPreference mThemeSwitch;
     private ListPreference mQsHeaderStyle;
+    private ListPreference mSwitchStyle;
     private Preference mAccentPicker;
     private Preference mBackupThemes;
     private Preference mNavbarPicker;
@@ -321,6 +324,16 @@ public class Themes extends PreferenceFragment implements ThemesListener {
         }
         mQsHeaderStyle.setSummary(mQsHeaderStyle.getEntry());
 
+        // Statusbar icons
+        mSwitchStyle = (ListPreference) findPreference(PREF_SWITCH_STYLE);
+        int switchStyleValue = getOverlayPosition(ThemesUtils.SWITCH_STYLE);
+        if (switchStyleValue != -1) {
+            mSwitchStyle.setValue(String.valueOf(switchStyleValue + 2));
+        } else {
+            mSwitchStyle.setValue("1");
+        }
+        mSwitchStyle.setSummary(mSwitchStyle.getEntry());
+
         setWallpaperPreview();
         updateAccentSummary();
         updateNavbarSummary();
@@ -477,6 +490,20 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                             true, mOverlayManager);
                 }
                 mQsHeaderStyle.setSummary(mQsHeaderStyle.getEntry());
+            }
+
+            if (key.equals(PREF_SWITCH_STYLE)) {
+                String switchStyle = sharedPreferences.getString(PREF_SWITCH_STYLE, "1");
+                String overlayName = getOverlayName(ThemesUtils.SWITCH_STYLE);
+                int switchStyleValue = Integer.parseInt(switchStyle);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (switchStyleValue > 1) {
+                    handleOverlays(ThemesUtils.SWITCH_STYLE[switchStyleValue - 2],
+                            true, mOverlayManager);
+                }
+                mSwitchStyle.setSummary(mSwitchStyle.getEntry());
             }
 
             if (key.equals(PREF_THEME_SWITCH)) {
