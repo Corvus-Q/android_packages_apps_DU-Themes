@@ -708,6 +708,10 @@ public class Themes extends PreferenceFragment implements ThemesListener {
             .remove(PREF_STATUSBAR_ICONS)
             // Themes
             .remove(PREF_THEME_SWITCH)
+            // Header style
+            .remove(PREF_QS_HEADER_STYLE)
+            // Switch style
+            .remove(PREF_SWITCH_STYLE)
             .apply();
 
             return null;
