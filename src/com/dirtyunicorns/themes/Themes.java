@@ -267,7 +267,9 @@ public class Themes extends PreferenceFragment implements ThemesListener {
 
         // Themes
         mThemeSwitch = (ListPreference) findPreference(PREF_THEME_SWITCH);
-        if (Utils.isThemeEnabled("com.android.theme.bakedgreen.system")) {
+        if (Utils.isThemeEnabled("com.android.theme.darkgrey.system")) {
+            mThemeSwitch.setValue("7");
+        } else if (Utils.isThemeEnabled("com.android.theme.bakedgreen.system")) {
             mThemeSwitch.setValue("6");
         } else if (Utils.isThemeEnabled("com.android.theme.chocox.system")) {
             mThemeSwitch.setValue("5");
@@ -518,6 +520,8 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                                 ThemesUtils.CHOCO_X, mOverlayManager);
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
                                 ThemesUtils.BAKED_GREEN, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_NO,
+                                ThemesUtils.DARK_GREY, mOverlayManager);
                         break;
                     case "2":
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
@@ -528,6 +532,8 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                                 ThemesUtils.CHOCO_X, mOverlayManager);
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                                 ThemesUtils.BAKED_GREEN, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.DARK_GREY, mOverlayManager);
                         break;
                     case "3":
                         handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
@@ -538,6 +544,8 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                                 ThemesUtils.CHOCO_X, mOverlayManager);
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                                 ThemesUtils.BAKED_GREEN, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.DARK_GREY, mOverlayManager);
                         break;
                     case "4":
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
@@ -548,6 +556,8 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                                 ThemesUtils.CHOCO_X, mOverlayManager);
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                                 ThemesUtils.BAKED_GREEN, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.DARK_GREY, mOverlayManager);
                         break;
                     case "5":
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
@@ -558,6 +568,8 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                                 ThemesUtils.CHOCO_X, mOverlayManager);
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
                                 ThemesUtils.BAKED_GREEN, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.DARK_GREY, mOverlayManager);
                         break;
                     case "6":
                         handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
@@ -568,6 +580,20 @@ public class Themes extends PreferenceFragment implements ThemesListener {
                                 ThemesUtils.CHOCO_X, mOverlayManager);
                         handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
                                 ThemesUtils.BAKED_GREEN, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.DARK_GREY, mOverlayManager);
+                        break;
+                    case "7":
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.PITCH_BLACK, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.SOLARIZED_DARK, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.CHOCO_X, mOverlayManager);
+                        handleBackgrounds(false, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.BAKED_GREEN, mOverlayManager);
+                        handleBackgrounds(true, mContext, UiModeManager.MODE_NIGHT_YES,
+                                ThemesUtils.DARK_GREY, mOverlayManager);
                         break;
                 }
                 mThemeSwitch.setSummary(mThemeSwitch.getEntry());
