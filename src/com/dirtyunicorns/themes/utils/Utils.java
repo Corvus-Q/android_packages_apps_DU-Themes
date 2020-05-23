@@ -112,6 +112,9 @@ public class Utils {
                 case "7":
                     scheduledStartThemeSummary = context.getString(R.string.theme_type_dark_grey);
                     break;
+                case "8":
+                    scheduledStartThemeSummary = context.getString(R.string.theme_type_material_ocean);
+                    break;
             }
         }
         return scheduledStartThemeSummary;
