@@ -141,6 +141,7 @@
     <string name="theme_type_choco_x">Choco X</string>
     <string name="theme_type_baked_green">Baked green</string>
     <string name="theme_type_dark_grey">Dark grey</string>
+    <string name="theme_type_material_ocean">Material ocean</string>
     <string name="theme_other_category_title">Other</string>
     <string name="theme_backup_title">Backup theme</string>
     <string name="theme_backup_summary">Backup your current theme configuration</string>
