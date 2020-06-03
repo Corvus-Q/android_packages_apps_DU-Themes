@@ -116,6 +116,7 @@
     <string name="theme_type_baked_green">Baked green</string>
     <string name="theme_type_dark_grey">Dark grey</string>
     <string name="theme_type_material_ocean">Material ocean</string>
+    <string name="theme_type_corvus_clear">Corvus clear</string>
     <string name="theme_other_category_title">Other</string>
     <string name="theme_button_delete_theme">Delete theme</string>
     <string name="theme_switch_persistent_title">Persistent switches state</string>
