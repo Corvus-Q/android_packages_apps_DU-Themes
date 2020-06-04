@@ -20,11 +20,6 @@
         android:enabled="false" />
 
     <Preference
-        android:key="theme_accent_picker"
-        android:title="@string/theme_accent_picker_title"
-        android:summary="@string/theme_accent_picker_summary" />
-
-    <Preference
         android:key="theme_navbar_picker"
         android:title="@string/theme_navbar_picker_title"
         android:summary="@string/theme_navbar_picker_summary" />
@@ -79,20 +74,6 @@
         <Preference
             android:key="theme_schedule"
             android:title="@string/theme_schedule_title" />
-
-    </com.dirtyunicorns.support.preferences.CustomPreferenceCategory>
-
-    <com.dirtyunicorns.support.preferences.CustomPreferenceCategory
-        android:key="theme_other_category"
-        android:title="@string/theme_other_category_title">
-
-        <Preference
-            android:key="backup_themes"
-            android:title="@string/theme_backup_title" />
-
-        <Preference
-            android:key="restore_themes"
-            android:title="@string/theme_restore_title" />
 
     </com.dirtyunicorns.support.preferences.CustomPreferenceCategory>
 

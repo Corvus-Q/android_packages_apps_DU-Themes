@@ -20,16 +20,6 @@
     <color name="qs_tile_background_active">@*android:color/accent_device_default_light</color>
     <color name="qs_tile_icon_active">#FFFFFFFF</color>
     <color name="qs_tile_icon_inactive">#FF656565</color>
-    <color name="qs_tile_panel_background_theme_restore">@*android:color/notification_material_background_color</color>
-    <color name="qs_tile_panel_spacer_day">#20000000</color>
-    <color name="qs_tile_panel_spacer_night">#FFFFFFFF</color>
-    <color name="qs_tile_background_inactive_day">#FFDCDCDC</color>
-    <color name="qs_tile_background_inactive_night">#3FFFFFFF</color>
-    <color name="qs_tile_icon_active_day">#FFFFFFFF</color>
-    <color name="qs_tile_icon_active_night">#FF221F25</color>
-    <color name="qs_tile_icon_inactive_day">#FF656565</color>
-    <color name="qs_tile_icon_inactive_night">#FFCBCACD</color>
     <color name="themes_reset_menu_item">#FF000000</color>
-    <color name="themes_preview_navbar_bg">#FF212121</color>
 
 </resources>
