@@ -21,12 +21,7 @@
     <string name="schedule_footer_info">When setting a schedule, always set the first schedule time closes to your current time.\n\nFor example:\nIf the current time is 4:00pm and you want to set a schedule from 6:00am to 6:00pm, you would set the first theme to 6:00pm, then the second theme to 6:00am.</string>
 
     <!-- Accent Picker -->
-    <string name="accent_picker_dialog_title">Select an accent</string>
-    <string name="theme_accent_picker_title">Accent color</string>
-    <string name="theme_accent_picker_summary">Select system theme accent color</string>
     <string name="theme_accent_picker_default">Default</string>
-    <string name="accent_picker_stock_colors">Stock</string>
-    <string name="accent_picker_custom_colors">Custom</string>
 
     <!-- Navbar Picker -->
     <string name="theme_navbar_picker_title">Navbar style</string>
@@ -106,31 +101,6 @@
     <string name="switch_stockish">Stockish</string>
     <string name="switch_style_dialog_title">Select switch style set</string>
 
-    <!-- Accents -->
-    <string name="accent_colors_space">Space</string>
-    <string name="accent_colors_purple">Purple</string>
-    <string name="accent_colors_orchid">Orchid</string>
-    <string name="accent_colors_ocean">Ocean</string>
-    <string name="accent_colors_green">Green</string>
-    <string name="accent_colors_cinnamon">Cinnamon</string>
-    <string name="accent_colors_amber">Amber</string>
-    <string name="accent_colors_blue">Blue</string>
-    <string name="accent_colors_bluegrey">Blue Grey</string>
-    <string name="accent_colors_brown">Brown</string>
-    <string name="accent_colors_cyan">Cyan</string>
-    <string name="accent_colors_deeporange">Deep Orange</string>
-    <string name="accent_colors_deeppurple">Deep Purple</string>
-    <string name="accent_colors_grey">Grey</string>
-    <string name="accent_colors_indigo">Indigo</string>
-    <string name="accent_colors_lightblue">Light Blue</string>
-    <string name="accent_colors_lightgreen">Light Green</string>
-    <string name="accent_colors_lime">Lime</string>
-    <string name="accent_colors_orange">Orange</string>
-    <string name="accent_colors_pink">Pink</string>
-    <string name="accent_colors_red">Red</string>
-    <string name="accent_colors_teal">Teal</string>
-    <string name="accent_colors_yellow">Yellow</string>
-
     <!-- Themes -->
     <string name="theme_type_title">System theme</string>
     <string name="theme_type_summary">Select theme</string>
@@ -143,28 +113,8 @@
     <string name="theme_type_dark_grey">Dark grey</string>
     <string name="theme_type_material_ocean">Material ocean</string>
     <string name="theme_other_category_title">Other</string>
-    <string name="theme_backup_title">Backup theme</string>
-    <string name="theme_backup_summary">Backup your current theme configuration</string>
-    <string name="theme_backup_reach_limit_summary">Backup limit reached</string>
-    <string name="theme_restore_title">Restore theme</string>
-    <string name="theme_restore_summary">Restore a saved theme configuration</string>
-    <string name="theme_restore_no_backup_summary">No backup available</string>
-    <string name="theme_restore_popup_title">Swipe horizontally to view more backups</string>
-    <string name="theme_name_exist_warning">This backup name already exist. Enter a new one.</string>
-    <string name="theme_rename_dialog_title">Rename theme</string>
-    <string name="theme_button_apply_theme">Apply theme</string>
     <string name="theme_button_delete_theme">Delete theme</string>
     <string name="theme_switch_persistent_title">Persistent switches state</string>
-    <string name="theme_switch_restore_theme_color">Background color</string>
-    <string name="theme_switch_restore_accent_color">Accent color</string>
-    <string name="theme_switch_restore_font_type">Font type</string>
-    <string name="theme_switch_restore_adaptative_icons">Adaptative icons</string>
-    <string name="theme_switch_restore_sb_icons">Status bar icons</string>
-    <string name="theme_switch_restore_navbar">Navigation bar</string>
-    <string name="theme_switch_restore_wallpaper">Wallpaper</string>
-    <string name="theme_backup_edittext_hint">Backup_</string>
-    <string name="theme_backup_dialog_title">Live wallpaper detected</string>
-    <string name="theme_backup_dialog_message">It appears that you have a live wallpaper applied.\n\nPlease note that live wallpapers will not be backed up. Instead the default wallpaper will be backed up.</string>
     <string name="theme_reset_dialog_title">Reset theme options</string>
     <string name="theme_reset_dialog_message">All theme options will be reset to default. Schedule will not be affected by this.</string>
     <string name="theme_reset_toast">Theme options back to default</string>

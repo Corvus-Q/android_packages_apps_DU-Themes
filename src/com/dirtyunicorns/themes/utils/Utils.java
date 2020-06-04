@@ -185,15 +185,6 @@ public class Utils {
         }
     }
 
-    public static void setForegroundDrawable(String packagename, Button buttonAccent, Activity activity) {
-        if (com.android.internal.util.du.Utils.isThemeEnabled(packagename)) {
-            buttonAccent.setForeground(activity.getResources().getDrawable(
-                    R.drawable.accent_picker_checkmark, null));
-        } else {
-            buttonAccent.setForeground(null);
-        }
-    }
-
     public static void setEndAlarm(Context context) {
         AlarmManager mAlarmMgr = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         Intent mEndIntent = new Intent(context, ThemesEndReceiver.class);
