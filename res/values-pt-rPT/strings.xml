@@ -14,29 +14,29 @@
      limitations under the License.
 -->
 <resources>
-    <string name="app_name">Themes</string>
+    <string name="app_name">Temas</string>
     <!-- Footer -->
-    <string name="schedule_footer_info">When setting a schedule, always set the first schedule time closes to your current time.\n\nFor example:\nIf the current time is 4:00pm and you want to set a schedule from 6:00am to 6:00pm, you would set the first theme to 6:00pm, then the second theme to 6:00am.</string>
+    <string name="schedule_footer_info">Ao definir um cronograma, sempre defina o primeiro horário de agendamento para o horário atual.\n\nPor exemplo:\nSe a hora atual é das 16h e você deseja definir uma programação das 6:00 para as 18h você definiria o primeiro tema para as 18:00h e, em seguida, o segundo para as 6:00h.</string>
     <!-- Accent Picker -->
-    <string name="theme_accent_picker_default">Default</string>
+    <string name="theme_accent_picker_default">Predefinição </string>
     <!-- Navbar Picker -->
-    <string name="theme_navbar_picker_title">Navbar style</string>
-    <string name="theme_navbar_picker_summary">Select navbar style</string>
+    <string name="theme_navbar_picker_title">Estilo barra de navegação</string>
+    <string name="theme_navbar_picker_summary">Selecionar estilo da barra de navegação</string>
     <string name="theme_navbar_picker_oneplus">OnePlus</string>
-    <string name="theme_navbar_picker_oneui">One UI</string>
-    <string name="theme_navbar_picker_tecno">Tecno Camon</string>
+    <string name="theme_navbar_picker_oneui">One Ui</string>
+    <string name="theme_navbar_picker_tecno">Camão Tecno</string>
     <string name="theme_navbar_picker_asus">ASUS</string>
     <!-- Accent Picker -->
-    <string name="theme_picker_default">Default</string>
-    <string name="accent_color">Accent picker</string>
+    <string name="theme_picker_default">Predefinição </string>
+    <string name="accent_color">Selecionar cor de destaque</string>
     <!-- Dark theme -->
-    <string name="dark_theme_title">Dark theme</string>
+    <string name="dark_theme_title">Tema Escuro</string>
     <!-- Fonts -->
-    <string name="font_type_title">Font type</string>
-    <string name="font_type_summary">Select font type</string>
-    <string name="font_type_default">Default</string>
+    <string name="font_type_title">Estilo do tipo de letra</string>
+    <string name="font_type_summary">Selecionar tipo de fonte</string>
+    <string name="font_type_default">Predefinição </string>
     <string name="font_type_2">Noto Serif / Source Sans Pro</string>
-    <string name="font_type_3">Aclonica</string>
+    <string name="font_type_3">Aclônica</string>
     <string name="font_type_4">Amarante</string>
     <string name="font_type_5">Arvolato</string>
     <string name="font_type_6">Bariol</string>
