@@ -18,7 +18,7 @@
     <!-- Footer -->
     <string name="schedule_footer_info">Ao definir um cronograma, sempre defina o primeiro horário de agendamento para o horário atual.\n\nPor exemplo:\nSe a hora atual é das 16h e você deseja definir uma programação das 6:00 para as 18h você definiria o primeiro tema para as 18:00h e, em seguida, o segundo para as 6:00h.</string>
     <!-- Accent Picker -->
-    <string name="theme_accent_picker_default">Predefinição </string>
+    <string name="theme_accent_picker_default">Predefinição</string>
     <!-- Navbar Picker -->
     <string name="theme_navbar_picker_title">Estilo barra de navegação</string>
     <string name="theme_navbar_picker_summary">Selecionar estilo da barra de navegação</string>
@@ -27,14 +27,14 @@
     <string name="theme_navbar_picker_tecno">Camão Tecno</string>
     <string name="theme_navbar_picker_asus">ASUS</string>
     <!-- Accent Picker -->
-    <string name="theme_picker_default">Predefinição </string>
+    <string name="theme_picker_default">Predefinição</string>
     <string name="accent_color">Selecionar cor de destaque</string>
     <!-- Dark theme -->
     <string name="dark_theme_title">Tema Escuro</string>
     <!-- Fonts -->
     <string name="font_type_title">Estilo do tipo de letra</string>
     <string name="font_type_summary">Selecionar tipo de fonte</string>
-    <string name="font_type_default">Predefinição </string>
+    <string name="font_type_default">Predefinição</string>
     <string name="font_type_2">Noto Serif / Source Sans Pro</string>
     <string name="font_type_3">Aclônica</string>
     <string name="font_type_4">Amarante</string>
@@ -59,7 +59,7 @@
     <string name="font_type_23">Surfer</string>
     <string name="font_type_24">Ubuntu</string>
     <!-- Adaptive icon shapes -->
-    <string name="adaptive_icon_shape_default">Predefinição </string>
+    <string name="adaptive_icon_shape_default">Predefinição</string>
     <string name="adaptive_icon_shape_teardrop">Lágrima</string>
     <string name="adaptive_icon_shape_squircle">Quadrado arredondado</string>
     <string name="adaptive_icon_shape_roundedrect">Retângulo Arredondado</string>
@@ -68,14 +68,14 @@
     <string name="adaptive_icon_shape_title">Forma dos ícones</string>
     <string name="adaptive_icon_shape_dialog_title">Selecionar formato do ícone</string>
     <!-- Statusbar icons -->
-    <string name="statusbar_icons_default">Predefinição </string>
+    <string name="statusbar_icons_default">Predefinição</string>
     <string name="statusbar_icons_filled">Preenchido</string>
     <string name="statusbar_icons_rounded">Arredondado</string>
     <string name="statusbar_icons_circular">Circular</string>
     <string name="statusbar_icons_title">Ícones da barra de status</string>
     <string name="statusbar_icons_dialog_title">Selecione o ícone da barra de status</string>
     <!-- QS header style -->
-    <string name="qs_header_style_default">Predefinição </string>
+    <string name="qs_header_style_default">Predefinição</string>
     <string name="qs_header_style_grey">Cinzento</string>
     <string name="qs_header_style_lightgrey">Cinzento Claro</string>
     <string name="qs_header_style_accent">Cor de Destaque</string>
@@ -84,7 +84,7 @@
     <string name="qs_header_style_dialog_title">Selecione o estilo do cabeçalho</string>
     <!-- Switch styles -->
     <string name="switch_style_title">Alterar estilo</string>
-    <string name="switch_default">Predefinição </string>
+    <string name="switch_default">Predefinição</string>
     <string name="switch_md2">Material Design 2</string>
     <string name="switch_oneplus">OnePlus</string>
     <string name="switch_tg">Telegram</string>
