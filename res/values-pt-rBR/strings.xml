@@ -59,20 +59,20 @@
     <string name="font_type_23">Surfer</string>
     <string name="font_type_24">Ubuntu</string>
     <!-- Adaptive icon shapes -->
-    <string name="adaptive_icon_shape_default">Default</string>
-    <string name="adaptive_icon_shape_teardrop">Teardrop</string>
-    <string name="adaptive_icon_shape_squircle">Squircle</string>
-    <string name="adaptive_icon_shape_roundedrect">Rounded Rectangle</string>
-    <string name="adaptive_icon_shape_cylinder">Cylinder</string>
-    <string name="adaptive_icon_shape_hexagon">Hexagon</string>
-    <string name="adaptive_icon_shape_title">Icon shape</string>
-    <string name="adaptive_icon_shape_dialog_title">Select icon shape</string>
+    <string name="adaptive_icon_shape_default">Padrão</string>
+    <string name="adaptive_icon_shape_teardrop">Lágrima</string>
+    <string name="adaptive_icon_shape_squircle">Circulo quadrado</string>
+    <string name="adaptive_icon_shape_roundedrect">Retângulo arredondado</string>
+    <string name="adaptive_icon_shape_cylinder">Cilindro</string>
+    <string name="adaptive_icon_shape_hexagon">Hexágono</string>
+    <string name="adaptive_icon_shape_title">Formato dos ícones</string>
+    <string name="adaptive_icon_shape_dialog_title">Selecionar o estilo do ícone</string>
     <!-- Statusbar icons -->
-    <string name="statusbar_icons_default">Default</string>
-    <string name="statusbar_icons_filled">Filled</string>
-    <string name="statusbar_icons_rounded">Rounded</string>
+    <string name="statusbar_icons_default">Padrão</string>
+    <string name="statusbar_icons_filled">Preenchido</string>
+    <string name="statusbar_icons_rounded">Arredondado</string>
     <string name="statusbar_icons_circular">Circular</string>
-    <string name="statusbar_icons_title">Statusbar/QS icons</string>
+    <string name="statusbar_icons_title">Barra de status/ícones das CR</string>
     <string name="statusbar_icons_dialog_title">Select statusbar icon set</string>
     <!-- QS header style -->
     <string name="qs_header_style_default">Default</string>
