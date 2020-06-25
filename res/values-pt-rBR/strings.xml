@@ -90,19 +90,19 @@ Estilo do interruptor</string>
     <string name="switch_oneplus">OnePlus</string>
     <string name="switch_tg">Telegram</string>
     <string name="switch_narrow">Narrow</string>
-    <string name="switch_contained">Contained</string>
+    <string name="switch_contained">Contido</string>
     <string name="switch_retro">Retro</string>
     <string name="switch_stockish">Stockish</string>
-    <string name="switch_style_dialog_title">Select switch style set</string>
+    <string name="switch_style_dialog_title">Selecione o conjunto de estilos do interruptor</string>
     <!-- Themes -->
-    <string name="theme_type_title">System theme</string>
-    <string name="theme_type_summary">Select theme</string>
-    <string name="theme_type_light">Light</string>
+    <string name="theme_type_title">Tema do sistema</string>
+    <string name="theme_type_summary">Selecione um tema</string>
+    <string name="theme_type_light">Claro</string>
     <string name="theme_type_google_dark">Google dark</string>
-    <string name="theme_type_pitch_black">Pitch black</string>
-    <string name="theme_type_solarized_dark">Solarized dark</string>
+    <string name="theme_type_pitch_black">Pitch Black</string>
+    <string name="theme_type_solarized_dark">Solarized Dark</string>
     <string name="theme_type_choco_x">Choco X</string>
-    <string name="theme_type_baked_green">Baked green</string>
+    <string name="theme_type_baked_green">Baked Green</string>
     <string name="theme_type_dark_grey">Dark grey</string>
     <string name="theme_type_material_ocean">Material ocean</string>
     <string name="theme_type_corvus_clear">Corvus clear</string>
