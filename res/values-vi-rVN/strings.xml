@@ -18,7 +18,7 @@
     <!-- Footer -->
     <string name="schedule_footer_info">When setting a schedule, always set the first schedule time closes to your current time.\n\nFor example:\nIf the current time is 4:00pm and you want to set a schedule from 6:00am to 6:00pm, you would set the first theme to 6:00pm, then the second theme to 6:00am.</string>
     <!-- Accent Picker -->
-    <string name="theme_accent_picker_default">Default</string>
+    <string name="theme_accent_picker_default">Mặc định</string>
     <!-- Navbar Picker -->
     <string name="theme_navbar_picker_title">Navbar style</string>
     <string name="theme_navbar_picker_summary">Select navbar style</string>
