@@ -14,27 +14,27 @@
      limitations under the License.
 -->
 <resources>
-    <string name="app_name">Themes</string>
+    <string name="app_name">Темы</string>
     <!-- Footer -->
-    <string name="schedule_footer_info">When setting a schedule, always set the first schedule time closes to your current time.\n\nFor example:\nIf the current time is 4:00pm and you want to set a schedule from 6:00am to 6:00pm, you would set the first theme to 6:00pm, then the second theme to 6:00am.</string>
+    <string name="schedule_footer_info">При настройке расписания всегда устанавливайте время первого расписания на текущее время.\n\nНапример:\nЕсли текущее время составляет 16:00 и вы хотите установить график с 18:00 до 18:00, первый шаблон будет установлен в 18:00, а второй - в 18:00.</string>
     <!-- Accent Picker -->
-    <string name="theme_accent_picker_default">Default</string>
+    <string name="theme_accent_picker_default">По умолчанию</string>
     <!-- Navbar Picker -->
-    <string name="theme_navbar_picker_title">Navbar style</string>
-    <string name="theme_navbar_picker_summary">Select navbar style</string>
+    <string name="theme_navbar_picker_title">Стиль панели навигации</string>
+    <string name="theme_navbar_picker_summary">Выберать стиль панели навигации</string>
     <string name="theme_navbar_picker_oneplus">OnePlus</string>
     <string name="theme_navbar_picker_oneui">One UI</string>
     <string name="theme_navbar_picker_tecno">Tecno Camon</string>
     <string name="theme_navbar_picker_asus">ASUS</string>
     <!-- Accent Picker -->
-    <string name="theme_picker_default">Default</string>
-    <string name="accent_color">Accent picker</string>
+    <string name="theme_picker_default">По умолчанию</string>
+    <string name="accent_color">Выбор цвета</string>
     <!-- Dark theme -->
-    <string name="dark_theme_title">Dark theme</string>
+    <string name="dark_theme_title">Тёмная тема</string>
     <!-- Fonts -->
-    <string name="font_type_title">Font type</string>
-    <string name="font_type_summary">Select font type</string>
-    <string name="font_type_default">Default</string>
+    <string name="font_type_title">Тип шрифта</string>
+    <string name="font_type_summary">Выбрать тип шрифта</string>
+    <string name="font_type_default">По умолчанию</string>
     <string name="font_type_2">Noto Serif / Source Sans Pro</string>
     <string name="font_type_3">Aclonica</string>
     <string name="font_type_4">Amarante</string>
@@ -59,19 +59,19 @@
     <string name="font_type_23">Surfer</string>
     <string name="font_type_24">Ubuntu</string>
     <!-- Adaptive icon shapes -->
-    <string name="adaptive_icon_shape_default">Default</string>
-    <string name="adaptive_icon_shape_teardrop">Teardrop</string>
-    <string name="adaptive_icon_shape_squircle">Squircle</string>
-    <string name="adaptive_icon_shape_roundedrect">Rounded Rectangle</string>
-    <string name="adaptive_icon_shape_cylinder">Cylinder</string>
-    <string name="adaptive_icon_shape_hexagon">Hexagon</string>
-    <string name="adaptive_icon_shape_title">Icon shape</string>
-    <string name="adaptive_icon_shape_dialog_title">Select icon shape</string>
+    <string name="adaptive_icon_shape_default">По умолчанию</string>
+    <string name="adaptive_icon_shape_teardrop">Каплевидная</string>
+    <string name="adaptive_icon_shape_squircle">Округлый квадрат</string>
+    <string name="adaptive_icon_shape_roundedrect">Прямоугольник с закругленными углами</string>
+    <string name="adaptive_icon_shape_cylinder">Цилиндр</string>
+    <string name="adaptive_icon_shape_hexagon">Шестиугольник</string>
+    <string name="adaptive_icon_shape_title">Форма значка</string>
+    <string name="adaptive_icon_shape_dialog_title">Выберать форму значка</string>
     <!-- Statusbar icons -->
-    <string name="statusbar_icons_default">Default</string>
-    <string name="statusbar_icons_filled">Filled</string>
-    <string name="statusbar_icons_rounded">Rounded</string>
-    <string name="statusbar_icons_circular">Circular</string>
+    <string name="statusbar_icons_default">По умолчанию</string>
+    <string name="statusbar_icons_filled">Заполненный</string>
+    <string name="statusbar_icons_rounded">Скругленный</string>
+    <string name="statusbar_icons_circular">Круглый</string>
     <string name="statusbar_icons_title">Statusbar/QS icons</string>
     <string name="statusbar_icons_dialog_title">Select statusbar icon set</string>
     <!-- QS header style -->
