@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <resources>
-    <string name="app_name">Themes</string>
+    <string name="app_name">Temalar</string>
     <!-- Footer -->
     <string name="schedule_footer_info">When setting a schedule, always set the first schedule time closes to your current time.\n\nFor example:\nIf the current time is 4:00pm and you want to set a schedule from 6:00am to 6:00pm, you would set the first theme to 6:00pm, then the second theme to 6:00am.</string>
     <!-- Accent Picker -->
