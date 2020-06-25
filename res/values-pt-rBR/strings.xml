@@ -121,9 +121,9 @@ Estilo do interruptor</string>
     <string name="theme_schedule_none">Nenhum</string>
     <string name="theme_schedule_custom_time">Aplicar em um horário personalizado</string>
     <string name="theme_schedule_applied">tema aplicado</string>
-    <string name="theme_schedule_start_scheduled">theme starts at</string>
-    <string name="theme_schedule_repeat_title">Repeat schedule</string>
-    <string name="theme_schedule_repeat_summary">Repeats the schedule daily</string>
-    <string name="theme_schedule_toasts_title">Show toasts</string>
-    <string name="theme_schedule_toasts_summary">Show toasts when scheduled themes are launched</string>
+    <string name="theme_schedule_start_scheduled">o tema começa no</string>
+    <string name="theme_schedule_repeat_title">Repetir a programação</string>
+    <string name="theme_schedule_repeat_summary">Repete a programação diariamente</string>
+    <string name="theme_schedule_toasts_title">Mostrar mensagens tipo bolhas</string>
+    <string name="theme_schedule_toasts_summary">Mostrar uma mensagem em tipo de bolha quando os temas agendados forem aplicados</string>
 </resources>
