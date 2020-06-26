@@ -102,6 +102,7 @@
         <item>@string/qs_tile_style_badgetwo</item>
         <item>@string/qs_tile_style_circletrim</item>
         <item>@string/qs_tile_style_dualtonecircletrim</item>
+        <item>@string/qs_tile_style_cookie</item>
     </string-array>
 
     <string-array name="qs_tile_style_selector_values" translatable="false">
@@ -116,6 +117,7 @@
         <item>8</item>
         <item>9</item>
         <item>10</item>
+        <item>11</item>
     </string-array>
 
     <!-- Statusbar icons -->
