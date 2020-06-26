@@ -73,22 +73,22 @@
     <string name="statusbar_icons_rounded">Bo tròn</string>
     <string name="statusbar_icons_circular">Hình tròn</string>
     <string name="statusbar_icons_title">Thanh thông báo/Biểu tượng QS</string>
-    <string name="statusbar_icons_dialog_title">Select statusbar icon set</string>
+    <string name="statusbar_icons_dialog_title">Chọn biểu tượng thanh trạng thái</string>
     <!-- QS header style -->
-    <string name="qs_header_style_default">Default</string>
-    <string name="qs_header_style_grey">Grey</string>
-    <string name="qs_header_style_lightgrey">Light Grey</string>
-    <string name="qs_header_style_accent">Accent Color</string>
-    <string name="qs_header_style_transparent">Transparent</string>
-    <string name="qs_header_style_title">QS Header style</string>
-    <string name="qs_header_style_dialog_title">Select QS header style set</string>
+    <string name="qs_header_style_default">Mặc định</string>
+    <string name="qs_header_style_grey">Xám</string>
+    <string name="qs_header_style_lightgrey">Xám nhạt</string>
+    <string name="qs_header_style_accent">Màu nhấn</string>
+    <string name="qs_header_style_transparent">Trong suốt</string>
+    <string name="qs_header_style_title">Kiểu QS Header</string>
+    <string name="qs_header_style_dialog_title">Chọn kiểu tiêu đề QS</string>
     <!-- Switch styles -->
-    <string name="switch_style_title">Switch style</string>
-    <string name="switch_default">Default</string>
-    <string name="switch_md2">Material Design 2</string>
+    <string name="switch_style_title">Chuyển đổi phong cách</string>
+    <string name="switch_default">Mặc định</string>
+    <string name="switch_md2">Thiết kế vật liệu 2</string>
     <string name="switch_oneplus">OnePlus</string>
     <string name="switch_tg">Telegram</string>
-    <string name="switch_narrow">Narrow</string>
+    <string name="switch_narrow">Hẹp</string>
     <string name="switch_contained">Contained</string>
     <string name="switch_retro">Retro</string>
     <string name="switch_stockish">Stockish</string>
