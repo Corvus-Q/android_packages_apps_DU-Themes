@@ -92,11 +92,11 @@
     <string name="switch_contained">Chứa</string>
     <string name="switch_retro">Retro</string>
     <string name="switch_stockish">Stockish</string>
-    <string name="switch_style_dialog_title">Select switch style set</string>
+    <string name="switch_style_dialog_title">Chọn bộ kiểu chuyển đổi</string>
     <!-- Themes -->
-    <string name="theme_type_title">System theme</string>
-    <string name="theme_type_summary">Select theme</string>
-    <string name="theme_type_light">Light</string>
+    <string name="theme_type_title">Chủ đề hệ thống</string>
+    <string name="theme_type_summary">Chọn giao diện</string>
+    <string name="theme_type_light">Sáng</string>
     <string name="theme_type_google_dark">Google dark</string>
     <string name="theme_type_pitch_black">Pitch black</string>
     <string name="theme_type_solarized_dark">Solarized dark</string>
@@ -105,7 +105,7 @@
     <string name="theme_type_dark_grey">Dark grey</string>
     <string name="theme_type_material_ocean">Material ocean</string>
     <string name="theme_type_corvus_clear">Corvus clear</string>
-    <string name="theme_other_category_title">Other</string>
+    <string name="theme_other_category_title">Khác</string>
     <string name="theme_button_delete_theme">Delete theme</string>
     <string name="theme_switch_persistent_title">Persistent switches state</string>
     <string name="theme_reset_dialog_title">Reset theme options</string>
