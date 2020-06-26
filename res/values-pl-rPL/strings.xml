@@ -14,27 +14,27 @@
      limitations under the License.
 -->
 <resources>
-    <string name="app_name">Themes</string>
+    <string name="app_name">Motywy</string>
     <!-- Footer -->
     <string name="schedule_footer_info">When setting a schedule, always set the first schedule time closes to your current time.\n\nFor example:\nIf the current time is 4:00pm and you want to set a schedule from 6:00am to 6:00pm, you would set the first theme to 6:00pm, then the second theme to 6:00am.</string>
     <!-- Accent Picker -->
-    <string name="theme_accent_picker_default">Default</string>
+    <string name="theme_accent_picker_default">Domyślny</string>
     <!-- Navbar Picker -->
-    <string name="theme_navbar_picker_title">Navbar style</string>
-    <string name="theme_navbar_picker_summary">Select navbar style</string>
+    <string name="theme_navbar_picker_title">Styl paska nawigacji</string>
+    <string name="theme_navbar_picker_summary">Wybierz styl paska nawigacji</string>
     <string name="theme_navbar_picker_oneplus">OnePlus</string>
     <string name="theme_navbar_picker_oneui">One UI</string>
     <string name="theme_navbar_picker_tecno">Tecno Camon</string>
     <string name="theme_navbar_picker_asus">ASUS</string>
     <!-- Accent Picker -->
-    <string name="theme_picker_default">Default</string>
-    <string name="accent_color">Accent picker</string>
+    <string name="theme_picker_default">Domyślny</string>
+    <string name="accent_color">Wybierz motyw</string>
     <!-- Dark theme -->
-    <string name="dark_theme_title">Dark theme</string>
+    <string name="dark_theme_title">Tryb ciemny</string>
     <!-- Fonts -->
-    <string name="font_type_title">Font type</string>
-    <string name="font_type_summary">Select font type</string>
-    <string name="font_type_default">Default</string>
+    <string name="font_type_title">Styl czcionki</string>
+    <string name="font_type_summary">Wybierz styl czcionki</string>
+    <string name="font_type_default">Domyślny</string>
     <string name="font_type_2">Noto Serif / Source Sans Pro</string>
     <string name="font_type_3">Aclonica</string>
     <string name="font_type_4">Amarante</string>
@@ -59,21 +59,21 @@
     <string name="font_type_23">Surfer</string>
     <string name="font_type_24">Ubuntu</string>
     <!-- Adaptive icon shapes -->
-    <string name="adaptive_icon_shape_default">Default</string>
-    <string name="adaptive_icon_shape_teardrop">Teardrop</string>
-    <string name="adaptive_icon_shape_squircle">Squircle</string>
-    <string name="adaptive_icon_shape_roundedrect">Rounded Rectangle</string>
-    <string name="adaptive_icon_shape_cylinder">Cylinder</string>
-    <string name="adaptive_icon_shape_hexagon">Hexagon</string>
-    <string name="adaptive_icon_shape_title">Icon shape</string>
-    <string name="adaptive_icon_shape_dialog_title">Select icon shape</string>
+    <string name="adaptive_icon_shape_default">Domyślny</string>
+    <string name="adaptive_icon_shape_teardrop">Łza</string>
+    <string name="adaptive_icon_shape_squircle">Zaokrąglony kwadrat</string>
+    <string name="adaptive_icon_shape_roundedrect">Zaokrąglony prostokąt</string>
+    <string name="adaptive_icon_shape_cylinder">Okrąg</string>
+    <string name="adaptive_icon_shape_hexagon">Sześciokąt</string>
+    <string name="adaptive_icon_shape_title">Kształt ikon</string>
+    <string name="adaptive_icon_shape_dialog_title">Wybierz kształt ikon</string>
     <!-- Statusbar icons -->
-    <string name="statusbar_icons_default">Default</string>
-    <string name="statusbar_icons_filled">Filled</string>
-    <string name="statusbar_icons_rounded">Rounded</string>
-    <string name="statusbar_icons_circular">Circular</string>
-    <string name="statusbar_icons_title">Statusbar/QS icons</string>
-    <string name="statusbar_icons_dialog_title">Select statusbar icon set</string>
+    <string name="statusbar_icons_default">Domyślny</string>
+    <string name="statusbar_icons_filled">Wypełniona</string>
+    <string name="statusbar_icons_rounded">Zaokrąglona</string>
+    <string name="statusbar_icons_circular">Okrągła</string>
+    <string name="statusbar_icons_title">Pasek stanu/Ikony szybkich ustawień</string>
+    <string name="statusbar_icons_dialog_title">Wybierz zestaw ikon paska stanu</string>
     <!-- QS header style -->
     <string name="qs_header_style_default">Default</string>
     <string name="qs_header_style_grey">Grey</string>
