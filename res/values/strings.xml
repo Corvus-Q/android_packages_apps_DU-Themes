@@ -76,6 +76,13 @@
     <string name="adaptive_icon_shape_title">Icon shape</string>
     <string name="adaptive_icon_shape_dialog_title">Select icon shape</string>
 
+    <!-- QS tile styles -->
+    <string name="qs_tile_style_title">QS tile style</string>
+    <string name="qs_tile_style_default">Default</string>
+    <string name="qs_tile_style_circletrim">Circle with trim</string>
+    <string name="qs_tile_style_dualtonecircletrim">Dual-toned circle</string>
+    <string name="qs_tile_style_squircletrim">Squircle with trim</string>
+
     <!-- Statusbar icons -->
     <string name="statusbar_icons_default">Default</string>
     <string name="statusbar_icons_filled">Filled</string>
