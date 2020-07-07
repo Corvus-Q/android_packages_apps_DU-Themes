@@ -22,6 +22,7 @@
     <com.dirtyunicorns.support.colorpicker.ColorPickerPreference
         android:key="accent_color"
         android:title="@string/accent_color"
+        android:summary="@string/accent_color_summary"
         android:persistent="false"/>
 
     <Preference
