@@ -290,11 +290,6 @@ public class Themes extends PreferenceFragment {
         int intColor = Settings.System.getIntForUser(getContext().getContentResolver(),
                 Settings.System.ACCENT_COLOR, DEFAULT_ACCENT_COLOR, UserHandle.USER_CURRENT);
         String hexColor = String.format("#%08x", (0xff1a73e8 & intColor));
-        if (hexColor.equals("#ff1a73e8")) {
-            mAccentColor.setSummary(R.string.theme_picker_default);
-        } else {
-            mAccentColor.setSummary(hexColor);
-        }
         mAccentColor.setNewPreviewColor(intColor);
         mAccentColor.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
@@ -302,11 +297,6 @@ public class Themes extends PreferenceFragment {
                 if (preference == mAccentColor) {
                     String hex = ColorPickerPreference.convertToARGB(
                             Integer.valueOf(String.valueOf(newValue)));
-                    if (hex.equals("#ff1a73e8")) {
-                    mAccentColor.setSummary(R.string.theme_picker_default);
-                    } else {
-                    mAccentColor.setSummary(hex);
-                    }
                     int intHex = ColorPickerPreference.convertToColorInt(hex);
                     Settings.System.putIntForUser(getContext().getContentResolver(),
                     Settings.System.ACCENT_COLOR, intHex, UserHandle.USER_CURRENT);
