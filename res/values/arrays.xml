@@ -80,6 +80,7 @@
         <item>@string/adaptive_icon_shape_roundedrect</item>
         <item>@string/adaptive_icon_shape_cylinder</item>
         <item>@string/adaptive_icon_shape_hexagon</item>
+        <item>@string/adaptive_icon_shape_roundedhexagon</item>
     </string-array>
 
     <string-array name="adapative_icon_shape_values">
@@ -89,6 +90,7 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
+        <item>7</item>
     </string-array>
 
     <!-- QS tile styles -->

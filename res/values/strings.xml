@@ -75,6 +75,7 @@
     <string name="adaptive_icon_shape_roundedrect">Rounded Rectangle</string>
     <string name="adaptive_icon_shape_cylinder">Cylinder</string>
     <string name="adaptive_icon_shape_hexagon">Hexagon</string>
+    <string name="adaptive_icon_shape_roundedhexagon">Rounded Hexagon</string>
     <string name="adaptive_icon_shape_title">Icon shape</string>
     <string name="adaptive_icon_shape_dialog_title">Select icon shape</string>
 
