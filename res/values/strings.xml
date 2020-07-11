@@ -76,6 +76,9 @@
     <string name="adaptive_icon_shape_cylinder">Cylinder</string>
     <string name="adaptive_icon_shape_hexagon">Hexagon</string>
     <string name="adaptive_icon_shape_roundedhexagon">Rounded Hexagon</string>
+    <string name="adaptive_icon_shape_pebble">Pebble</string>
+    <string name="adaptive_icon_shape_taperedrect">Tapered Rect</string>
+    <string name="adaptive_icon_shape_vessel">Vessel</string>
     <string name="adaptive_icon_shape_title">Icon shape</string>
     <string name="adaptive_icon_shape_dialog_title">Select icon shape</string>
 
