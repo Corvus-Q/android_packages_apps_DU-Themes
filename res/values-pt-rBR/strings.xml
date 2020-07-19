@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2019-2020 The Dirty Unicorns Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="app_name">Temas</string>
+    <!-- Footer -->
+    <string name="schedule_footer_info">Ao definir um agendamento, sempre defina o primeiro horário agendado para o horário atual.\n\n Por exemplo\nSe o horário atual for 16:00 e você desejar definir uma programação das 6:00 às 18:00, você definirá o primeiro tema para 18:00 e, em seguida, o segundo tema para 6:00.</string>
+    <!-- Accent Picker -->
+    <string name="theme_accent_picker_default">Padrão</string>
+    <!-- Navbar Picker -->
+    <string name="theme_navbar_picker_title">Estilo da barra de navegação</string>
+    <string name="theme_navbar_picker_summary">Selecione o estilo da barra de navegação</string>
+    <string name="theme_navbar_picker_oneplus">OnePlus</string>
+    <string name="theme_navbar_picker_oneui">One UI</string>
+    <string name="theme_navbar_picker_tecno">Tecno Camon</string>
+    <string name="theme_navbar_picker_asus">ASUS</string>
+    <!-- Accent Picker -->
+    <string name="theme_picker_default">Padrão</string>
+    <string name="accent_color">Seletor de destaque</string>
+    <!-- Dark theme -->
+    <string name="dark_theme_title">Tema escuro</string>
+    <!-- Fonts -->
+    <string name="font_type_title">Tipo de fonte</string>
+    <string name="font_type_summary">Selecione o tipo de fonte</string>
+    <string name="font_type_default">Padrão</string>
+    <string name="font_type_2">Noto Serif / Source Sans Pro</string>
+    <string name="font_type_3">Aclonica</string>
+    <string name="font_type_4">Amarante</string>
+    <string name="font_type_5">Arvolato</string>
+    <string name="font_type_6">Bariol</string>
+    <string name="font_type_7">Cagliostro</string>
+    <string name="font_type_8">CircularStd</string>
+    <string name="font_type_9">Comic Sans</string>
+    <string name="font_type_10">Comfortaa</string>
+    <string name="font_type_11">Cool Story</string>
+    <string name="font_type_12">Exotwo</string>
+    <string name="font_type_13">Fira Sans</string>
+    <string name="font_type_14">Google Sans</string>
+    <string name="font_type_15">LG Smart Gothic</string>
+    <string name="font_type_16">Rosemary</string>
+    <string name="font_type_17">Rubik</string>
+    <string name="font_type_18">Samsung One</string>
+    <string name="font_type_19">San Francisco Pro</string>
+    <string name="font_type_20">OnePlus Slate</string>
+    <string name="font_type_21">Sony Sketch</string>
+    <string name="font_type_22">Storopia</string>
+    <string name="font_type_23">Surfer</string>
+    <string name="font_type_24">Ubuntu</string>
+    <!-- Adaptive icon shapes -->
+    <string name="adaptive_icon_shape_default">Padrão</string>
+    <string name="adaptive_icon_shape_teardrop">Lágrima</string>
+    <string name="adaptive_icon_shape_squircle">Circulo quadrado</string>
+    <string name="adaptive_icon_shape_roundedrect">Retângulo arredondado</string>
+    <string name="adaptive_icon_shape_cylinder">Cilindro</string>
+    <string name="adaptive_icon_shape_hexagon">Hexágono</string>
+    <string name="adaptive_icon_shape_title">Formato dos ícones</string>
+    <string name="adaptive_icon_shape_dialog_title">Selecionar o estilo do ícone</string>
+    <!-- Statusbar icons -->
+    <string name="statusbar_icons_default">Padrão</string>
+    <string name="statusbar_icons_filled">Preenchido</string>
+    <string name="statusbar_icons_rounded">Arredondado</string>
+    <string name="statusbar_icons_circular">Circular</string>
+    <string name="statusbar_icons_title">Barra de status/ícones das CR</string>
+    <string name="statusbar_icons_dialog_title">barra de status_ícones_diálogo_título</string>
+    <!-- QS header style -->
+    <string name="qs_header_style_default">Configurações rápidas_cabeçalhado_estilo_estilo padrão das configurações rapida</string>
+    <string name="qs_header_style_grey">Configurações rapidas_cabeçalhado_estilo_cinza</string>
+    <string name="qs_header_style_lightgrey">Configurações_cabeçalhado_estilo_cinza claro</string>
+    <string name="qs_header_style_accent">Configurações rápidas_cabeçalho_estilo_cor de destaque</string>
+    <string name="qs_header_style_transparent">Configurações rápidas_estilo_transparente</string>
+    <string name="qs_header_style_title">Configurações rápidas_cabeçalhado_estilo_título</string>
+    <string name="qs_header_style_dialog_title">Configurações rápidas_cabeçalhado_estilo_diálogo_título</string>
+    <!-- Switch styles -->
+    <string name="switch_style_title">Interruptor_estilo_título
+Estilo do interruptor</string>
+    <string name="switch_default">Padrão</string>
+    <string name="switch_md2">Material Design 2</string>
+    <string name="switch_oneplus">OnePlus</string>
+    <string name="switch_tg">Telegram</string>
+    <string name="switch_narrow">Narrow</string>
+    <string name="switch_contained">Contido</string>
+    <string name="switch_retro">Retro</string>
+    <string name="switch_stockish">Stockish</string>
+    <string name="switch_style_dialog_title">Selecione o conjunto de estilos do interruptor</string>
+    <!-- Themes -->
+    <string name="theme_type_title">Tema do sistema</string>
+    <string name="theme_type_summary">Selecione um tema</string>
+    <string name="theme_type_light">Claro</string>
+    <string name="theme_type_google_dark">Google dark</string>
+    <string name="theme_type_pitch_black">Pitch Black</string>
+    <string name="theme_type_solarized_dark">Solarized Dark</string>
+    <string name="theme_type_choco_x">Choco X</string>
+    <string name="theme_type_baked_green">Baked Green</string>
+    <string name="theme_type_dark_grey">Cinza Escuro</string>
+    <string name="theme_type_material_ocean">Material Ocean</string>
+    <string name="theme_type_corvus_clear">Corvus Clear</string>
+    <string name="theme_other_category_title">Outro</string>
+    <string name="theme_button_delete_theme">Excluir tema</string>
+    <string name="theme_switch_persistent_title">Status dos interruptores persistentes</string>
+    <string name="theme_reset_dialog_title">Redefinir opções do tema</string>
+    <string name="theme_reset_dialog_message">Todas as opções de tema serão redefinidas para o padrão. A programação não será afetada por isso.</string>
+    <string name="theme_reset_toast">Opções para voltar ao tema padrão</string>
+    <!-- Theme schedule -->
+    <string name="theme_schedule_title">Cronograma</string>
+    <string name="theme_schedule_summary">Definir uma programação para os temas do sistema</string>
+    <string name="theme_schedule_dyn_summary">o tema está agendado</string>
+    <string name="theme_schedule_theme_title">Agendar tema</string>
+    <string name="theme_schedule_theme_summary">Selecione um tema para agendar</string>
+    <string name="theme_schedule_none">Nenhum</string>
+    <string name="theme_schedule_custom_time">Aplicar em um horário personalizado</string>
+    <string name="theme_schedule_applied">tema aplicado</string>
+    <string name="theme_schedule_start_scheduled">o tema começa no</string>
+    <string name="theme_schedule_repeat_title">Repetir a programação</string>
+    <string name="theme_schedule_repeat_summary">Repete a programação diariamente</string>
+    <string name="theme_schedule_toasts_title">Mostrar mensagens tipo bolhas</string>
+    <string name="theme_schedule_toasts_summary">Mostrar uma mensagem em tipo de bolha quando os temas agendados forem aplicados</string>
+</resources>

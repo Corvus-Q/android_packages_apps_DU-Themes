@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2019-2020 The Dirty Unicorns Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="app_name">Temas</string>
+    <!-- Footer -->
+    <string name="schedule_footer_info">Ao definir um cronograma, sempre defina o primeiro horário de agendamento para o horário atual.\n\nPor exemplo:\nSe a hora atual é das 16h e você deseja definir uma programação das 6:00 para as 18h você definiria o primeiro tema para as 18:00h e, em seguida, o segundo para as 6:00h.</string>
+    <!-- Accent Picker -->
+    <string name="theme_accent_picker_default">Predefinição</string>
+    <!-- Navbar Picker -->
+    <string name="theme_navbar_picker_title">Estilo barra de navegação</string>
+    <string name="theme_navbar_picker_summary">Selecionar estilo da barra de navegação</string>
+    <string name="theme_navbar_picker_oneplus">OnePlus</string>
+    <string name="theme_navbar_picker_oneui">One Ui</string>
+    <string name="theme_navbar_picker_tecno">Camão Tecno</string>
+    <string name="theme_navbar_picker_asus">ASUS</string>
+    <!-- Accent Picker -->
+    <string name="theme_picker_default">Predefinição</string>
+    <string name="accent_color">Selecionar cor de destaque</string>
+    <!-- Dark theme -->
+    <string name="dark_theme_title">Tema Escuro</string>
+    <!-- Fonts -->
+    <string name="font_type_title">Estilo do tipo de letra</string>
+    <string name="font_type_summary">Selecionar tipo de fonte</string>
+    <string name="font_type_default">Predefinição</string>
+    <string name="font_type_2">Noto Serif / Source Sans Pro</string>
+    <string name="font_type_3">Aclônica</string>
+    <string name="font_type_4">Amarante</string>
+    <string name="font_type_5">Arvolato</string>
+    <string name="font_type_6">Bariol</string>
+    <string name="font_type_7">Cagliostro</string>
+    <string name="font_type_8">CircularStd</string>
+    <string name="font_type_9">Comic Sans</string>
+    <string name="font_type_10">Comfortaa</string>
+    <string name="font_type_11">Cool Story</string>
+    <string name="font_type_12">Exotwo</string>
+    <string name="font_type_13">Fira Sans</string>
+    <string name="font_type_14">Google Sans</string>
+    <string name="font_type_15">LG Smart Gothic</string>
+    <string name="font_type_16">Rosemary</string>
+    <string name="font_type_17">Rubik</string>
+    <string name="font_type_18">Samsung One</string>
+    <string name="font_type_19">San Francisco Pro</string>
+    <string name="font_type_20">OnePlus Slate</string>
+    <string name="font_type_21">Sony Sketch</string>
+    <string name="font_type_22">Storopia</string>
+    <string name="font_type_23">Surfer</string>
+    <string name="font_type_24">Ubuntu</string>
+    <!-- Adaptive icon shapes -->
+    <string name="adaptive_icon_shape_default">Predefinição</string>
+    <string name="adaptive_icon_shape_teardrop">Lágrima</string>
+    <string name="adaptive_icon_shape_squircle">Quadrado arredondado</string>
+    <string name="adaptive_icon_shape_roundedrect">Retângulo Arredondado</string>
+    <string name="adaptive_icon_shape_cylinder">Cilindro</string>
+    <string name="adaptive_icon_shape_hexagon">Hexágono</string>
+    <string name="adaptive_icon_shape_title">Forma dos ícones</string>
+    <string name="adaptive_icon_shape_dialog_title">Selecionar formato do ícone</string>
+    <!-- Statusbar icons -->
+    <string name="statusbar_icons_default">Predefinição</string>
+    <string name="statusbar_icons_filled">Preenchido</string>
+    <string name="statusbar_icons_rounded">Arredondado</string>
+    <string name="statusbar_icons_circular">Circular</string>
+    <string name="statusbar_icons_title">Ícones da barra de status</string>
+    <string name="statusbar_icons_dialog_title">Selecione o ícone da barra de status</string>
+    <!-- QS header style -->
+    <string name="qs_header_style_default">Predefinição</string>
+    <string name="qs_header_style_grey">Cinzento</string>
+    <string name="qs_header_style_lightgrey">Cinzento Claro</string>
+    <string name="qs_header_style_accent">Cor de Destaque</string>
+    <string name="qs_header_style_transparent">Transparente</string>
+    <string name="qs_header_style_title">Estilo do Cabeçalho QS</string>
+    <string name="qs_header_style_dialog_title">Selecione o estilo do cabeçalho</string>
+    <!-- Switch styles -->
+    <string name="switch_style_title">Alterar estilo</string>
+    <string name="switch_default">Predefinição</string>
+    <string name="switch_md2">Material Design 2</string>
+    <string name="switch_oneplus">OnePlus</string>
+    <string name="switch_tg">Telegram</string>
+    <string name="switch_narrow">Limitar</string>
+    <string name="switch_contained">Contido</string>
+    <string name="switch_retro">Retrô</string>
+    <string name="switch_stockish">Estoque</string>
+    <string name="switch_style_dialog_title">Escolher conjunto de estilo</string>
+    <!-- Themes -->
+    <string name="theme_type_title">Tema do sistema</string>
+    <string name="theme_type_summary">Selecione um tema</string>
+    <string name="theme_type_light">Claro</string>
+    <string name="theme_type_google_dark">Google Dark</string>
+    <string name="theme_type_pitch_black">Tom preto</string>
+    <string name="theme_type_solarized_dark">Solarizado escuro</string>
+    <string name="theme_type_choco_x">Choco X</string>
+    <string name="theme_type_baked_green">Baked green</string>
+    <string name="theme_type_dark_grey">Cinzento escuro</string>
+    <string name="theme_type_material_ocean">Material oceano</string>
+    <string name="theme_type_corvus_clear">Corvus Clear</string>
+    <string name="theme_other_category_title">Outros</string>
+    <string name="theme_button_delete_theme">Apagar tema</string>
+    <string name="theme_switch_persistent_title">Persistent switches state</string>
+    <string name="theme_reset_dialog_title">Redefinir opções de tema</string>
+    <string name="theme_reset_dialog_message">Todas as opções de temas serão redefinidas para o padrão. O agendamento não será afetado por isso.</string>
+    <string name="theme_reset_toast">Opções do tema de volta para o padrão</string>
+    <!-- Theme schedule -->
+    <string name="theme_schedule_title">Cronograma</string>
+    <string name="theme_schedule_summary">Definir um cronograma para temas de sistema</string>
+    <string name="theme_schedule_dyn_summary">tema está programado</string>
+    <string name="theme_schedule_theme_title">Agendar tema</string>
+    <string name="theme_schedule_theme_summary">Selecione um tema para editar</string>
+    <string name="theme_schedule_none">Nenhum</string>
+    <string name="theme_schedule_custom_time">Ativa em um horário personalizado</string>
+    <string name="theme_schedule_applied">Tema aplicado</string>
+    <string name="theme_schedule_start_scheduled">o tema começa em</string>
+    <string name="theme_schedule_repeat_title">Repetir a programação</string>
+    <string name="theme_schedule_repeat_summary">Repete o cronograma diariamente</string>
+    <string name="theme_schedule_toasts_title">Mostrar alertas</string>
+    <string name="theme_schedule_toasts_summary">Mostrar alertas quando temas agendados são iniciados</string>
+</resources>
