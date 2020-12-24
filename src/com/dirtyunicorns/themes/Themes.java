@@ -87,6 +87,9 @@ public class Themes extends PreferenceFragment {
     private static final String ACCENT_COLOR = "accent_color";
     static final int DEFAULT_ACCENT_COLOR = 0xff1a73e8;
 
+    private static final String PREF_ROUNDED_CORNER = "rounded_ui";
+    private static final String PREF_SB_HEIGHT = "statusbar_height";
+
     private static boolean mUseSharedPrefListener;
     private String[] mNavbarName;
 
@@ -102,6 +105,8 @@ public class Themes extends PreferenceFragment {
     private ListPreference mQsHeaderStyle;
     private ListPreference mSwitchStyle;
     private ListPreference mQsTileStyle;
+    private ListPreference mRoundedUi;
+    private ListPreference mSbHeight;
     private Preference mNavbarPicker;
     private Preference mThemeSchedule;
     private Preference mWpPreview;
@@ -201,6 +206,26 @@ public class Themes extends PreferenceFragment {
             }
         }
         mThemeSwitch.setSummary(mThemeSwitch.getEntry());
+
+	// Rounded UI
+        mRoundedUi = (ListPreference) findPreference(PREF_ROUNDED_CORNER);
+        int roundedValue = getOverlayPosition(ThemesUtils.UI_RADIUS);
+        if (roundedValue != -1) {
+            mRoundedUi.setValue(String.valueOf(roundedValue + 2));
+        } else {
+            mRoundedUi.setValue("1");
+        }
+        mRoundedUi.setSummary(mRoundedUi.getEntry());
+
+	// Statusbar Height
+	mSbHeight = (ListPreference) findPreference(PREF_SB_HEIGHT);
+        int sbHeightValue = getOverlayPosition(ThemesUtils.STATUSBAR_HEIGHT);
+        if (sbHeightValue != -1) {
+            mSbHeight.setValue(String.valueOf(sbHeightValue + 2));
+        } else {
+            mSbHeight.setValue("1");
+        }
+        mSbHeight.setSummary(mSbHeight.getEntry());
 
         // Font picker
         mFontPicker = (ListPreference) findPreference(PREF_FONT_PICKER);
@@ -435,6 +460,34 @@ public class Themes extends PreferenceFragment {
                 }
                 mSwitchStyle.setSummary(mSwitchStyle.getEntry());
             }
+
+	    if (key.equals(PREF_ROUNDED_CORNER)) {
+		String roundedStyle = sharedPreferences.getString(PREF_ROUNDED_CORNER, "1");
+	        int roundedValue = Integer.parseInt(roundedStyle);
+                String overlayName = getOverlayName(ThemesUtils.UI_RADIUS);
+                if (overlayName != null) {
+                    handleOverlays(overlayName, false, mOverlayManager);
+                }
+                if (roundedValue > 1) {
+                    handleOverlays(ThemesUtils.UI_RADIUS[roundedValue -2],
+                            true, mOverlayManager);
+                }
+                mRoundedUi.setSummary(mRoundedUi.getEntry());
+            }
+
+		if (key.equals(PREF_SB_HEIGHT)) {
+		    String statusbarHeight = sharedPreferences.getString(PREF_SB_HEIGHT, "1");
+		    int sbHeightValue = Integer.parseInt(statusbarHeight);
+		    String overlayName = getOverlayName(ThemesUtils.STATUSBAR_HEIGHT);
+		        if (overlayName != null) {
+		            handleOverlays(overlayName, false, mOverlayManager);
+		        }
+		        if (sbHeightValue > 1) {
+		            handleOverlays(ThemesUtils.STATUSBAR_HEIGHT[sbHeightValue -2],
+		                    true, mOverlayManager);
+		        }
+		        mSbHeight.setSummary(mSbHeight.getEntry());
+		}
 
             if (key.equals(PREF_THEME_SWITCH)) {
                 String themeSwitch = sharedPreferences.getString(PREF_THEME_SWITCH, "1");
